@@ -7,9 +7,9 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 // Funkcija za povlačenje hero slike iz PostgreSQL baze
 async function getHeroImage() {
     let { data, error } = await supabase
-        .from('images')  
-        .select('image_url')  
-        .eq('id', 6); 
+        .from('hero_banner')  
+        .select('hero_url')  
+        .eq('id', 1); 
 
     if (error) {
         console.error(error);
@@ -19,7 +19,7 @@ async function getHeroImage() {
     // Ako je slika pronađena, postavi je kao pozadinsku sliku
     if (data.length > 0) {
         const heroSection = document.querySelector('.hero');
-        heroSection.style.backgroundImage = `url('${data[0].image_url}')`;
+        heroSection.style.backgroundImage = `url('${data[0].hero_url}')`;
     }
 }
 
@@ -28,7 +28,7 @@ async function getServiceImage() {
     let { data, error } = await supabase
     .from('images') 
     .select('image_url')
-    .eq('id', 15);  
+    .eq('id', 22);  
 
     if (error) {
     console.error(error);
@@ -57,34 +57,32 @@ async function displayServiceImage() {
 // Funkcija za povlačenje logotipa iz PostgreSQL baze
 async function getLogos() {
     let { data, error } = await supabase
-      .from('images')  
-      .select('image_url')
-      .like('image_url', '%logo%')  
-      .neq('image_url', 'images/logo.svg'); 
+      .from('client_logo')  
+      .select('client_logo_url')  
+      .like('client_logo_url', '%logo%'); 
   
     if (error) {
-      console.error(error);
+      console.error('Greška prilikom povlačenja logotipa:', error);
       return [];
     }
 
-    console.log('Povučeni logotipi iz baze:', data);  // Provera podataka
+    console.log('Povučeni logotipi iz baze:', data);  
     return data;
+}
   
-  }
-  
-  // Funkcija za prikazivanje logotipa u Owl Carousel-u
-  async function displayLogos() {
+// Funkcija za prikazivanje logotipa u Owl Carousel-u
+async function displayLogos() {
     const carousel = document.querySelector('.clients_logos');  
     const logos = await getLogos();
   
     // Proveri da li ima logotipa i dodaj ih u carousel
     logos.forEach(logo => {
-        console.log('Dodajem logo:', logo.image_url);  // Provera
+        console.log('Dodajem logo:', logo.logo_url);  
         const imgElement = document.createElement('img');
-        imgElement.src = logo.image_url;
+        imgElement.src = logo.client_logo_url; 
         imgElement.alt = 'Client Logo';
         carousel.appendChild(imgElement);
-      });
+    });
   
     // Ponovno inicijalizuj Owl Carousel nakon što dodamo logotipe
     $(".clients_logos").owlCarousel({
@@ -145,7 +143,7 @@ async function getWorkMedia() {
     let { data: images, error: imageError } = await supabase
       .from('images')  
       .select('image_url')
-      .or('image_url.ilike.%webp%,image_url.ilike.%png%');  // Filtrira slike
+      .or('image_url.ilike.%webp%,image_url.ilike.%png%'); 
 
     let { data: videos, error: videoError } = await supabase
       .from('videos')  
@@ -161,7 +159,7 @@ async function getWorkMedia() {
 
 // Funkcija za prikazivanje slika i videa u Owl Carousel-u za "Our Work"
 async function displayWorkMedia() {
-    const carousel = document.querySelector('.images_videos');  // Selektuj div za slike i videe
+    const carousel = document.querySelector('.images_videos');  
     const { images, videos } = await getWorkMedia();
 
     // Prolazak kroz slike i njihovo dodavanje u carousel
@@ -208,7 +206,7 @@ async function getNiksaImage() {
     let { data, error } = await supabase
       .from('images') 
       .select('image_url')
-      .eq('id', 4); 
+      .eq('id', 21); 
 
     if (error) {
       console.error(error);
@@ -223,7 +221,7 @@ async function getAndjaImage() {
     let { data, error } = await supabase
       .from('images')  
       .select('image_url')
-      .eq('id', 9); 
+      .eq('id', 19); 
 
     if (error) {
       console.error(error);

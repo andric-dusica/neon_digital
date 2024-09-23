@@ -102,13 +102,15 @@ nav div button, .cta_services {
 }
 
 .hero h1 {
+    margin: 0;
     font-family: 'Poppins', sans-serif;
-    font-size: 64px;
+    font-size: 48px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    width: 840px;
+    width: 700px;
     color: #FFF;
+    line-height: 55px;
 }
 
 /* services */
@@ -127,7 +129,7 @@ nav div button, .cta_services {
     color: #FFF;
     text-align: center;
     font-family: Poppins;
-    font-size: 48px;
+    font-size: 40px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -253,7 +255,7 @@ nav div button, .cta_services {
     color: #FFF;
     text-align: center;
     font-family: Poppins;
-    font-size: 48px;
+    font-size: 40px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -308,7 +310,7 @@ nav div button, .cta_services {
     color: #FFF;
     text-align: center;
     font-family: Poppins;
-    font-size: 48px;
+    font-size: 40px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -320,7 +322,7 @@ nav div button, .cta_services {
     margin: 0;
     text-align: center;
     font-family: Poppins;
-    font-size: 36px;
+    font-size: 28px;
     font-style: normal;
     font-weight: 400;
     line-height: 40px;
@@ -392,6 +394,27 @@ nav div button, .cta_services {
     background-color: rgba(0, 0, 0, 0.8); /* Tamnija pozadina na hover */
 }
 
+.logos .owl-stage {
+    display: flex;
+    align-items: center; /* Centriraj sve elemente vertikalno */
+    height: 180px;
+    /* gap: 40px; */
+}
+
+.logos .owl-item {
+    display: flex;
+    align-items: center; /* Centriraj logotipe unutar svakog item-a */
+    justify-content: center; /* Ako želiš da budu centrirani i horizontalno */
+    
+}
+
+.logos .owl-item img {
+    max-height: 100%; /* Spreči da slike pređu visinu svog containera */
+    object-fit: contain; /* Održava proporcije slika */
+    width: 220px;
+    height: 130px !important;
+}
+
 /* about us */
 .about_us {
     position: relative;
@@ -410,7 +433,7 @@ nav div button, .cta_services {
     margin: 0;
     text-align: center;
     font-family: Poppins;
-    font-size: 48px;
+    font-size: 40px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -435,6 +458,10 @@ nav div button, .cta_services {
 .about_us .who_we_are .niksa_andja img {
     width: 300px;
     height: 300px;
+    border-radius: 16px;
+    object-fit: cover;
+    flex-shrink: 0; /* Sprečava smanjivanje slike */
+    flex-grow: 0;
 } 
 
 .about_us .who_we_are .niksa_andja .details_about_us {
@@ -482,6 +509,25 @@ nav div button, .cta_services {
     pointer-events: none; /* Ne ometaju interakcije */
 }
 
+.learn_more_btn {
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 44px;
+    border: none;
+    background: var(--Gradient-Styles-Radial-3p, radial-gradient(169.51% 152.63% at -15.27% 0%, #FF3EE4 0%, #9C26EE 44.14%, #0000FE 100%));
+
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+}
+
 /* contact us */
 .contact_us {
     display: flex;
@@ -496,7 +542,7 @@ nav div button, .cta_services {
     margin: 0;
     text-align: center;
     font-family: Poppins;
-    font-size: 48px;
+    font-size: 40px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
