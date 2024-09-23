@@ -1,0 +1,664 @@
+body {
+    background-color: #161616;
+    margin: 0;
+    box-sizing: border-box;
+    max-width: 1440px;
+    margin: auto;
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased; /* Tanji i glatkiji tekst na Safari i Chrome */
+    text-rendering: optimizeLegibility; 
+    overflow-x: hidden;
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 1440px; /* Fiksna širina za sadržaj stranice */
+    margin: 0 auto; /* Centriranje stranice */
+    position: relative;
+    overflow: hidden; /* Sakriva sve što izlazi izvan wrappera po X osi */
+}
+
+html {
+    overflow-x: hidden; /* Sprečava horizontalni skrol na stranici */
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Poppins', sans-serif;
+}
+
+nav {
+    display: flex;
+    padding: 12px 72px;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li a {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+}
+
+nav div button, .cta_services {
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 44px;
+    border: none;
+    background: var(--Gradient-Styles-Radial-3p, radial-gradient(169.51% 152.63% at -15.27% 0%, #FF3EE4 0%, #9C26EE 44.14%, #0000FE 100%));
+
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+}
+
+/* Hero section */
+.hero {
+    position: relative;
+    height: 793px;
+    background-size: cover;
+    background-position: center;
+}
+
+.hero .overlay {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 254px 300px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 840px;
+    color: #FFF;
+}
+
+/* services */
+.services {
+    display: flex;
+    padding: 96px 84px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    align-self: stretch;
+
+    
+}
+
+.services h2 {
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+}
+
+.services .all_services {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+}
+
+.services .all_services .view_all_services {
+    display: flex;
+    width: 516px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 64px;
+}
+
+.services .all_services .services_content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+}
+
+.services .all_services .services_content .serv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+}
+
+.services .all_services .services_content .name_of_service {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px;
+    margin: 0;
+}
+
+.services .all_services .services_content .service_details {
+    align-self: stretch;
+    color: #AEAEBA;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    margin: 0;
+}
+
+.line_1 {
+    border-bottom: 2px solid #2D2D3F;
+    width: 100%;
+}
+
+.services_img_placeholder {
+    width: 624px;  /* Dimenzije slike */
+    height: 567px; 
+    border-radius: 16px;  /* Zaobljeni uglovi */
+    background-size: cover;
+    background-position: center;
+}
+
+.services {
+    position: relative;
+    overflow: hidden; /* Sakriva sve što izlazi izvan granica sekcije */
+}
+
+.all_services .background_circle_blue {
+    position: absolute;
+    width: 1752px;
+    height: 1754px;
+    right: -821px;
+    bottom: -969px;
+    border-radius: 1754px;
+    background: radial-gradient(50% 50% at 50% 50%, #3434D7 0%, rgba(52, 52, 215, 0.00) 100%);
+    z-index: -1; /* Postavlja krug iza sadržaja */
+}
+
+.background_circle_rose_about_us {
+    width: 1111px;
+    height: 1112px;
+    right: -727px;
+    top: 2900px;
+    border-radius: 50%;
+    background: radial-gradient(50% 50% at 50% 50%, #A43194 0%, rgba(164, 49, 148, 0.00) 100%);
+    pointer-events: none;
+    clip-path: inset(0 100px 0 0);
+}
+
+.background_circle_blue_about_us {
+    width: 1118px;
+    height: 1118px;
+    left: -764px;
+    bottom: 700px;
+    border-radius: 50%;
+    background: radial-gradient(50% 50% at 50% 50%, #3434D7 0%, rgba(52, 52, 215, 0.00) 100%);
+    pointer-events: none;
+    clip-path: inset(0 0 0 100px);
+}
+
+/* logos */
+.logos {
+    display: flex;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    align-self: stretch;
+    background: #1C1C28;
+}
+
+.logos h2 {
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+}
+
+.logos .client_logos {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.logos .client_logos img {
+    width: 220px;
+    height: 165px;
+}
+
+/* our work */
+.our_work {
+    display: flex;
+    padding: 96px 84px;
+    flex-direction: column;
+    align-items: center;
+    gap: 56px;
+    align-self: stretch;
+    overflow: hidden; /* Sprečava horizontalni skrol */
+    box-sizing: border-box; /* Osigurava da padding ne širi element van margina */
+}
+
+.our_work .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 64px;
+    width: auto;
+    max-width: 100%; /* Sprečava prelazak kontejnera preko margina */
+    box-sizing: border-box; /* Osigurava da padding ne širi element van margina */
+}
+
+
+
+.our_work .container .work_details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%; /* Osigurava da radni detalji budu poravnati */
+}
+
+.our_work .container .work_details h2 {
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+}
+
+.our_work .container .work_details p {
+    color: #C7C7C9;
+    margin: 0;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+}
+
+.our_work .container .images_videos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    max-width: 100%; /* Sprečava prelazak carousel-a preko margina */
+    box-sizing: border-box; /* Osigurava da padding ne širi element */
+}
+
+.our_work .owl-carousel .item {
+    display: inline-block; /* Omogućava dinamičnu širinu stavki */
+    width: auto; /* Širina stavki zavisi od sadržaja (slika ili video) */
+    margin-right: 24px; /* Razmak između stavki */
+    vertical-align: top; /* Vertikalno poravnanje stavki */
+}
+
+.our_work .owl-carousel .item img, 
+.our_work .owl-carousel .item video {
+    width: 340px !important;/* Slika ili video popunjavaju celu stavku */
+    max-width: 100%; /* Sprečava slike i videe da prelaze granicu stavke */
+    max-height: 530px; /* Ograničava visinu slika i videa */
+    height: 530px;
+    object-fit: cover; /* Osigurava da slike i videi popunjavaju prostor bez izobličenja */
+}
+
+
+.our_work .owl-carousel .item:last-child {
+    margin-right: 0; /* Uklanja marginu sa poslednje stavke */
+}
+
+
+.our_work .owl-carousel .owl-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.our_work .owl-carousel .owl-nav button {
+    background-color: rgba(0, 0, 0, 0.5); /* Pozadina iza SVG-a */
+    color: #FFF;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Okrugli oblik oko SVG-a */
+}
+
+.our_work .owl-carousel .owl-nav button.owl-prev {
+    position: absolute;
+    left: -40px;
+}
+
+.our_work .owl-carousel .owl-nav button.owl-next {
+    position: absolute;
+    right: -40px;
+}
+
+.our_work .owl-carousel .owl-nav button:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Tamnija pozadina na hover */
+}
+
+/* about us */
+.about_us {
+    position: relative;
+    display: flex;
+    padding: 96px 84px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    align-self: stretch;
+    overflow-x: hidden; /* Sakriva horizontalni overflow */
+    overflow-y: visible; /* Skrivanje sadržaja koji prelazi okvir, bez skrola */
+}
+
+.about_us .us {
+    color: #FFF;
+    margin: 0;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.about_us .who_we_are {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Omogućava rastezanje elemenata */
+    gap: 32px;
+    align-self: stretch;
+    width: 100%; /* Osigurava da se kontejner proteže celom širinom */
+}
+
+.about_us .who_we_are .niksa_andja {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    width: 100%; /* Obezbeđuje da .niksa_andja zauzme celu širinu roditeljskog elementa */
+}  
+
+.about_us .who_we_are .niksa_andja img {
+    width: 300px;
+    height: 300px;
+} 
+
+.about_us .who_we_are .niksa_andja .details_about_us {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.about_us .who_we_are .niksa_andja .details_about_us_r {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: end;
+    gap: 16px;
+}
+
+.about_us .who_we_are .niksa_andja .details_about_us h4, .details_about_us_r h4 {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 40px;
+    margin: 0;
+    width: 634px;
+}
+
+.about_us .who_we_are .niksa_andja .details_about_us p, .details_about_us_r p {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px; /* 160% */
+    margin: 0;
+    width: 634px;
+}
+
+.background_circle_rose_about_us, .background_circle_blue_about_us {
+    position: absolute;
+    z-index: -1; /* I dalje iza sadržaja */
+    pointer-events: none; /* Ne ometaju interakcije */
+}
+
+/* contact us */
+.contact_us {
+    display: flex;
+    padding: 96px 84px;
+    flex-direction: column; /* Elementi sada idu jedan pored drugog */
+    align-items: center;  /* Poravnava vrhove oba elementa */
+    gap: 40px;
+}
+
+.contact_us h2 {
+    color: #FFF;
+    margin: 0;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.contact_us .details {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+    width: 50%;
+}
+
+.contact_us .details .information {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
+}
+
+.contact_us .details .information .our_info {
+    color: #FFF;
+    margin: 0;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px; 
+}
+
+.contact_us .details .information .our_info_content {
+    color: #AEAEBA;
+    margin: 0;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px; 
+}
+
+.contact_us .details .information .info_email_sm {
+    color: #AEAEBA;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px; 
+}
+
+.contact_us .details .information .info_email_sm .heading {
+    color: #FF3EE4;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+    margin: 0;
+}
+
+.contact_us .details .information .info_email_sm p {
+    color: #AEAEBA;
+    margin: 0;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px; 
+} 
+
+.contact_us form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Osigurava da sadržaj bude poravnat sa vrhom */
+    align-items: flex-start; /* Osigurava da se stavke kreću sa leve strane */
+    width: 50%;
+    gap: 40px;
+}
+
+.contact_us .contact_form .form_content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+}
+
+.contact_form .our_info {
+    color: #FFF;
+    margin: 0;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px; 
+}
+
+.contact_us .details-contact_form_wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between; /* Detalji i forma će biti jedan pored drugog */
+    align-items: flex-start; /* Poravnava vrh oba kontejnera */
+    gap: 24px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Razmak između grupa label/input */
+    width: 100%; /* Možeš postaviti željenu širinu forme */
+}
+
+form .contact_form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+}
+
+label {
+    font-family: Poppins;
+    font-size: 18px;
+    color: #FFF;
+    margin-bottom: 8px; /* Razmak između labela i inputa */
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1E1E2D; /* Boja pozadine input polja */
+    color: #AEAEBA; /* Boja teksta unutar input polja */
+    font-family: Poppins;
+    font-size: 16px;
+}
+
+textarea {
+    resize: none; /* Sprečava promenu veličine text area */
+    height: 150px; /* Visina textarea */
+}
+
+form .form_group_button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Postavlja dugme na desnu stranu */
+}
+
+form .send_message {
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 44px;
+    border: none;
+    background: var(--Gradient-Styles-Radial-3p, radial-gradient(169.51% 152.63% at -15.27% 0%, #FF3EE4 0%, #9C26EE 44.14%, #0000FE 100%));
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+}

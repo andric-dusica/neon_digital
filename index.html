@@ -3,10 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon_Digital</title>
+    <title>Neon digital</title>
     <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+
 </head>
 <body>
-    <h1>Dobrodošli u Neon Digital</h1>
+    <div class="page-wrapper">
+        <nav>
+            <img src="images/logo.svg" alt="Logo" />
+            <div>
+                <ul>
+                    <li><a href="index.html">Services</a></li>
+                    <li><a href="about.html">Our Work</a></li>
+                    <li><a href="services.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+                <button>
+                    Book a Call
+                </button>
+            </div>
+        </nav>
+    
+        <section class="hero">
+            <div class="overlay">
+                <h1>Illuminating the digital world, one pixel at a time.</h1>
+            </div>
+        </section>
+    
+        <section class="services">
+            <h2>
+                Services
+            </h2>
+            <div class="all_services">
+                <div class="view_all_services">
+                    <div class="services_content">
+                        <div class="serv">
+                            <p class="name_of_service">
+                                Video
+                            </p>
+                            <p class="service_details">
+                                Lörem ipsum fåkås dingen ebelt vament och osk rande, dön. Du kan vara drabbad. 
+                            </p>
+                        </div>
+                       <div class="line_1"></div>
+                        <div class="serv">
+                            <p class="name_of_service">
+                                Photography
+                            </p>
+                            <p class="service_details">
+                                Lörem ipsum pygt kare dihovast den koliga fara diköngar polyrade sedan gölisade valedes och sabelt. 
+                            </p>
+                        </div>
+                        <div class="line_1"></div>
+                        <div class="serv">
+                            <p class="name_of_service">
+                                Social Media Management
+                            </p>
+                            <p class="service_details">
+                                Lörem ipsum måde yter, spenera tills renilävis och mifel ferar vin i deheten pokenad ultrakros. 
+                            </p>
+                        </div>
+                    </div>
+                    <button class="cta_services">
+                        View All Services
+                    </button>
+                </div>
+                <div class="services_img_placeholder"></div>
+                <div class="background_circle_blue"></div>
+            </div>
+        </section>
+    
+        <section class="logos">
+            <h2>Happy faces</h2>
+            <div class="owl-carousel clients_logos">
+              <!-- Logotipi će biti dinamički dodati iz JavaScript-a -->
+            </div>
+          </section>
+    
+          <section class="our_work">
+            <div class="container">
+                <div class="work_details">
+                    <h2>Our Work</h2>
+                    <p>Experience the power of our visual storytelling.</p>
+                </div>
+                <div class="owl-carousel images_videos">
+                    <!-- Ovaj deo će biti dinamički popunjen slikama i videima iz baze -->
+                </div>
+                <button class="cta_services">
+                    View More
+                </button>
+            </div>
+        </section>
+    
+        <section class="about_us">
+            <h2 class="us">
+                About Us
+            </h2>
+            <div class="who_we_are">
+                <div class="niksa_andja">
+                    <img src="images/niksa.png" alt="niksa">
+                    <div class="details_about_us">
+                        <h4>
+                            Meet the maestro of our digital canvas
+                        </h4>
+                        <p>
+                            Nikša Malić-Katanić, the Director of Photography who not only captures moments but also creates them.
+                        </p>
+                    </div>
+                </div>
+                <div class="niksa_andja">
+                    <div class="details_about_us_r">
+                        <h4>
+                            Say hello to the creative force of our digital team
+                        </h4>
+                        <p>
+                            Anđela Andrić, who brings a vibrant and feminine touch to every project.
+                        </p>
+                    </div>
+                    <img src="images/andja.png" alt="andja">
+                </div>
+            </div>
+        </section>
+        <div class="background_circle_rose_about_us"></div>
+        <div class="background_circle_blue_about_us"></div>
+    
+        <section class="contact_us">
+            <h2>
+                Contact Us
+            </h2>
+            <div class="details-contact_form_wrapper">
+                <div class="details">
+                    <div class="information">
+                        <p class="our_info">
+                            Our Contact Inormation
+                        </p>
+                        <p class="our_info_content">
+                            Write us an email with any of your questions regarding our services, previous work or anything that could spark a new collaboration project.
+                        </p>
+                        <div  class="info_email_sm">
+                            <p class="heading">
+                                Email
+                            </p>
+                            <p>
+                                neondigital.creative@gmail.com
+                            </p>
+                        </div>
+                        <div  class="info_email_sm">
+                            <p class="heading">
+                                Instagram
+                            </p>
+                            <p>
+                                @neon_digital
+                            </p>
+                        </div>
+                        <div  class="info_email_sm">
+                            <p class="heading">
+                                Phone Number
+                            </p>
+                            <p>
+                                +381 64 88 30 211
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <form action="">
+                    <div class="contact_form">
+                        <label for="email" class="our_info">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required />
+                    </div>
+                    <div class="contact_form">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="Enter the subject of your message" required />
+                    </div>
+                    <div class="contact_form">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                    </div>
+                    <div class="form_group_button">
+                        <button type="submit" class="send_message">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="supabase.js" type="module"></script>
 </body>
 </html>
