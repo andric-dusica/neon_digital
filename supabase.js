@@ -162,25 +162,27 @@ async function displayWorkMedia() {
     const carousel = document.querySelector('.images_videos');  
     const { images, videos } = await getWorkMedia();
 
+    // Prvo prolazak kroz videe i njihovo dodavanje u carousel
+    videos.forEach(video => {
+        const videoElement = document.createElement('video');
+        videoElement.src = video.video_url;
+        videoElement.controls = true;
+        videoElement.style.maxWidth = '100%'; 
+        const divElement = document.createElement('div');
+        divElement.classList.add('item');
+        divElement.appendChild(videoElement);
+        carousel.appendChild(divElement);
+    });
+
     // Prolazak kroz slike i njihovo dodavanje u carousel
     images.forEach(image => {
         const imgElement = document.createElement('img');
         imgElement.src = image.image_url;
         imgElement.alt = 'Work Image';
+        imgElement.style.maxWidth = '100%'; 
         const divElement = document.createElement('div');
         divElement.classList.add('item');
         divElement.appendChild(imgElement);
-        carousel.appendChild(divElement);
-    });
-
-    // Prolazak kroz videe i njihovo dodavanje u carousel
-    videos.forEach(video => {
-        const videoElement = document.createElement('video');
-        videoElement.src = video.video_url;
-        videoElement.controls = true;
-        const divElement = document.createElement('div');
-        divElement.classList.add('item');
-        divElement.appendChild(videoElement);
         carousel.appendChild(divElement);
     });
 
