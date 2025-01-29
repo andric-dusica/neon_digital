@@ -462,3 +462,7 @@ form .send_message {
     line-height: normal;
     cursor: pointer;
 }
+
+.is-draggable .fancybox__content {
+    cursor: pointer !important;
+}
