@@ -5,10 +5,7 @@ import '@fancyapps/ui/dist/fancybox/fancybox.css';
 import { Fancybox } from '@fancyapps/ui';
 
 // Supabase inicijalizacija
-const { createClient } = window.supabase;
-const supabaseUrl = 'https://gwodcdkzxwbepgxpxxvf.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd3b2RjZGt6eHdiZXBneHB4eHZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjcwMzY2MTMsImV4cCI6MjA0MjYxMjYxM30.78W4s46xNHSPE22zQ2BiXyuoPVCg4gVUzJ3LEJqe31M';
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from './supabase.js';
 
 // Funkcija za povlačenje medija iz baze
 async function getWorkMedia() {
