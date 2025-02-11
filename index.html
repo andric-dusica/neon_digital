@@ -4,12 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Neon digital</title>
-        <link rel="icon" type="image/x-icon" href="/images/neon_logo.svg">
-        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/x-icon" href="../images/neon_logo.svg">
+        <link rel="stylesheet" href="../style.css" />
 
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         
-        <link href="output.css" rel="stylesheet">
+        <link rel="stylesheet" href="../output.css" />
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
@@ -23,10 +23,10 @@
                 <a href="/"><img src="images/neon_logo.svg" alt="Logo" class="w-[74px] h-[40px] lg:!w-[117px] lg:!h-[72px]" /></a>
                 
                 <div class="lg:!flex items-center gap-6 text-[#fff] text-lg font-normal leading-normal hidden">
-                    <a href="/services">Services</a>
-                    <a href="/our-work">Our Work</a>
-                    <a href="/about-us">About Us</a>
-                    <a href="/contact-us">Contact Us</a>
+                    <a href="/services/">Services</a>
+                    <a href="/our-work/">Our Work</a>
+                    <a href="/about-us/">About Us</a>
+                    <a href="/contact-us/">Contact Us</a>
                 </div>
         
                 <div class="flex lg:!hidden">
@@ -96,7 +96,7 @@
                         </p>
                     </div>
                 </div>
-                <img id="niksa_about_img" src="" alt="Nikša Anđa" class="w-[343px] h-[344px] lg:!w-[624px] lg:!h-[567px] rounded-2xl object-cover lg:!relative lg:!top-[30px] lg:!left-[50px]">
+                <img id="niksa_about_img" src="" alt="Nikša Anđa" class="w-[343px] h-[344px] lg:!w-[627px] lg:!h-[567px] rounded-2xl object-cover lg:!relative lg:!top-[30px] lg:!left-[50px]">
             </div>
             <button class="btn-white w-full lg:!w-auto lg:!self-start">
                 View All Services
@@ -140,22 +140,22 @@
             <div class="flex flex-col items-center gap-10 w-[343px] lg:!w-full lg:!items-start lg:!gap-8]">
                 <div class="flex flex-col lg:!flex-row items-start lg:!items-center gap-6">
                     <img id="niksa_img" src="" alt="Nikša" class="w-[343px] h-[344px] lg:!w-[300px] lg:!h-[300px] rounded-2xl object-cover">
-                    <div class="flex flex-col items-start gap-4 text-[#fff] lg:!w-[624px]">
-                        <h4 class="text-center lg:!text-left text-xl font-medium leading-6">
+                    <div class="flex flex-col items-start gap-4 text-[#fff] lg:!w-[627px]">
+                        <h4 class="text-center lg:!text-left text-xl font-medium leading-6 lg:!leading-10 lg:!text-[32px]">
                             Meet the maestro of our digital canvas
                         </h4>
-                        <p class="text-center lg:!text-left text-base font-normal leading-6 tracking-[0.032px]">
+                        <p class="text-center lg:!text-left text-base font-normal leading-6 tracking-[0.032px] lg:!text-xl lg:!leading-[32px]">
                             Nikša Malić-Katanić, the Director of Photography who not only captures moments but also creates them.
                         </p>
                     </div>
                 </div>
                 <div class="flex flex-col lg:!flex-row-reverse items-start lg:!items-center gap-6 lg:!w-full">
                     <img id="andja_img" src="" alt="Anđa" class="w-[343px] h-[344px] lg:!w-[300px] lg:!h-[300px] rounded-2xl object-cover">
-                    <div class="flex flex-col items-start gap-4 text-[#fff] lg:!w-[624px]">
-                        <h4 class="text-center lg:!text-left text-xl font-medium leading-6">
+                    <div class="flex flex-col items-start gap-4 text-[#fff] lg:!w-[627px]">
+                        <h4 class="text-center lg:!text-left text-xl font-medium leading-6 lg:!leading-10 lg:!text-[32px]">
                             Say hello to the creative force of our digital team
                         </h4>
-                        <p class="text-center lg:!text-left text-base font-normal leading-6 tracking-[0.032px]">
+                        <p class="text-center lg:!text-left text-base font-normal leading-6 tracking-[0.032px] lg:!text-xl lg:!leading-[32px]">
                             Anđela Andrić, who brings a vibrant and feminine touch to every project.
                         </p>
                     </div>
@@ -190,15 +190,19 @@
                <a href="/"><img src="images/neon_logo.svg" alt="Logo" class="w-[85px] h-[52px]" /></a> 
             </div>
             <div id="footer-links" class="lg:!flex items-center gap-6 text-[#fff] text-lg font-normal leading-normal hidden">
-                <a href="/services">Services</a>
-                <a href="/our-work">Our Work</a>
-                <a href="/about-us">About Us</a>
-                <a href="/contact-us">Contact Us</a>
+                <a href="/services/">Services</a>
+                <a href="/our-work/">Our Work</a>
+                <a href="/about-us/">About Us</a>
+                <a href="/contact-us/">Contact Us</a>
             </div>
             <p class="text-[#fff] text-lg leading-normal">
                 © Neon Digital 2024
             </p>
         </footer>        
         <script type="module" src="js/main.js"></script>
+        <script type="module" src="/js/logos.js"></script>
+        <script type="module" src="/js/photoswipe.js"></script>
+        <script type="module" src="/js/supabase.js"></script>
+        <script type="module" src="/js/home_page_images.js"></script>
     </body>
 </html>

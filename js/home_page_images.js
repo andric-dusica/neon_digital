@@ -35,6 +35,7 @@ async function updateImage(imageId, elementId) {
             }
         } else {
             console.error(`Element with ID ${elementId} not found.`);
+            return;
         }
     }
 }

@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./*.html", "./components/*.html", "./js/*.js"], 
+  content: [ 
+    "./*.html",               // Skenira root HTML fajlove (npr. index.html)
+    "./**/*.html",            // Skenira sve HTML fajlove u svim poddirektorijumima (npr. services/index.html)
+    "./components/**/*.html", // Skenira sve fajlove unutar components foldera
+    "./js/**/*.js"    
+  ], 
   theme: {
     extend: {
       colors: {

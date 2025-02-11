@@ -1,51 +1,63 @@
-// Import neophodnih modula
-import "./supabase.js";
-import "./logos.js";
-import "./photoswipe.js";
-import "./home_page_images.js";
+// /js/main.js
 
-// Funkcija za dinamičko učitavanje skripti
+// Import drugih modula (po potrebi zadrži/izmeni ako ti trebaju)
+
+
+// Funkcija za dinamičko učitavanje skripti (npr. jQuery, OwlCarousel, Magnific Popup)
 function loadScript(src, callback) {
-    const script = document.createElement("script");
-    script.src = src;
-    script.onload = callback;
-    document.head.appendChild(script);
+  const script = document.createElement("script");
+  script.src = src;
+  script.onload = callback;
+  document.head.appendChild(script);
 }
 
-// Učitavanje jQuery-a i ostalih zavisnosti
+// Učitavanje spoljnih zavisnosti
 loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js", () => {
-    console.log("jQuery loaded");
-
-    loadScript("https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js", () => {
-        console.log("Owl Carousel loaded");
-    });
-
-    loadScript("https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js", () => {
-        console.log("Magnific Popup loaded");
-    });
+  console.log("jQuery loaded");
+  loadScript("https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js", () => {
+    console.log("Owl Carousel loaded");
+  });
+  loadScript("https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js", () => {
+    console.log("Magnific Popup loaded");
+  });
 });
 
-// Funkcija za podešavanje aktivnog linka u navigaciji i footeru
+// Funkcija koja dodeljuje klasu "font-semibold" aktivnom linku
 function setActiveLinks(containerSelector) {
-    const links = document.querySelectorAll(`${containerSelector} a`);
-    let currentPage = window.location.pathname.split("/").pop();
+  const links = document.querySelectorAll(`${containerSelector} a`);
+  const currentPath = window.location.pathname; 
+  // npr. "/", "/services", "/services/", "/services/index.html"
 
-    if (currentPage === "") {
-        currentPage = "index.html"; // Ako je prazno (home page), postavi na index.html
+  links.forEach(link => {
+    const linkHref = link.getAttribute("href") || "";
+    // npr. "/", "/services/", "/our-work/", ...
+
+    // Ako je link za Home ("/"), pogledaj da li smo na root stranici
+    if (linkHref === "/") {
+      if (currentPath === "/" || currentPath === "/index.html") {
+        link.classList.add("font-semibold");
+      } else {
+        link.classList.remove("font-semibold");
+      }
+      return; // pređi na sledeći link
     }
 
-    links.forEach(link => {
-        const linkHref = link.getAttribute("href");
-        if (currentPage === linkHref || window.location.href.includes(linkHref)) {
-            link.classList.add("font-semibold"); // Dodaj bold za aktivni link
-        } else {
-            link.classList.remove("font-semibold"); // Skloni bold sa neaktivnih
-        }
-    });
+    // Za ostale linkove - hoćemo da pokrijemo: "/services", "/services/", "/services/index.html"
+    if (
+      currentPath === linkHref ||
+      currentPath === linkHref.slice(0, -1) || // ukloni "/" na kraju pa uporedi
+      currentPath === linkHref + "index.html" ||
+      currentPath === linkHref + "/index.html"
+    ) {
+      link.classList.add("font-semibold");
+    } else {
+      link.classList.remove("font-semibold");
+    }
+  });
 }
 
-// Kada se DOM učita, pokreni funkcije
+// Kada se DOM učita, pokreni setActiveLinks za <nav> i <footer>
 document.addEventListener("DOMContentLoaded", () => {
-    setActiveLinks("nav");     // Postavlja aktivni link u navigaciji
-    setActiveLinks("footer");  // Postavlja aktivni link u footeru
+  setActiveLinks("nav");
+  setActiveLinks("footer");
 });

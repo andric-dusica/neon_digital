@@ -15,7 +15,7 @@ async function getWorkMedia() {
     .order('id', { ascending: true });
 
   if (error) {
-    console.error('[ERROR] Greška prilikom povlačenja medija:', error);
+    console.error('Greška prilikom povlačenja medija:', error);
     return [];
   }
   return data;
@@ -24,7 +24,7 @@ async function getWorkMedia() {
 async function displayWorkMedia() {
   const carousel = document.querySelector('.images_videos');
   if (!carousel) {
-    console.error('[ERROR] Carousel element nije pronađen!');
+    console.error(' Carousel element nije pronađen!');
     return;
   }
 
