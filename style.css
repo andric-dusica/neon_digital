@@ -52,6 +52,17 @@ h1, h2, h3, h4, h5, h6, p {
     background: radial-gradient(50% 50% at 50% 50%, #3434D7 0%, rgba(52, 52, 215, 0.00) 100%);
 }
 
+.services_3 .blue_gradient {
+    z-index: -1;
+    width: 896px;
+    height: 896px;
+    position: absolute;
+    right: -220px;
+    bottom: -180px;
+    border-radius: 896px;
+    background: radial-gradient(50% 50% at 50% 50%, #3434D7 0%, rgba(52, 52, 215, 0.00) 100%);
+}
+
 .our_work .pink_gradient {
     z-index: 0;
     width: 836px;
