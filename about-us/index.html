@@ -9,7 +9,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         
         <link rel="stylesheet" href="/dist/output.css" />
-        <link rel="stylesheet" href="/style.css" />
+        <link rel="stylesheet" href="/dist/style.css" />
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
@@ -23,31 +23,82 @@
     <body>
         <nav class="flex w-full lg:!justify-center">
             <div class="flex p-4 justify-between items-start w-full lg:!px-[84px] max-w-[1440px]">
-                <img src="/images/neon_logo.svg" alt="Logo" class="w-[74px] h-[40px] lg:!w-[117px] lg:!h-[72px]" />
+                <a href="/"><img src="/images/neon_logo.svg" alt="Logo" class="w-[74px] h-[40px] lg:!w-[117px] lg:!h-[72px]" /></a>
                 <div class="lg:!flex items-center gap-6 text-[#fff] text-lg font-normal leading-normal hidden">
                     <a href="/services/">Services</a>
                     <a href="/our-work/">Our Work</a>
                     <a href="/about-us/">About Us</a>
                     <a href="/contact-us/">Contact Us</a>
                 </div>
-                <img src="/images/mob_menu_icon.svg" alt="Logo" class="lg:!hidden" />
+                <div class="flex lg:!hidden">
+                    <a href="/">
+                        <img src="/images/mob_menu_icon.svg" alt="Menu Icon" />
+                    </a>
+                </div>
             </div>
         </nav>
-        <div class="flex w-full lg:!justify-center relative">
-            <footer class="flex h-[68px] py-3 px-4 lg:!px-[72px] justify-center lg:!justify-between items-center gap-6 max-w-[1440px] w-full">
-                <div class="hidden lg:!flex w-[104px] pr-[9px] pl-[10px] justify-center items-center">
-                    <a href="/"><img src="/images/neon_logo.svg" alt="Logo" class="w-[85px] h-[52px]" /></a> 
+        <div class="w-full flex justify-center relative services_3">
+            <div class="flex w-full py-[56px] px-4 lg:!py-[96px] lg:!px-[84px] flex-col justify-center items-start gap-6 lg:!gap-[64px] text-[#fff] max-w-[1440px] overflow-y-hidden">
+                <h3 class="text-[#fff] text-xl lg:!text-4xl font-semibold leading-[24px]">
+                    About Us
+                </h3>
+                <img src="/images/about_us/about_us_img.png" alt="us img" class="rounded-lg lg:!hidden w-full h-auto object-cover">
+                <div class="flex flex-col lg:!flex-row lg:!items-center lg:!justify-between gap-10 w-full">
+                    <div class="flex flex-col items-start gap-1 lg:!w-1/2 lg:!text-base">
+                        <p class="text-[#C7C7C9] leading-[24px] lg:!leading-[32px] tracking-[0.032px] lg:!text-xl !text-base">
+                            Together, they've crafted over a thousand digital stories, and they still argue about the best camera angles!
+                        </p>
+                        <img src="/images/about_us/blue_line.svg" alt="blue line" class="relative left-[-10px]">
+                        <p class="text-[#C7C7C9] leading-[24px] lg:!leading-[32px] tracking-[0.032px]">
+                            Nikša Malić-Katanić, the Director of Photography who not only captures moments but also creates them. Digital Artist - Graduated from the Department of Film Camera, drone, edit - he masters them all. <br><br>
+                            With extensive experience as Director of Photography in both feature films and documentaries, Nikša brings a cinematic eye to every project. 
+                        </p>
+                        <img src="/images/about_us/pink_line.svg" alt="pink line" class="relative left-[-10px]">
+                        <p class="text-[#C7C7C9] leading-[24px] lg:!leading-[32px] tracking-[0.032px]">
+                            Say hello to the creative force of our digital team, Anđela Andrić, who brings a vibrant and feminine touch to every project. <br><br>
+                            With years of expertise in film and digital media, Anđela's creative mind crafts unique visual narratives that captivate and engage audiences worldwide. <br><br>
+                            Anđela's exceptional communication skills allow her to truly understand client needs, bringing their visions to life with a unique, creative twist.
+                        </p>
+                    </div>
+                    <div class="hidden lg:!block lg:!w-1/2">
+                        <img src="/images/about_us/about_us_img.png" alt="us img" class="rounded-lg w-full h-auto object-cover lg:!w-[624px]">
+                    </div>
                 </div>
-                <div id="footer-links" class="lg:!flex items-center gap-6 text-[#fff] text-lg font-normal leading-normal hidden">
-                    <a href="/services/">Services</a>
-                    <a href="/our-work/">Our Work</a>
-                    <a href="/about-us/">About Us</a>
-                    <a href="/contact-us/">Contact Us</a>
-                </div>
-                <p class="text-[#fff] text-lg leading-normal">
-                    © Neon Digital 2024
-                </p>
-            </footer>
+                <div class="blue_gradient hidden lg:!flex !bottom-[-275px]"></div>
+            </div>
         </div>
+        <div class=" max-w-[1440px] w-full py-24 px-4 lg:!px-16">
+            <div class="flex flex-col items-center gap-10 contact_us relative">
+                <div class="flex flex-col items-center gap-4 lg:!gap-6 lg:!w-[620px] text-[#fff] relative">
+                    <h3 class="text-center text-2xl lg:!text-5xl font-semibold leading-7">
+                        Let's Capture Your Story
+                    </h3>
+                    <p class="text-center text-base lg:!text-xl font-normal leading-6 tracking-[0.032px] lg:!tracking-none">
+                        Boost your business with stunning photos and videos that grab attention and drive  engagement.
+                    </p>
+                    <img src="/images/foto_aparat_icon.svg" alt="camera" class="absolute left-[7px] top-[-70px] transform -rotate-[19.589deg] lg:!left-[-70px] lg:!top-0" />
+                    <img src="/images/heart_icon.svg" alt="heart" class="absolute right-[0.357px] top-[-70px] transform -rotate-[12.18deg] lg:!right-[-37px]" />
+                    <img src="/images/camera_icon.svg" alt="foto_aparat" class="absolute right-[156px] bottom-[-180px] transform rotate-[-21.681deg]" />
+                </div>
+                <button class="btn-color w-full lg:!w-auto">
+                    Contact Us
+                </button>
+                <div class="blue_gradient lg:!hidden"></div>
+            </div>
+        </div>
+        <footer class="flex h-[68px] py-3 px-4 lg:!px-[72px] justify-center lg:!justify-between items-center gap-6 max-w-[1440px] w-full">
+            <div class="hidden lg:!flex w-[104px] pr-[9px] pl-[10px] justify-center items-center">
+               <a href="/"><img src="/public/images/neon_logo.svg" alt="Logo" class="w-[85px] h-[52px]" /></a> 
+            </div>
+            <div id="footer-links" class="lg:!flex items-center gap-6 text-[#fff] text-lg font-normal leading-normal hidden">
+                <a href="/services/">Services</a>
+                <a href="/our-work/">Our Work</a>
+                <a href="/about-us/">About Us</a>
+                <a href="/contact-us/">Contact Us</a>
+            </div>
+            <p class="text-[#fff] text-lg leading-normal">
+                © Neon Digital 2024
+            </p>
+        </footer>
     </body>
 </html>
