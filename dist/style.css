@@ -1,0 +1,479 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-color: #000029;
+    margin: 0;
+    box-sizing: border-box;
+    /* max-width: 1440px; */
+    margin: auto;
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased; 
+    text-rendering: optimizeLegibility; 
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+html {
+    overflow-x: hidden; /* Sprečava horizontalni skrol na stranici */
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* hero */
+
+
+.cicrcle_gradient {
+    width: 630px;
+    height: 428px;
+    position: absolute;
+    left: -128px;
+    bottom: -214px;
+    border-radius: 630px;
+    background: radial-gradient(103.45% 43.81% at 50% 50%, #000029 14.4%, rgba(0, 0, 41, 0.00) 100%);
+}
+
+.services .blue_gradient {
+    z-index: -1;
+    width: 896px;
+    height: 896px;
+    position: absolute;
+    right: -536px;
+    top: 838px;
+    border-radius: 896px;
+    background: radial-gradient(50% 50% at 50% 50%, #3434D7 0%, rgba(52, 52, 215, 0.00) 100%);
+}
+
+.services_3 .blue_gradient {
+    z-index: -1;
+    width: 896px;
+    height: 896px;
+    position: absolute;
+    right: -220px;
+    bottom: -180px;
+    border-radius: 896px;
+    background: radial-gradient(50% 50% at 50% 50%, #3434D7 0%, rgba(52, 52, 215, 0.00) 100%);
+}
+
+.our_work .pink_gradient {
+    z-index: 0;
+    width: 836px;
+    height: 838px;
+    position: absolute;
+    left: -534px;
+    bottom: -495px;
+    border-radius: 838px;
+    background: radial-gradient(50% 50% at 50% 50%, #A43194 0%, rgba(164, 49, 148, 0.00) 100%); 
+}
+
+.about_us .blue_gradient {
+    z-index: -1;
+    width: 515px;
+    height: 536px;
+    position: absolute;
+    right: -278px;
+    bottom: 199px;
+    border-radius: 536px;
+    background: radial-gradient(50% 50% at 50% 50%, #3434D7 0%, rgba(52, 52, 215, 0.00) 100%);
+}
+
+.contact_us .blue_gradient {
+    z-index: -1;
+    width: 302px;
+    height: 302px;position: absolute;
+    right: -211px;
+    bottom: -70px;
+    border-radius: 302px;
+    background: radial-gradient(50% 50% at 50% 50%, #3434D7 0%, rgba(52, 52, 215, 0.00) 100%);
+}
+
+@media (min-width: 1024px) {
+    .about_us .blue_gradient {
+        z-index: -1;
+        width: 1275px;
+        height: 1275px;
+        position: absolute;
+        right: -553px;
+        bottom: -250px;
+        border-radius: 1275px;
+        background: radial-gradient(50% 50% at 50% 50%, #3434D7 0%, rgba(52, 52, 215, 0.00) 100%);
+    }
+
+    .our_work .pink_gradient {
+        z-index: 0;
+        width: 1566px;
+        height: 1568px;
+        position: absolute;
+        left: -953px;
+        bottom: -1100px;
+        border-radius: 1568px;
+        background: radial-gradient(50% 50% at 50% 50%, #A43194 0%, rgba(164, 49, 148, 0.00) 100%); 
+    }
+
+    .services .blue_gradient {
+        z-index: -1;
+        width: 1754px;
+        height: 1754px;
+        position: absolute;
+        right: -1023px;
+        top: 100px;
+        border-radius: 1754px;
+        background: radial-gradient(50% 50% at 50% 50%, #3434D7 0%, rgba(52, 52, 215, 0.00) 100%);
+    }
+
+    .cicrcle_gradient_1 {
+        width: 573px;
+        height: 379px;
+        position: absolute;
+        left: -128px;
+        bottom: -189px;
+        border-radius: 573px;
+        background: radial-gradient(118.07% 50% at 50% 50%, #000029 19.4%, rgba(0, 0, 41, 0.00) 100%);
+    }
+
+    .cicrcle_gradient_2 {
+        width: 558px;
+        height: 379px;
+        position: absolute;
+        right: -109px;
+        bottom: -189px;
+        border-radius: 558px;
+        background: radial-gradient(118.07% 50% at 50% 50%, #000029 19.4%, rgba(0, 0, 41, 0.00) 100%);
+    }
+    
+}
+
+/* services */
+.all_services .background_circle_blue {
+    position: absolute;
+    width: 1752px;
+    height: 1754px;
+    right: -821px;
+    bottom: -969px;
+    border-radius: 1754px;
+    background: radial-gradient(50% 50% at 50% 50%, #3434D7 0%, rgba(52, 52, 215, 0.00) 100%);
+    z-index: -1; /* Postavlja krug iza sadržaja */
+}
+
+.background_circle_rose_about_us {
+    width: 1111px;
+    height: 1112px;
+    right: -727px;
+    top: 2900px;
+    border-radius: 50%;
+    background: radial-gradient(50% 50% at 50% 50%, #A43194 0%, rgba(164, 49, 148, 0.00) 100%);
+    pointer-events: none;
+    clip-path: inset(0 100px 0 0);
+}
+
+.background_circle_blue_about_us {
+    width: 1118px;
+    height: 1118px;
+    left: -764px;
+    bottom: 700px;
+    border-radius: 50%;
+    background: radial-gradient(50% 50% at 50% 50%, #3434D7 0%, rgba(52, 52, 215, 0.00) 100%);
+    pointer-events: none;
+    clip-path: inset(0 0 0 100px);
+}
+
+
+/* logos */
+.clients_logos {
+    display: flex;
+    gap: 60px; 
+    position: relative;
+    width: 100%;
+}
+
+.client-logo {
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+@media (max-width: 1023px) {
+    .client-logo {
+        width: 130px;
+        height: 97px;
+    }
+
+    .andja_hero {
+        filter: brightness(30%);
+    }
+    
+    .niksa_hero {
+        filter: brightness(30%);
+        transform: rotate(-3.167deg);
+    }
+}
+
+@media (min-width: 1024px) {
+    .client-logo {
+        width: 220px;
+        height: 165px;
+    }
+
+    #niksa_about_img {
+        width: 624px !important;
+        height: 567px !important;
+    }
+}
+
+/* our work */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .gallery a {
+    display: block;
+    max-width: 637px;
+    height: 479px;
+  }
+  
+  .gallery img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+
+  /* our work */
+.our_work .owl-carousel .item img, 
+.our_work .owl-carousel .item video {
+  width: 340px !important;
+  max-width: 100%;
+  max-height: 530px;
+  /* height: 530px; */
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.our_work .owl-carousel .item:last-child {
+  margin-right: 0;
+}
+
+.our_work .owl-carousel .owl-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none; 
+}
+
+.our_work .owl-carousel .owl-nav button {
+  pointer-events: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #FFF;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.our_work .owl-carousel .owl-nav button.owl-prev {
+  position: absolute;
+  left: -60px;
+}
+
+.our_work .owl-carousel .owl-nav button.owl-next {
+  position: absolute;
+  right: -60px;
+}
+
+.our_work .owl-carousel .owl-nav button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.fancybox__content {
+    max-width: 700px !important;
+    width: 100%;
+    padding: 0 !important;
+    max-height: 620px !important;
+    background-color: #ffffff0d !important;
+    border-radius: 28px !important;
+}
+
+
+.fancybox__thumbs {
+    --f-thumb-width: 119px !important;
+    --f-thumb-height: 117px !important;
+}
+
+.fancybox-image {
+    border-radius: 28px !important;
+ }
+
+.item div svg {
+    fill: white;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.item:hover div svg {
+    opacity: 1;
+}
+
+
+@media (max-width: 768px) {
+    .our_work .owl-carousel .item img,
+    .our_work .owl-carousel .item video {
+        width: 100% !important; 
+        height: 479px !important;
+    }
+
+    .our_work .owl-carousel .owl-nav {
+        top: 90%; 
+    }
+
+    .our_work .owl-carousel .owl-nav button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .images_videos {
+        max-width: 370px !important; 
+        margin: 0 auto;
+    }
+
+    .owl-item {
+        width: 350px !important;
+    }
+
+    .our_work .owl-carousel .owl-nav button.owl-prev {
+        display: none;
+      }
+      
+      .our_work .owl-carousel .owl-nav button.owl-next {
+        display: none;
+      }
+}
+
+.images_videos {
+    max-width: 1318px; 
+    margin: 0 auto; 
+}
+
+@media (min-width:1280px) and (max-width: 1430px) {
+
+    .images_videos {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+} 
+
+@media (min-width:1024px) and (max-width: 1280px) {
+
+    .images_videos {
+        max-width: 900px; 
+        margin: 0 auto; 
+    }
+    
+} 
+
+@media (min-width:768px) and (max-width: 1024px) {
+
+    .images_videos {
+        max-width: 735px;
+        margin: 0 auto;
+    }
+
+    .owl-item {
+        width: auto !important;
+    }
+    
+} 
+
+
+
+/* about us */
+#niksa_img {
+    transform: scaleX(-1); /* Horizontalno ogledalo */
+    display: inline-block;
+}
+
+#niksa_about_img {
+    height: 311px;
+}
+
+
+/* contact us */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Razmak između grupa label/input */
+    width: 100%; /* Možeš postaviti željenu širinu forme */
+}
+
+form .contact_form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+}
+
+label {
+    font-family: Poppins;
+    font-size: 18px;
+    color: #FFF;
+    margin-bottom: 8px; /* Razmak između labela i inputa */
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1E1E2D; /* Boja pozadine input polja */
+    color: #AEAEBA; /* Boja teksta unutar input polja */
+    font-family: Poppins;
+    font-size: 16px;
+}
+
+textarea {
+    resize: none; /* Sprečava promenu veličine text area */
+    height: 150px; /* Visina textarea */
+}
+
+form .form_group_button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Postavlja dugme na desnu stranu */
+}
+
+form .send_message {
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 44px;
+    border: none;
+    background: var(--Gradient-Styles-Radial-3p, radial-gradient(169.51% 152.63% at -15.27% 0%, #FF3EE4 0%, #9C26EE 44.14%, #0000FE 100%));
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+}
+
+.is-draggable .fancybox__content {
+    cursor: pointer !important;
+}

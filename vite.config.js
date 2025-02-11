@@ -16,4 +16,15 @@ export default defineConfig({
   optimizeDeps: {
     include: ['@fancyapps/ui'],
   },
+  build: {
+    rollupOptions: {
+      input: {
+        main: 'index.html',
+        services: 'services/index.html',
+        aboutUs: 'about-us/index.html',
+        ourWork: 'our-work/index.html',
+        contactUs: 'contact-us/index.html',
+      }
+    }
+  },
 });
