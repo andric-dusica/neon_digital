@@ -411,6 +411,11 @@ h1, h2, h3, h4, h5, h6, p {
     height: 311px;
 }
 
+#niksa_about_img_desktop {
+    width: 627px;
+    height: 567px;
+}
+
 
 /* contact us */
 form {

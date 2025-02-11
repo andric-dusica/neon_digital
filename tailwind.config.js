@@ -1,10 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [ 
-    "./*.html",               // Skenira root HTML fajlove (npr. index.html)
-    "./**/*.html",            // Skenira sve HTML fajlove u svim poddirektorijumima (npr. services/index.html)
-    "./components/**/*.html", // Skenira sve fajlove unutar components foldera
-    "./js/**/*.js"    
+    "./index.html",
+    "./src/**/*.html", 
+    "./services/**/*.html",
+    "./about-us/**/*.html",
+    "./contact-us/**/*.html",
+    "./our-work/**/*.html",
+    "./js/**/*.js",
   ], 
   theme: {
     extend: {
