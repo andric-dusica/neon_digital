@@ -3,6 +3,7 @@
     "@fancyapps/ui": "^5.0.36",
     "@supabase/supabase-js": "^2.45.4",
     "glightbox": "^3.3.0",
+    "nodemailer": "^6.10.0",
     "photoswipe": "^5.4.4",
     "stimulus": "^3.2.2",
     "vite": "^4.0.4"
