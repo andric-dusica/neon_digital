@@ -493,3 +493,97 @@ form .send_message {
 .is-draggable .fancybox__content {
     cursor: pointer !important;
 }
+
+
+/* contact us */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Razmak između grupa label/input */
+    width: 100%; /* Možeš postaviti željenu širinu forme */
+}
+
+form .contact_form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+}
+
+label {
+    font-family: Poppins;
+    font-size: 18px;
+    color: #FFF;
+    margin-bottom: 8px; /* Razmak između labela i inputa */
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1E1E2D; /* Boja pozadine input polja */
+    color: #AEAEBA; /* Boja teksta unutar input polja */
+    font-family: Poppins;
+    font-size: 16px;
+}
+
+textarea {
+    resize: none; /* Sprečava promenu veličine text area */
+    height: 150px; /* Visina textarea */
+}
+
+form .form_group_button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Postavlja dugme na desnu stranu */
+}
+
+form .send_message {
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 44px;
+    border: none;
+    background: var(--Gradient-Styles-Radial-3p, radial-gradient(169.51% 152.63% at -15.27% 0%, #FF3EE4 0%, #9C26EE 44.14%, #0000FE 100%));
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
+}
+
+
+.error-message {
+    color: #ff3e4d;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+  }
+  
+  .popup-message {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
