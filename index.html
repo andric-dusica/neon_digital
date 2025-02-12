@@ -21,22 +21,31 @@
         <nav class="flex w-full lg:!justify-center">
             <div class="flex p-4 justify-between items-start w-full lg:!px-[84px] max-w-[1440px]">
                 <a href="/"><img src="images/neon_logo.svg" alt="Logo" class="w-[74px] h-[40px] lg:!w-[117px] lg:!h-[72px]" /></a>
-                
                 <div class="lg:!flex items-center gap-6 text-[#fff] text-lg font-normal leading-normal hidden">
                     <a href="/services/">Services</a>
                     <a href="/our-work/">Our Work</a>
                     <a href="/about-us/">About Us</a>
                     <a href="/contact-us/">Contact Us</a>
                 </div>
-        
                 <div class="flex lg:!hidden">
-                    <a href="/">
-                        <img src="images/mob_menu_icon.svg" alt="Menu Icon" />
-                    </a>
+                    <button id="menu-toggle">
+                        <img id="menu-icon" src="/images/mob_menu_icon.svg" alt="Menu">
+                    </button>
                 </div>
             </div>
         </nav>
+        <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#0B0B22] hidden flex flex-col items-center justify-center z-50">
+            <nav class="flex flex-col gap-6 text-white text-lg font-normal leading-normal">
+                <a href="/">Home</a>
+                <a href="/services/">Services</a>
+                <a href="/our-work/">Our Work</a>
+                <a href="/about-us/">About Us</a>
+                <a href="/contact-us/">Contact Us</a>
+            </nav>
+        </div>
         
+        <div id="menu-overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden z-40"></div>
+
         <div class="flex w-full lg:!justify-center relative">
             <div class="h-[554px] flex py-[64px] px-4 lg:!px-0 items-center gap-[10px] relative lg:!h-[869px] lg:!pt-[200px] lg:!pb-[204px] lg:!flex-col lg:!gap-10 max-w-[1440px] w-full">
                 <div class="flex flex-col items-center gap-14 lg:!gap-10">

@@ -32,12 +32,24 @@
                     <a href="/contact-us/">Contact Us</a>
                 </div>
                 <div class="flex lg:!hidden">
-                    <a href="/">
-                        <img src="/images/mob_menu_icon.svg" alt="Menu Icon" />
-                    </a>
+                    <button id="menu-toggle">
+                        <img id="menu-icon" src="/images/mob_menu_icon.svg" alt="Menu">
+                    </button>
                 </div>
             </div>
         </nav>
+        <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#0B0B22] hidden flex flex-col items-center justify-center z-50  py-[56px] px-4">
+            <nav class="flex flex-col gap-[40px] text-white text-2xl font-normal leading-normal">
+                <a href="/">Home</a>
+                <a href="/services/">Services</a>
+                <a href="/our-work/">Our Work</a>
+                <a href="/about-us/">About Us</a>
+                <a href="/contact-us/">Contact Us</a>
+            </nav>
+        </div>
+        
+        <!-- Overlay za zatamnjivanje pozadine -->
+        <div id="menu-overlay" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden z-40"></div>
         <div class="w-full flex justify-center relative contact_us_gradient overflow-hidden">
             <div class="py-[56px] px-4 lg:!px-[84px] lg:!py-[96px] flex flex-col gap-6 lg:!gap-[64px] w-full max-w-[1440px] mx-auto">
                 <h2 class="text-[#fff] text-center lg:!text-left text-2xl lg:!text-5xl font-bold leading-[28px] lg:!leading-[64px]">
