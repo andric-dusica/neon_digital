@@ -24,7 +24,6 @@ async function getWorkMedia() {
 async function displayWorkMedia() {
   const carousel = document.querySelector('.images_videos');
   if (!carousel) {
-    console.error(' Carousel element nije pronađen!');
     return;
   }
 
@@ -161,50 +160,21 @@ async function displayWorkMedia() {
         // *** UMESTO čistog <video>, stavljamo DIV s posterom i play overlay
         anchorElement.setAttribute('data-type', 'html');
         anchorElement.setAttribute(
-          'data-html',
-          `
-          <div style="position:relative; display:inline-block; width:100%; max-width:700px; max-height:620px;">
-
+          "data-html",
+        `
+        <div style="position:relative; display:inline-block; width:100%; max-width:700px; max-height:620px;">
             <video
-              controls
-              poster="${item.cover_url}"  /* thumbnail */
-              style="border-radius:28px; width:100%; height:auto; max-width:700px; max-height:620px;"
+                controls
+                autoplay
+                playsinline
+                poster="${item.cover_url}"
+                style="border-radius:28px; width:100%; height:auto; max-width:700px; max-height:620px;"
             >
-              <source src="${item.media_url}" type="video/mp4" />
-              Your browser does not support the video tag.
+                <source src="${item.media_url}" type="video/mp4" />
+                Your browser does not support the video tag.
             </video>
-
-            <div
-              style="
-                position: absolute;
-                top: 48%; 
-                left: 50%;
-                transform: translate(-50%,-50%);
-                width: 50px; 
-                height: 50px;
-                background: rgba(0,0,0,0.6);
-                border-radius: 50%;
-                display: flex; 
-                align-items: center; 
-                justify-content: center;
-                cursor: pointer;
-              "
-              onclick="
-                var v=this.parentNode.querySelector('video');
-                if(v){
-                  v.play();
-                  this.style.display='none';
-                }
-              "
-            >
-              <svg xmlns='http://www.w3.org/2000/svg' width='30' height='30'
-                   viewBox='0 0 24 24' fill='white'>
-                <path d='M8 5v14l11-7z'></path>
-              </svg>
-            </div>
-
-          </div>
-          `
+        </div>
+        `
         );
       }
     }
@@ -292,41 +262,53 @@ async function displayWorkMedia() {
   });
 
   // === (4) Fancybox Desktop event => pauziranje starih videa ===
-  if (!isMobile) {
-    Fancybox.bind('[data-fancybox="gallery"]', {
+  Fancybox.bind('[data-fancybox="gallery"]', {
       loop: true,
       thumbs: { autoStart: true },
       buttons: ['zoom', 'close'],
-
+  
       on: {
-        "Carousel.selectSlide": (fancybox, carousel, slide) => {
-          // 1) Pauziramo & resetujemo sve videe
-          const allVideos = document.querySelectorAll('video');
-          allVideos.forEach((vid) => {
-            vid.pause();
-            vid.currentTime = 0;
-          });
-
-          // 2) Nudimo hack autoplay mutiran/unmutiran (opciono)
-          if (slide.type === 'html' && slide.$content) {
-            const videoEl = slide.$content.querySelector('video');
-            if (videoEl) {
-              // Pokušaćemo prvo muted play => unmute
-              // (možete izostaviti ako ne treba)
-              videoEl.play().then(() => {
-                setTimeout(() => {
-                  videoEl.muted = false;
-                  videoEl.volume = 1.0;
-                }, 200);
-              }).catch((err) => {
-                console.warn("Autoplay blokiran / greška:", err);
+          "Carousel.selectSlide": (fancybox, carousel, slide) => {
+              console.log("[DEBUG] Slide promenjen, tražim video...");
+  
+              // ❗ Pauziramo SVE prethodne videe pre nego što pustimo novi
+              document.querySelectorAll("video").forEach(video => {
+                  video.pause();
+                  video.currentTime = 0;
               });
-            }
+  
+              setTimeout(() => {
+                  // 🎯 Pravimo bolji selektor da uhvatimo TAČNO AKTIVNI slajd
+                  const activeSlide = document.querySelector(".fancybox__slide.is-selected");
+                  if (!activeSlide) {
+                      console.warn("[WARNING] Aktivan slajd nije pronađen.");
+                      return;
+                  }
+  
+                  const videoEl = activeSlide.querySelector("video");
+  
+                  if (!videoEl) {
+                      console.warn("[WARNING] Video nije pronađen u aktivnom slajdu.");
+                      return;
+                  }
+  
+                  console.log("[SUCCESS] Video pronađen, pokrećem autoplay...");
+                  videoEl.muted = true; // Chrome zahteva mute za autoplay
+                  videoEl.play()
+                      .then(() => {
+                          console.log("[SUCCESS] Video autoplay radi!");
+                          setTimeout(() => {
+                              videoEl.muted = false;
+                              videoEl.volume = 1.0;
+                          }, 300);
+                      })
+                      .catch((err) => {
+                          console.warn("[ERROR] Autoplay blokiran:", err);
+                      });
+              }, 200); // 🚀 Malo kašnjenje kako bismo osigurali da je slajd učitan
           }
-        },
       },
-    });
-  }
+  });
 }
 
 // Na kraju

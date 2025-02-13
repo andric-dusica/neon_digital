@@ -309,7 +309,6 @@ h1, h2, h3, h4, h5, h6, p {
 .our_work .owl-carousel .owl-nav button:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
-
 .fancybox__content {
     max-width: 700px !important;
     width: 100%;
@@ -318,7 +317,6 @@ h1, h2, h3, h4, h5, h6, p {
     background-color: #ffffff0d !important;
     border-radius: 28px !important;
 }
-
 
 .fancybox__thumbs {
     --f-thumb-width: 119px !important;
@@ -337,6 +335,56 @@ h1, h2, h3, h4, h5, h6, p {
 
 .item:hover div svg {
     opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .fancybox__footer {
+        display: none !important;
+    }
+
+    .fancybox__toolbar {
+        display: none !important;
+    }
+
+    .is-next{
+        display: none !important;
+
+    }
+
+    .is-prev {
+        display: none !important;
+
+    }
+}
+
+.custom-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.6); /* Tamna pozadina */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    z-index: 9999;
+}
+
+.custom-close-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
+
+.custom-close-btn:hover {
+    background: rgba(255, 255, 255, 0.8); /* Svetlija boja na hover */
+}
+
+.custom-close-btn:hover svg {
+    fill: black;
 }
 
 
@@ -589,3 +637,107 @@ form .send_message {
     transform: translateY(0);
 }
 
+.filter-btn {
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+.filter-btn.active, #filter-toggle.active {
+    background: linear-gradient(90deg, #8E2DE2 0%, #4A00E0 100%);
+}
+
+/* Fix za dropdown */
+#filter-dropdown {
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out;
+}
+
+#filter-dropdown:not(.hidden) {
+    max-height: 200px;
+}
+
+/* Animacija strelice */
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.reels-item, .image-item {
+    width: 343px;
+    height: 435px;
+    flex-shrink: 0;
+}
+
+@media (min-width: 1024px) {
+    .reels-item, .image-item {
+        width: 291px;
+        height: 352px;
+    }
+}
+
+/* 📌 Globalni stil za sve medije */
+.media-item {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* 📌 Stil za reels */
+.reels-item img {
+    width: 291px;
+    height: 352px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .reels-item img {
+        width: 343px;
+        height: 435px;
+    }
+}
+
+/* 📌 Stil za video (desktop) */
+.video-item img {
+    width: 615px;
+    height: 346.923px;
+    flex-shrink: 0;
+}
+
+/* 📌 Stil za video na mobile - privremeno isto kao reels */
+@media (max-width: 768px) {
+    .video-item img {
+        width: 343px;
+        height: 435px;
+    }
+}
+
+.reels-item {
+    width: 291px;
+    height: 352px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .reels-item {
+        width: 343px;
+        height: 435px;
+    }
+}
+
+.video-item {
+    width: 615px;
+    height: 346.923px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .video-item {
+        width: 343px;
+        height: 435px;
+    }
+}
+
+video {
+    pointer-events: auto !important;
+}
