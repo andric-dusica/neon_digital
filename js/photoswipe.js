@@ -7,6 +7,8 @@ import { Fancybox } from '@fancyapps/ui';
 // Supabase inicijalizacija
 import { supabase } from './supabase.js';
 
+let prevScrollY = 0;
+
 // Funkcija za povlačenje medija iz baze
 async function getWorkMedia() {
   const { data, error } = await supabase
@@ -40,8 +42,14 @@ async function displayWorkMedia() {
   const openFullscreenModal = (index) => {
     currentIndex = index;
 
-    document.body.style.overflow = 'hidden';
-    document.body.style.height = '100vh';
+    prevScrollY = window.scrollY || window.pageYOffset;
+
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${prevScrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    // Širina se često postavi da ne bi došlo do horizontalnog pomeranja
+    document.body.style.width = '100%';
 
     const modalContainer = document.createElement('div');
     modalContainer.style.cssText = `
@@ -65,40 +73,45 @@ async function displayWorkMedia() {
     `;
 
     const closeModal = () => {
-      document.body.style.overflow = '';
-      document.body.style.height = '';
-      document.body.removeChild(modalContainer);
-    };
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
 
-    const updateContent = () => {
-      // Pauziramo sve <video>
-      const allVideos = document.querySelectorAll('video');
-      allVideos.forEach((vid) => {
-        vid.pause();
-        vid.currentTime = 0;
-      });
+    window.scrollTo(0, prevScrollY);
 
-      contentContainer.innerHTML = '';
-      const currentItem = media[currentIndex];
+    document.body.removeChild(modalContainer);
+  };
 
-      if (currentItem.type === 'image') {
-        const img = document.createElement('img');
-        img.src = currentItem.media_url;
-        img.alt = 'Portfolio Image';
-        img.style.cssText = 'max-width: 90%; max-height: 90%; border-radius: 28px';
-        contentContainer.appendChild(img);
-      } else if (currentItem.type === 'video') {
-        const video = document.createElement('video');
-        video.controls = true;
-        video.autoplay = true; // mobilni autoplay
-        video.style.cssText = 'max-width: 90%; max-height: 90%; border-radius:28px;';
-        video.innerHTML = `
-          <source src="${currentItem.media_url}" type="video/mp4">
-          Your browser does not support the video tag.
-        `;
-        contentContainer.appendChild(video);
-      }
-    };
+  const updateContent = () => {
+    const allVideos = document.querySelectorAll('video');
+    allVideos.forEach((vid) => {
+      vid.pause();
+      vid.currentTime = 0;
+    });
+
+    contentContainer.innerHTML = '';
+    const currentItem = media[currentIndex];
+
+    if (currentItem.type === 'image') {
+      const img = document.createElement('img');
+      img.src = currentItem.media_url;
+      img.alt = 'Portfolio Image';
+      img.style.cssText = 'max-width: 90%; max-height: 90%; border-radius: 28px';
+      contentContainer.appendChild(img);
+    } else if (currentItem.type === 'video') {
+      const video = document.createElement('video');
+      video.controls = true;
+      video.autoplay = true; 
+      video.style.cssText = 'max-width: 90%; max-height: 90%; border-radius:28px;';
+      video.innerHTML = `
+        <source src="${currentItem.media_url}" type="video/mp4">
+        Your browser does not support the video tag.
+      `;
+      contentContainer.appendChild(video);
+    }
+  };
 
     // X dugme
     const closeButton = document.createElement('button');
@@ -263,6 +276,7 @@ async function displayWorkMedia() {
 
   // === (4) Fancybox Desktop event => pauziranje starih videa ===
   Fancybox.bind('[data-fancybox="gallery"]', {
+      Hash: false,
       loop: true,
       thumbs: { autoStart: true },
       buttons: ['zoom', 'close'],
@@ -293,7 +307,7 @@ async function displayWorkMedia() {
                   }
   
                   console.log("[SUCCESS] Video pronađen, pokrećem autoplay...");
-                  videoEl.muted = true; // Chrome zahteva mute za autoplay
+                  videoEl.muted = true; 
                   videoEl.play()
                       .then(() => {
                           console.log("[SUCCESS] Video autoplay radi!");
@@ -305,7 +319,7 @@ async function displayWorkMedia() {
                       .catch((err) => {
                           console.warn("[ERROR] Autoplay blokiran:", err);
                       });
-              }, 200); // 🚀 Malo kašnjenje kako bismo osigurali da je slajd učitan
+              }, 200); 
           }
       },
   });
