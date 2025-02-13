@@ -258,6 +258,13 @@ h1, h2, h3, h4, h5, h6, p {
        object-fit: cover;
   }
 
+
+@media (max-width: 768px) {
+    .gallery {
+        display: grid;
+    }
+}
+
   /* our work */
 .our_work .owl-carousel .item img, 
 .our_work .owl-carousel .item video {
@@ -741,3 +748,6 @@ form .send_message {
 video {
     pointer-events: auto !important;
 }
+
+
+
