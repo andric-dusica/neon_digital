@@ -85,15 +85,21 @@ async function displayWorkMedia() {
   };
 
   const updateContent = () => {
-    const allVideos = document.querySelectorAll('video');
+    // 1) Pauziraj i "isprazni" sve videe
+    const allVideos = contentContainer.querySelectorAll('video');
     allVideos.forEach((vid) => {
       vid.pause();
       vid.currentTime = 0;
+      vid.removeAttribute('src');
+      vid.removeAttribute('autoplay');
+      vid.load();
     });
-
+  
+    // 2) Očisti contentContainer
     contentContainer.innerHTML = '';
+  
+    // 3) Kreiraj element u zavisnosti od tipa
     const currentItem = media[currentIndex];
-
     if (currentItem.type === 'image') {
       const img = document.createElement('img');
       img.src = currentItem.media_url;
@@ -101,15 +107,30 @@ async function displayWorkMedia() {
       img.style.cssText = 'max-width: 90%; max-height: 90%; border-radius: 28px';
       contentContainer.appendChild(img);
     } else if (currentItem.type === 'video') {
+      // Kreiramo video bez <source>, samo data-src
       const video = document.createElement('video');
-      video.controls = true;
-      video.autoplay = true; 
+      video.setAttribute('controls', 'true');
+      video.setAttribute('playsinline', 'true'); // mobilni autoplay
+      video.preload = 'metadata';
+      video.muted = false; // iOS zahteva muted za autoplay
       video.style.cssText = 'max-width: 90%; max-height: 90%; border-radius:28px;';
-      video.innerHTML = `
-        <source src="${currentItem.media_url}" type="video/mp4">
-        Your browser does not support the video tag.
-      `;
+      video.dataset.src = currentItem.media_url;
+      video.innerHTML = `Your browser does not support the video tag.`;
+  
+      // Dodajemo ga u contentContainer
       contentContainer.appendChild(video);
+  
+      // 4) Sada dodelimo real src i pokrenemo
+      video.setAttribute('src', currentItem.media_url); // ili video.dataset.src
+      video.setAttribute('autoplay', 'true');
+      video.load();
+      video.play().catch(err => {
+        console.warn("[ERROR - mobile autoplay blokiran]", err);
+        setTimeout(() => {
+          video.muted = false;
+          video.volume = 1.0;
+        }, 500);
+      });
     }
   };
 
@@ -174,20 +195,21 @@ async function displayWorkMedia() {
         anchorElement.setAttribute('data-type', 'html');
         anchorElement.setAttribute(
           "data-html",
-        `
-        <div style="position:relative; display:inline-block; width:100%; max-width:700px; max-height:620px;">
-            <video
-                controls
-                autoplay
-                playsinline
-                poster="${item.cover_url}"
-                style="border-radius:28px; width:100%; height:auto; max-width:700px; max-height:620px;"
-            >
-                <source src="${item.media_url}" type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        `
+          `
+          <div style="position:relative; display:inline-block; width:100%; max-width:700px; max-height:620px;">
+              <video
+                  class="fancybox-video"
+                  controls
+                  playsinline
+                  style="border-radius:28px; width:100%; height:auto; max-width:700px; max-height:620px;"
+                  poster="${item.cover_url}"
+                  data-src="${item.media_url}"  <!-- Čuvamo pravi src u data-src -->
+              >
+                  <!-- NEMA <source> OVDE -->
+                  Your browser does not support the video tag.
+              </video>
+          </div>
+          `
         );
       }
     }
@@ -197,6 +219,7 @@ async function displayWorkMedia() {
       const img = document.createElement('img');
       img.src = item.media_url;
       img.alt = 'Portfolio Image';
+      img.loading = 'lazy';
       img.style.maxWidth = '100%';
       anchorElement.appendChild(img);
     } 
@@ -275,54 +298,71 @@ async function displayWorkMedia() {
   });
 
   // === (4) Fancybox Desktop event => pauziranje starih videa ===
-  Fancybox.bind('[data-fancybox="gallery"]', {
-      Hash: false,
-      loop: true,
-      thumbs: { autoStart: true },
-      buttons: ['zoom', 'close'],
-  
-      on: {
-          "Carousel.selectSlide": (fancybox, carousel, slide) => {
-              console.log("[DEBUG] Slide promenjen, tražim video...");
-  
-              // ❗ Pauziramo SVE prethodne videe pre nego što pustimo novi
-              document.querySelectorAll("video").forEach(video => {
-                  video.pause();
-                  video.currentTime = 0;
-              });
-  
-              setTimeout(() => {
-                  // 🎯 Pravimo bolji selektor da uhvatimo TAČNO AKTIVNI slajd
-                  const activeSlide = document.querySelector(".fancybox__slide.is-selected");
-                  if (!activeSlide) {
-                      console.warn("[WARNING] Aktivan slajd nije pronađen.");
-                      return;
-                  }
-  
-                  const videoEl = activeSlide.querySelector("video");
-  
-                  if (!videoEl) {
-                      console.warn("[WARNING] Video nije pronađen u aktivnom slajdu.");
-                      return;
-                  }
-  
-                  console.log("[SUCCESS] Video pronađen, pokrećem autoplay...");
-                  videoEl.muted = true; 
-                  videoEl.play()
-                      .then(() => {
-                          console.log("[SUCCESS] Video autoplay radi!");
-                          setTimeout(() => {
-                              videoEl.muted = false;
-                              videoEl.volume = 1.0;
-                          }, 300);
-                      })
-                      .catch((err) => {
-                          console.warn("[ERROR] Autoplay blokiran:", err);
-                      });
-              }, 200); 
-          }
-      },
-  });
+Fancybox.bind('[data-fancybox="gallery"]', {
+  Hash: false,
+  loop: false,     // ❗ Gasi loop
+  preload: 0,      // ❗ Gasi preload
+  thumbs: { autoStart: true },
+  buttons: ['zoom', 'close'],
+
+  on: {
+    // Kada se slajd izabere
+    "Carousel.selectSlide": (fancybox, carousel, slide) => {
+      console.log("[DEBUG] -> selectSlide, dodeljujem src SAMO aktivnom videu...");
+
+      // 1) Ukini src svim video elementima i pauziraj ih
+      document.querySelectorAll(".fancybox-video").forEach(video => {
+        video.pause();
+        video.currentTime = 0;
+        video.removeAttribute("src");   // ❗ Ovde uklanjamo src potpuno
+        video.removeAttribute("autoplay");
+        video.load(); // Bez src, video ne može da se pusti
+      });
+
+      // 2) Nađi aktivni slajd
+      const activeSlide = document.querySelector(".fancybox__slide.is-selected");
+      if (!activeSlide) {
+        console.warn("[WARNING] Nema aktivnog slajda!");
+        return;
+      }
+
+      // 3) Uzmi video u aktivnom slajdu
+      const activeVideo = activeSlide.querySelector(".fancybox-video");
+      if (!activeVideo) {
+        console.warn("[WARNING] Nema videa u aktivnom slajdu!");
+        return;
+      }
+
+      // 4) Uzmi pravi src iz data-src i dodeli ga
+      const realSrc = activeVideo.getAttribute("data-src");
+      activeVideo.setAttribute("src", realSrc);
+      // Ako hoćeš autoplay
+      activeVideo.setAttribute("autoplay", "true");
+
+      console.log("[INFO] Dodeljujem src =", realSrc);
+
+      // 5) load() + play()
+      activeVideo.load();
+      activeVideo.play().catch(err => {
+        console.warn("[ERROR] Autoplay blokiran:", err);
+      });
+    },
+
+    // Kad zatvoriš Fancybox
+    "close": () => {
+      console.log("[INFO] Fancybox zatvoren, pauziram i uklanjam src za sve videe.");
+      document.querySelectorAll(".fancybox-video").forEach(video => {
+        video.pause();
+        video.currentTime = 0;
+        video.removeAttribute("src");
+        video.removeAttribute("autoplay");
+        video.load();
+      });
+    }
+  }
+});
+
+
 }
 
 // Na kraju
