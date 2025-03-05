@@ -1,9 +1,14 @@
 import { Resend } from 'resend';
+console.log("RESEND_API_KEY:", process.env.RESEND_API_KEY);
 
 export default async function (req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method Not Allowed' });
     }
+
+    console.log("Request body:", req.body);
+    console.log("Resend API Key:", process.env.RESEND_API_KEY ? "Exists" : "Missing");
+
 
     const { email, subject, message } = req.body;
 
