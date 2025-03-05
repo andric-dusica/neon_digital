@@ -1,73 +1,44 @@
 import { supabase } from './supabase.js';
 
-// 📌 Funkcija za dohvaćanje slike iz baze
+// Funkcija za povlačenje slike po ID-u iz baze
 async function fetchImageById(id) {
-    const cacheKey = `image-${id}`;
-    const cachedImage = localStorage.getItem(cacheKey);
-
-    // Ako slika postoji u cache-u, koristi je
-    if (cachedImage) {
-        return JSON.parse(cachedImage);
-    }
-
     const { data, error } = await supabase
         .from('home_page')
-        .select('image_url')
-        .eq('id', id)
-        .single();
+        .select('*')
+        .eq('id', id) // Filtriramo po ID-u
+        .single(); // Vraća samo jedan rezultat
 
     if (error) {
         console.error(`Error fetching image with ID ${id}:`, error);
         return null;
     }
 
-    if (data) {
-        // 🌟 WebP optimizacija
-        const optimizedUrl = `${data.image_url}?format=webp&width=800`;
-
-        // Keširanje slike u localStorage
-        localStorage.setItem(cacheKey, JSON.stringify(optimizedUrl));
-
-        return optimizedUrl;
-    }
-
-    return null;
+    return data; // Vraća podatke o slici
 }
 
-// 📌 Funkcija za postavljanje slike u HTML
+// Funkcija za postavljanje slike na osnovu ID-a iz baze i HTML ID-a elementa
 async function updateImage(imageId, elementId) {
-    const imgElement = document.getElementById(elementId);
-    if (!imgElement) return;
+    const imageData = await fetchImageById(imageId);
 
-    const imageUrl = await fetchImageById(imageId);
-    if (imageUrl) {
-        imgElement.setAttribute("data-src", imageUrl); // Čuvamo URL u `data-src`
+    if (imageData) {
+        const imgElement = document.getElementById(elementId);
+
+        if (imgElement) {
+            imgElement.src = imageData.image_url; // Postavlja URL slike
+            imgElement.alt = imageData.description || 'Image'; // Postavlja ALT tekst
+
+            // Stilovi za desktop i mobilnu verziju
+            if (elementId === 'niksa_about_img' || elementId === 'niksa_about_img_desktop') {
+                imgElement.style.objectFit = 'cover'; // Osiguravamo ispravan fit
+            }
+        } else {
+            console.error(`Element with ID ${elementId} not found.`);
+        }
     }
 }
 
-// 📌 Lazy loading funkcija
-function lazyLoadImages() {
-    const images = document.querySelectorAll("img[data-src]");
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.getAttribute("data-src"); // Učitaj stvarni URL slike
-                img.removeAttribute("data-src"); // Očisti `data-src`
-                observer.unobserve(img);
-            }
-        });
-    });
-
-    images.forEach(img => observer.observe(img));
-}
-
-// 📌 Učitaj slike i pokreni lazy load
-(async function () {
-    await updateImage(1, 'niksa_about_img_desktop');  
-    await updateImage(2, 'niksa_img');                
-    await updateImage(3, 'andja_img');                
-
-    lazyLoadImages(); // Pokreni lazy loading
-})();
+// Postavljanje obe slike
+updateImage(1, 'niksa_about_img');          // Slika za mobilnu verziju
+updateImage(1, 'niksa_about_img_desktop');  // Slika za desktop verziju
+updateImage(2, 'niksa_img');                // Druga slika sa ID 2
+updateImage(3, 'andja_img');                // Treća slika sa ID 3
