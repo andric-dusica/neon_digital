@@ -647,30 +647,48 @@ form .send_message {
 .filter-btn {
     color: white;
     padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+#filter-toggle {
+    background: linear-gradient(90deg, #A046F3 0%, #635BFF 100%);
+    color: #fff !important;
+    font-weight: 600;
+    color: white;
+    padding: 10px 20px;
     border-radius: 30px;
     font-size: 16px;
     transition: all 0.3s ease-in-out;
 }
 
-.filter-btn.active, #filter-toggle.active {
-    background: linear-gradient(90deg, #8E2DE2 0%, #4A00E0 100%);
-}
-
-/* Fix za dropdown */
+/* Efekat otvaranja/zatvaranja dropdowna */
 #filter-dropdown {
-    max-height: 0;
-    transition: max-height 0.3s ease-in-out;
+    max-height: none;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    opacity: 0;
+    transform: translateY(-10px);
 }
 
 #filter-dropdown:not(.hidden) {
-    max-height: 200px;
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* Animacija strelice */
+/* Aktivni stil za filter-dugmad */
+.filter-btn.active {
+    background: linear-gradient(90deg, #A046F3 0%, #635BFF 100%);
+    color: #fff !important;
+    border-radius: 30px;
+}
+
+/* Animacija strelice u toggle-dugmetu */
 .rotate-180 {
     transform: rotate(180deg);
 }
 
+/* dimenzije za "reels" ili "photography" iteme */
 .reels-item, .image-item {
     width: 343px;
     height: 435px;

@@ -54,33 +54,32 @@
         
                 <!-- FILTERI -->
                 <div class="flex flex-col items-start gap-[24px] w-full">
-                    
-                    <!-- Mobile dropdown - popravljeno -->
+                    <!-- Mobile dropdown -->
                     <div class="w-full lg:hidden relative">
-                        <button id="filter-toggle" class="filter-btn active w-full flex justify-between items-center">
+                        <button id="filter-toggle" class="dropdown-toggle w-full flex justify-between items-center">
                             <span id="filter-label">All Projects</span>
                             <svg id="dropdown-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
                         </button>
-                        <div id="filter-dropdown" class="hidden absolute left-0 right-0 bg-[#16163D] rounded-lg shadow-lg mt-2 z-10 overflow-hidden">
+                    
+                        <div id="filter-dropdown" class="hidden absolute left-0 right-0 bg-[#16163D] rounded-lg shadow-lg mt-2 z-50 overflow-visible py-[10px]">
                             <ul class="flex flex-col">
-                                <li><button class="filter-btn w-full text-left px-4 py-2" data-category="all">All Projects</button></li>
-                                <li><button class="filter-btn w-full text-left px-4 py-2" data-category="video">Video</button></li>
-                                <li><button class="filter-btn w-full text-left px-4 py-2" data-category="reels">Reels</button></li>
-                                <li><button class="filter-btn w-full text-left px-4 py-2" data-category="photography">Photography</button></li>
+                            <li><button class="filter-btn w-full text-left px-4 py-2" data-category="all">All Projects</button></li>
+                            <li><button class="filter-btn w-full text-left px-4 py-2" data-category="video">Video</button></li>
+                            <li><button class="filter-btn w-full text-left px-4 py-2" data-category="reels">Reels</button></li>
+                            <li><button class="filter-btn w-full text-left px-4 py-2" data-category="photography">Photography</button></li>
                             </ul>
                         </div>
                     </div>
-        
-                    <!-- Desktop filters (ostaje isto) -->
-                    <div class="hidden lg:!flex gap-4">
+                
+                    <!-- Desktop filteri -->
+                    <div id="desktop-filters" class="hidden lg:!flex gap-4">
                         <button class="filter-btn active" data-category="all">All Projects</button>
                         <button class="filter-btn" data-category="video">Video</button>
                         <button class="filter-btn" data-category="reels">Reels</button>
                         <button class="filter-btn" data-category="photography">Photography</button>
                     </div>
-        
                 </div>
         
                 <!-- GALERIJA -->

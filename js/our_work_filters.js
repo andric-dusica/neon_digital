@@ -3,10 +3,13 @@ import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const filterToggle = document.getElementById("filter-toggle");
+    const filterToggle   = document.getElementById("filter-toggle");
     const filterDropdown = document.getElementById("filter-dropdown");
-    const filterLabel = document.getElementById("filter-label");
-    const filterButtons = document.querySelectorAll(".filter-btn");
+    const filterLabel    = document.getElementById("filter-label");
+    
+    const desktopFilterButtons = document.querySelectorAll("#desktop-filters .filter-btn");
+    const mobileFilterButtons  = filterDropdown ? filterDropdown.querySelectorAll(".filter-btn") : [];
+
     const gallery = document.querySelector(".gallery");
 
     if (!gallery) {
@@ -129,32 +132,47 @@ document.addEventListener("DOMContentLoaded", async () => {
             buttons: ['zoom', 'close'],
         
             on: {
+                // 🎯 Kada promenimo slajd, pauziramo sve videe i puštamo novi
                 "Carousel.selectSlide": (fancybox, carousel, slide) => {
                     console.log("[DEBUG] Slide promenjen, tražim video...");
-        
+
                     // ❗ Pauziramo SVE prethodne videe pre nego što pustimo novi
                     document.querySelectorAll("video").forEach(video => {
                         video.pause();
                         video.currentTime = 0;
+                        video.blur();  // ❗ Gubimo fokus sa videa
                     });
-        
+
+                    // ✅ Ručno uklanjamo `aria-hidden` sa aktivnog slajda i dodajemo `inert` na ostale
+                    document.querySelectorAll(".fancybox__slide").forEach(slide => {
+                        if (slide.classList.contains("is-selected")) {
+                            slide.removeAttribute("aria-hidden");
+                            slide.removeAttribute("inert"); // Aktivni slajd omogućavamo
+                        } else {
+                            slide.setAttribute("inert", ""); // Ostale slajdove činimo neaktivnim
+                            slide.querySelectorAll("video").forEach(video => {
+                                video.setAttribute("tabindex", "-1");  // ❗ Onemogućavamo fokus na videima
+                            });
+                        }
+                    });
+
                     setTimeout(() => {
-                        // 🎯 Pravimo bolji selektor da uhvatimo TAČNO AKTIVNI slajd
+                        // 🎯 Selektujemo aktivni slajd
                         const activeSlide = document.querySelector(".fancybox__slide.is-selected");
                         if (!activeSlide) {
                             console.warn("[WARNING] Aktivan slajd nije pronađen.");
                             return;
                         }
-        
+                
                         const videoEl = activeSlide.querySelector("video");
-        
+                
                         if (!videoEl) {
                             console.warn("[WARNING] Video nije pronađen u aktivnom slajdu.");
                             return;
                         }
-        
+                
                         console.log("[SUCCESS] Video pronađen, pokrećem autoplay...");
-                        videoEl.muted = true; // Chrome zahteva mute za autoplay
+                        videoEl.muted = true;
                         videoEl.play()
                             .then(() => {
                                 console.log("[SUCCESS] Video autoplay radi!");
@@ -166,44 +184,60 @@ document.addEventListener("DOMContentLoaded", async () => {
                             .catch((err) => {
                                 console.warn("[ERROR] Autoplay blokiran:", err);
                             });
-                    }, 200); // 🚀 Malo kašnjenje kako bismo osigurali da je slajd učitan
+                    }, 200);
                 },
+
         
-                // ✅ **Dodajemo custom close dugme kada se Fancybox otvori**
+                // ✅ Kada se Fancybox otvori, dodajemo custom zatvaranje i swipe kontrole
                 "Carousel.ready": (fancybox, carousel) => {
-                    console.log("[INFO] Fancybox otvoren, dodajem custom close dugme...");
-        
+                    console.log("[INFO] Fancybox otvoren, dodajem custom close dugme i swipe kontrole...");
+
                     const fancyboxContainer = document.querySelector(".fancybox__container");
                     if (fancyboxContainer) {
                         const existingCloseButton = fancyboxContainer.querySelector(".custom-close-btn");
                         if (!existingCloseButton) {
                             const closeButton = createCloseButton();
-                            closeButton.classList.add("custom-close-btn"); // Sprečavamo dupliranje
+                            closeButton.classList.add("custom-close-btn");
                             fancyboxContainer.appendChild(closeButton);
                         }
                     }
-        
-                    // ✅ **Dodajemo swipe gestove**
-                    let startX = 0;
-        
-                    document.addEventListener("touchstart", (e) => {
+
+                    // ✅ **Swipe Left/Right/Down**
+                    let startX = 0, startY = 0, endY = 0; 
+
+                    fancyboxContainer.addEventListener("touchstart", (e) => {
                         startX = e.touches[0].clientX;
+                        startY = e.touches[0].clientY;
                     });
-        
-                    document.addEventListener("touchend", (e) => {
+
+                    fancyboxContainer.addEventListener("touchend", (e) => {
                         const endX = e.changedTouches[0].clientX;
-                        if (startX - endX > 50) {
+                        endY = e.changedTouches[0].clientY;
+                        const deltaX = endX - startX;
+                        const deltaY = endY - startY;
+
+                        // 🎯 Swipe Left - Sledeći slajd
+                        if (deltaX < -50) {
                             console.log("[SWIPE] Swipe left - Sledeći slajd");
                             carousel.slideNext();
-                        } else if (endX - startX > 50) {
+                        } 
+                        // 🎯 Swipe Right - Prethodni slajd
+                        else if (deltaX > 50) {
                             console.log("[SWIPE] Swipe right - Prethodni slajd");
                             carousel.slidePrev();
+                        } 
+                        // 🎯 Swipe Down - Zatvaranje Fancybox-a (ako je vertikalni pomak veći od horizontalnog)
+                        else if (deltaY > 50 && Math.abs(deltaY) > Math.abs(deltaX)) {
+                            console.log("[SWIPE DOWN] Zatvaram Fancybox...");
+                            Fancybox.close();
                         }
                     });
-                }
-            },
+                },
+
+            }
         });
         
+        // ✅ Funkcija za kreiranje custom zatvaranja
         function createCloseButton() {
             const closeButton = document.createElement("div");
             closeButton.classList.add("custom-close-btn");
@@ -215,52 +249,75 @@ document.addEventListener("DOMContentLoaded", async () => {
             `;
         
             closeButton.addEventListener("click", () => {
-                Fancybox.close(); // Zatvaranje Fancybox-a
+                Fancybox.close();
             });
         
             return closeButton;
         }
         
+        
     }
 
-    // Prvo učitavanje - prikazuje "All Projects"
+    // Prvo učitavanje - prikazuje "All Projects" (možeš i umesto ovoga zvati applyFilter)
     updateGallery("all");
 
-    // Aktiviranje filter dugmadi
+
+    // 🔹 applyFilter: sada uklanja .active samo sa desktop i mobile dugmadi
     function applyFilter(selectedButton) {
         const category = selectedButton.dataset.category;
 
-        // Ažuriranje aktivnog taba
-        filterButtons.forEach(btn => btn.classList.remove("active"));
+        // // <-- IZMENJENO: brišemo active sa oba niza
+        desktopFilterButtons.forEach(btn => btn.classList.remove("active"));
+        mobileFilterButtons.forEach(btn  => btn.classList.remove("active"));
+
+        // Dodajemo .active samo na kliknuti
         selectedButton.classList.add("active");
 
+        // Menjamo tekst label-e na mobilu (ako postoji)
         if (filterLabel) {
             filterLabel.textContent = selectedButton.textContent;
         }
 
+        // Osvježimo prikaz
         updateGallery(category);
     }
 
-    // Klik na desktop filtere
-    filterButtons.forEach(button => {
+    // Klik na desktop dugmad
+    desktopFilterButtons.forEach(button => {
         button.addEventListener("click", (e) => {
-            applyFilter(e.target);
+            // e.target može biti span ako ima child; e.currentTarget je pravo dugme
+            applyFilter(e.currentTarget);
         });
     });
 
-    // Klik na mobile dropdown filtere
+    // Klik na mobile dropdown toggle
     if (filterToggle && filterDropdown) {
         filterToggle.addEventListener("click", () => {
             filterDropdown.classList.toggle("hidden");
             filterToggle.querySelector("svg").classList.toggle("rotate-180");
         });
 
-        filterDropdown.querySelectorAll(".filter-btn").forEach(button => {
+        // Klik na svako mobilno filter-dugme
+        mobileFilterButtons.forEach(button => {
             button.addEventListener("click", (e) => {
-                applyFilter(e.target);
+                applyFilter(e.currentTarget);
                 filterDropdown.classList.add("hidden");
                 filterToggle.querySelector("svg").classList.remove("rotate-180");
             });
         });
     }
+
+    // // da se dropdown zatvori klikom izvan njega:
+    document.addEventListener("click", (e) => {
+      // Ako je dropdown otvoren i kliknuli smo van dropdowna i toggla
+      const isDropdownOpen = !filterDropdown.classList.contains("hidden");
+      if (
+        isDropdownOpen &&
+        !filterToggle.contains(e.target) &&
+        !filterDropdown.contains(e.target)
+      ) {
+        filterDropdown.classList.add("hidden");
+        filterToggle.querySelector("svg").classList.remove("rotate-180");
+      }
+    });
 });
