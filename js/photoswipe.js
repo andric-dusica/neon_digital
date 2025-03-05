@@ -81,7 +81,9 @@ async function displayWorkMedia() {
 
     window.scrollTo(0, prevScrollY);
 
-    document.body.removeChild(modalContainer);
+    if (modalContainer && modalContainer.parentNode === document.body) {
+      document.body.removeChild(modalContainer);
+  }
   };
 
   const updateContent = () => {
@@ -145,22 +147,38 @@ async function displayWorkMedia() {
     closeButton.addEventListener('click', closeModal);
 
     // Swipe navigacija (mobilni)
-    let startX = 0;
-    contentContainer.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-    });
-    contentContainer.addEventListener('touchmove', (e) => {
-      const endX = e.touches[0].clientX;
-      if (startX - endX > 50) {
-        // sledeci
-        currentIndex = (currentIndex + 1) % media.length;
-        updateContent();
-      } else if (endX - startX > 50) {
-        // prethodni
-        currentIndex = (currentIndex - 1 + media.length) % media.length;
-        updateContent();
-      }
-    });
+let startX = 0, startY = 0;
+contentContainer.addEventListener('touchstart', (e) => {
+  if (e.touches.length > 0) {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY; // Čuvamo početnu poziciju po Y-osi
+  }
+});
+
+contentContainer.addEventListener('touchmove', (e) => {
+  if (e.touches.length > 0) {
+    const endX = e.touches[0].clientX;
+    const endY = e.touches[0].clientY;
+    const deltaX = endX - startX;
+    const deltaY = endY - startY;
+
+    // Swipe left (sledeći)
+    if (deltaX < -50) {
+      currentIndex = (currentIndex + 1) % media.length;
+      updateContent();
+    } 
+    // Swipe right (prethodni)
+    else if (deltaX > 50) {
+      currentIndex = (currentIndex - 1 + media.length) % media.length;
+      updateContent();
+    } 
+    // Swipe down (zatvaranje)
+    else if (deltaY > 50 && Math.abs(deltaY) > Math.abs(deltaX)) {
+      closeModal();
+    }
+  }
+});
+
 
     updateContent();
     modalContainer.appendChild(contentContainer);
@@ -343,9 +361,22 @@ Fancybox.bind('[data-fancybox="gallery"]', {
 
       // 5) load() + play()
       activeVideo.load();
-      activeVideo.play().catch(err => {
-        console.warn("[ERROR] Autoplay blokiran:", err);
-      });
+      activeVideo.muted = true; // ako hoćeš da krene bez zvuka pa da ga vratiš kasnije
+
+      activeVideo.play()
+        .then(() => {
+          // ✅ Kad video zaista krene, uklonimo poster
+          activeVideo.removeAttribute("poster");
+          
+          // Ako hoćeš da vratiš zvuk posle par stotinki:
+          setTimeout(() => {
+            activeVideo.muted = false;
+            activeVideo.volume = 1.0;
+          }, 300);
+        })
+        .catch(err => {
+          console.warn("[ERROR] Autoplay blokiran:", err);
+        });
     },
 
     // Kad zatvoriš Fancybox
