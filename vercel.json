@@ -10,12 +10,6 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    }
-  ],
   "rewrites": [
     { "source": "/services", "destination": "/services.html" },
     { "source": "/our-work", "destination": "/our-work.html" },
