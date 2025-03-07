@@ -1,18 +1,8 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/sendEmail.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/sendEmail",
-      "dest": "api/sendEmail.js"
-    },
-    {
-      "handle": "filesystem"
-    }
+  "rewrites": [
+    { "source": "/services", "destination": "/services.html" },
+    { "source": "/our-work", "destination": "/our-work.html" },
+    { "source": "/about-us", "destination": "/about-us.html" },
+    { "source": "/contact-us", "destination": "/contact-us.html" }
   ]
 }
