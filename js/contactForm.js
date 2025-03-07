@@ -61,8 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (hasError) return;
 
           try {
-              // Umesto Supabase, šaljemo podatke na API koji koristi Resend
-              const response = await fetch("/api/sendEmail", {
+              const response = await fetch("https://api.neondigital.rs/api/sendEmail", {
                   method: "POST",
                   headers: {
                       "Content-Type": "application/json",
