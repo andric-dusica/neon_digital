@@ -61,13 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
           if (hasError) return;
 
           try {
-              const response = await fetch("https://api.neondigital.rs/api/sendEmail", {
-                  method: "POST",
-                  headers: {
-                      "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({ email, subject, message }),
-              });
+              const response = await fetch("/api/sendEmail", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, subject, message }),
+            });
 
               const result = await response.json();
 

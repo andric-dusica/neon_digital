@@ -1,16 +1,19 @@
 {
-  "version": 2,  
-  "functions": {
-    "api/sendEmail.js": {
-      "runtime": "nodejs18.x"
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/sendEmail.js",
+      "use": "@vercel/node"
     }
-  },
-  "rewrites": [
-    { "source": "/services", "destination": "/services.html" },
-    { "source": "/our-work", "destination": "/our-work.html" },
-    { "source": "/about-us", "destination": "/about-us.html" },
-    { "source": "/contact-us", "destination": "/contact-us.html" },
-
-    { "source": "/api/sendEmail", "destination": "/api/sendEmail.js" }
+  ],
+  "routes": [
+    { "src": "/services", "dest": "/services.html" },
+    { "src": "/our-work", "dest": "/our-work.html" },
+    { "src": "/about-us", "dest": "/about-us.html" },
+    { "src": "/contact-us", "dest": "/contact-us.html" },
+    {
+      "src": "/api/sendEmail",
+      "dest": "api/sendEmail.js"
+    }
   ]
 }
