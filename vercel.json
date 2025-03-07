@@ -1,17 +1,8 @@
 {
-  "version": 2,
-  "public": true,
-  "builds": [
-    {
-      "src": "dist/**/*",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    { "src": "/", "dest": "/index.html" },
-    { "src": "/services", "dest": "/services.html" },
-    { "src": "/our-work", "dest": "/our-work.html" },
-    { "src": "/about-us", "dest": "/about-us.html" },
-    { "src": "/contact-us", "dest": "/contact-us.html" }
+  "rewrites": [
+    { "source": "/services", "destination": "/services.html" },
+    { "source": "/our-work", "destination": "/our-work.html" },
+    { "source": "/about-us", "destination": "/about-us.html" },
+    { "source": "/contact-us", "destination": "/contact-us.html" }
   ]
 }
