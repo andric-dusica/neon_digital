@@ -7,13 +7,14 @@
     }
   ],
   "routes": [
+    { "src": "/api/sendEmail", "dest": "/api/sendEmail.js" },
+
+    { "src": "/", "dest": "/index.html" },
     { "src": "/services", "dest": "/services.html" },
     { "src": "/our-work", "dest": "/our-work.html" },
     { "src": "/about-us", "dest": "/about-us.html" },
     { "src": "/contact-us", "dest": "/contact-us.html" },
-    {
-      "src": "/api/sendEmail",
-      "dest": "api/sendEmail.js"
-    }
+
+    { "handle": "filesystem" }
   ]
 }
