@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                     class="fancybox-video"
                                     controls
                                     playsinline
-                                    preload="metadata"
+                                    preload="preload"
                                     style="border-radius:28px; width:100%; height:auto; max-width:700px; max-height:620px;"
                                     poster="${item.cover_url}"
                                     data-src="${item.media_url}"
