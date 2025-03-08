@@ -226,17 +226,20 @@ document.addEventListener("DOMContentLoaded", async () => {
                         "data-html",
                         `
                         <div style="position:relative; display:inline-block; width:100%; max-width:700px; max-height:620px;">
-                            <video
-                                class="fancybox-video"
-                                controls
-                                playsinline
-                                style="border-radius:28px; width:100%; height:auto; max-width:700px; max-height:620px;"
-                                poster="${item.cover_url}"
-                                data-src="${item.media_url}"
-                            >
-                                <!-- Nema <source> ovde -->
-                                Your browser does not support the video tag.
-                            </video>
+                           <div style="position:relative; display:inline-block; width:100%; max-width:700px; max-height:620px;">
+                                <video
+                                    class="fancybox-video"
+                                    controls
+                                    playsinline
+                                    preload="metadata"
+                                    style="border-radius:28px; width:100%; height:auto; max-width:700px; max-height:620px;"
+                                    poster="${item.cover_url}"
+                                    data-src="${item.media_url}"
+                                >
+                                    <!-- Nema <source> ovde -->
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
                         </div>
                         `
                     );
