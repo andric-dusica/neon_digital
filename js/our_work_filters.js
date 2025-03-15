@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const { data: homeData, error: homeError } = await supabase
         .from("home_our_work_images_videos")
         .select("media_url, type, category, cover_url")
-        .order("order", { ascending: true });
+        .order("id", { ascending: true });
 
         const { data: ourWorkData, error: ourWorkError } = await supabase
             .from("our_work_images_videos")
