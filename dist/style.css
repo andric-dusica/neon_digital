@@ -240,7 +240,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 /* our work */
 .gallery {
-    display: flex;
+    display: flex !important;
     flex-wrap: wrap;
     gap: 10px;
   }
