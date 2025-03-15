@@ -18,16 +18,23 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Povlačenje medija iz Supabase
     async function fetchMedia() {
-        const { data, error } = await supabase
-            .from("home_our_work_images_videos")
+        const { data: homeData, error: homeError } = await supabase
+        .from("home_our_work_images_videos")
+        .select("media_url, type, category, cover_url")
+        .order("order", { ascending: true });
+
+        const { data: ourWorkData, error: ourWorkError } = await supabase
+            .from("our_work_images_videos")
             .select("media_url, type, category, cover_url")
             .order("id", { ascending: true });
 
-        if (error) {
-            console.error("Greška prilikom povlačenja podataka:", error);
-            return [];
-        }
-        return data;
+            if (homeError || ourWorkError) {
+                console.error("Greška prilikom povlačenja podataka:", homeError || ourWorkError);
+                return [];
+            }
+            
+        const combinedData = [...homeData, ...ourWorkData];
+        return combinedData;
     }
 
     const allMedia = await fetchMedia();

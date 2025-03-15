@@ -14,7 +14,7 @@ async function getWorkMedia() {
   const { data, error } = await supabase
     .from('home_our_work_images_videos')
     .select('media_url, type, cover_url')
-    .order('id', { ascending: true });
+    .order("order", { ascending: true });
 
   if (error) {
     console.error('Greška prilikom povlačenja medija:', error);

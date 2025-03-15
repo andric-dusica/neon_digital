@@ -54,7 +54,7 @@ async function displayLogos() {
 // Funkcija za beskonačnu animaciju logotipa
 function startInfiniteScroll(container) {
   const totalWidth = container.scrollWidth; // Ukupna širina logotipa
-  const step = 0.5; // Korak pomeranja
+  const step = 1; // Korak pomeranja
   let scrollPosition = 0;
 
   function animate() {
