@@ -258,36 +258,36 @@ document.addEventListener("DOMContentLoaded", async () => {
                 container.appendChild(img);
             
                 // Span za naziv projekta
-                const titleSpan = document.createElement("span");
-                titleSpan.textContent = item.project_name || ""; 
-                titleSpan.style.cssText = `
-                    position: absolute;
-                    height: 50px;
-                    width: 100%;
-                    bottom: ${window.innerWidth <= 768 ? "44px" : "125px"};
-                    left: 0;
-                    background: #00002954;
-                    color: white;
-                    padding: 5px 10px;
-                    font-size: 14px;
-                    box-sizing: border-box;
-                    text-align: center;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    transition: opacity 0.3s ease-in-out;
-                `;
+                // const titleSpan = document.createElement("span");
+                // titleSpan.textContent = item.project_name || ""; 
+                // titleSpan.style.cssText = `
+                //     position: absolute;
+                //     height: 50px;
+                //     width: 100%;
+                //     bottom: ${window.innerWidth <= 768 ? "44px" : "125px"};
+                //     left: 0;
+                //     background: #00002954;
+                //     color: white;
+                //     padding: 5px 10px;
+                //     font-size: 14px;
+                //     box-sizing: border-box;
+                //     text-align: center;
+                //     display: flex;
+                //     align-items: center;
+                //     justify-content: center;
+                //     transition: opacity 0.3s ease-in-out;
+                // `;
             
-                // Hover efekat
-                if (window.innerWidth <= 768) {
-                    titleSpan.style.opacity = "1";
-                } else {
-                    titleSpan.style.opacity = "0"; 
-                    container.addEventListener("mouseenter", () => titleSpan.style.opacity = "1");
-                    container.addEventListener("mouseleave", () => titleSpan.style.opacity = "0");
-                }
+                // // Hover efekat
+                // if (window.innerWidth <= 768) {
+                //     titleSpan.style.opacity = "1";
+                // } else {
+                //     titleSpan.style.opacity = "0"; 
+                //     container.addEventListener("mouseenter", () => titleSpan.style.opacity = "1");
+                //     container.addEventListener("mouseleave", () => titleSpan.style.opacity = "0");
+                // }
             
-                container.appendChild(titleSpan); 
+                // container.appendChild(titleSpan); 
                 anchorElement.appendChild(container); 
                 anchorElement.setAttribute("data-fancybox", "gallery"); 
             }
