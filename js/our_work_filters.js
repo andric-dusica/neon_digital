@@ -3,7 +3,6 @@ import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 document.addEventListener("DOMContentLoaded", async () => {
-    // Selektori za filter meni (ne menjamo)
     const filterToggle   = document.getElementById("filter-toggle");
     const filterDropdown = document.getElementById("filter-dropdown");
     const filterLabel    = document.getElementById("filter-label");
@@ -25,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const { data: ourWorkData, error: ourWorkError } = await supabase
             .from("our_work_images_videos")
-            .select("media_url, type, category, cover_url")
+            .select("media_url, type, category, cover_url, project_name")
             .order("id", { ascending: true });
 
             if (homeError || ourWorkError) {
@@ -38,8 +37,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const allMedia = await fetchMedia();
-    let currentFilteredMedia = [];  // globalna promenljiva za filtriran niz
-    let currentIndex = 0;          // mobilni modal index
+    let currentFilteredMedia = [];  
+    let currentIndex = 0;         
 
     // ===== FUNKCIJA ZA CUSTOM MOBILNI MODAL =====
     function openFullscreenModal(index) {
@@ -190,7 +189,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // 2) Generisanje <div> + <a> + (slika/video) za svaku stavku
         currentFilteredMedia.forEach((item, index) => {
             const mediaElement = document.createElement("div");
-            mediaElement.classList.add("media-item");
+            mediaElement.classList.add("media-item", "relative");
             mediaElement.dataset.category = item.category;
           let className = "";
           if (item.category === "reels") {
@@ -217,16 +216,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 anchorElement.setAttribute("data-fancybox", "gallery");
                 anchorElement.href = item.media_url; // <a href=...>
       
-          if (item.type === "image") {
-            // **Za slike normalan <img> + src**
-            anchorElement.innerHTML = `
-              <img
-                src="${item.media_url}"
-                alt="Image"
-                class="rounded-xl w-full object-cover"
-              >
-            `;
-          } else if (item.type === "video") {
+           if (item.type === "video") {
                     // Kao ranije, postavljaš data-html
                     anchorElement.setAttribute("data-type", "html");
                     anchorElement.setAttribute(
@@ -255,12 +245,53 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             // 3) U <a> ubacujemo sliku ili thumbnail videa
             if (item.type === "image") {
+                const container = document.createElement("div");
+                container.style.position = "relative";
+                container.style.overflow = "hidden";
+                container.style.height = "100%"; 
+
+            
                 const img = document.createElement("img");
                 img.src = item.media_url;
                 img.alt = "Portfolio Image";
                 img.classList.add("rounded-xl", "w-full", "object-cover");
-                anchorElement.appendChild(img);
-            } else if (item.type === "video") {
+                container.appendChild(img);
+            
+                // Span za naziv projekta
+                const titleSpan = document.createElement("span");
+                titleSpan.textContent = item.project_name || ""; 
+                titleSpan.style.cssText = `
+                    position: absolute;
+                    height: 50px;
+                    width: 100%;
+                    bottom: ${window.innerWidth <= 768 ? "44px" : "125px"};
+                    left: 0;
+                    background: #00002954;
+                    color: white;
+                    padding: 5px 10px;
+                    font-size: 14px;
+                    box-sizing: border-box;
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: opacity 0.3s ease-in-out;
+                `;
+            
+                // Hover efekat
+                if (window.innerWidth <= 768) {
+                    titleSpan.style.opacity = "1";
+                } else {
+                    titleSpan.style.opacity = "0"; 
+                    container.addEventListener("mouseenter", () => titleSpan.style.opacity = "1");
+                    container.addEventListener("mouseleave", () => titleSpan.style.opacity = "0");
+                }
+            
+                container.appendChild(titleSpan); 
+                anchorElement.appendChild(container); 
+                anchorElement.setAttribute("data-fancybox", "gallery"); 
+            }
+             else if (item.type === "video") {
                 const img = document.createElement("img");
                 img.src = item.cover_url || item.media_url;
                 img.alt = "Video Thumbnail";
@@ -287,6 +318,38 @@ document.addEventListener("DOMContentLoaded", async () => {
                 container.style.position = "relative";
                 container.appendChild(img);
                 container.appendChild(playIcon);
+
+                 // **✅ Dodajemo naziv projekta (project_name) kao hover text**
+                const titleSpan = document.createElement("span");
+                titleSpan.textContent = item.project_name || ""; 
+                titleSpan.style.cssText = `
+                    position: absolute;
+                    height: 50px;
+                    width: 100%;
+                    bottom: 0px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: #00002954;
+                    color: white;
+                    padding: 5px 10px;
+                    font-size: 14px;
+                    transition: opacity 0.3s ease-in-out;
+                `;
+                container.appendChild(titleSpan);
+                
+
+                // **Hover efekat**
+                if (window.innerWidth <= 768) {
+                    titleSpan.style.opacity = "1";
+                } else {
+                    titleSpan.style.opacity = "0";
+                    container.addEventListener("mouseenter", () => {
+                        titleSpan.style.opacity = "1";
+                    });
+                    container.addEventListener("mouseleave", () => {
+                        titleSpan.style.opacity = "0";
+                    });
+                }
 
                 anchorElement.appendChild(container);
             }
@@ -331,10 +394,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                         videoEl.muted = true;
                         videoEl.play()
                             .then(() => {
-                                // ✅ Kad krene reprodukcija, ukloni poster
                                 videoEl.removeAttribute("poster");
 
-                                // Posle 300ms, vrati zvuk
                                 setTimeout(() => {
                                     videoEl.muted = false;
                                     videoEl.volume = 1.0;
@@ -347,7 +408,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     }, 0);
                 },
                 "close": () => {
-                    // Kad se zatvori Fancybox, pauziramo sve
                     document.querySelectorAll(".fancybox-video").forEach(video => {
                         video.pause();
                         video.currentTime = 0;
@@ -360,10 +420,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // Prvi prikaz (prikazujemo "all")
     updateGallery("all");
 
-    // Filter logika (ne menjamo)
     function applyFilter(selectedButton) {
         const category = selectedButton.dataset.category;
         desktopFilterButtons.forEach(btn => btn.classList.remove("active"));
@@ -376,7 +434,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         updateGallery(category);
     }
 
-    // Event listeneri za filtere (desktop + mobile)
     desktopFilterButtons.forEach(button => {
         button.addEventListener("click", (e) => {
             applyFilter(e.currentTarget);
@@ -398,7 +455,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // Klik van dropdowna ga zatvara
     document.addEventListener("click", (e) => {
       const isDropdownOpen = !filterDropdown.classList.contains("hidden");
       if (

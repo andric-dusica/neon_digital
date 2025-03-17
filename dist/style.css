@@ -6,7 +6,6 @@ body {
     background-color: #000029;
     margin: 0;
     box-sizing: border-box;
-    /* max-width: 1440px; */
     margin: auto;
     font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing: antialiased; 
@@ -15,12 +14,30 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: none;
+}
+
+/* Stil za kursor trail */
+.cursor-trail {
+    position: absolute;
+    width: 5px; 
+    height: 5px; 
+    background: radial-gradient(circle, #A43194 0%, #3434D7 100%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    box-shadow: 
+        0 0 10px #A43194, 
+        0 0 20px #3434D7, 
+        0 0 30px rgba(164, 49, 148, 0.8), 
+        0 0 40px rgba(52, 52, 215, 0.8);
+    opacity: 1;
+    transition: transform 0.3s ease-out, opacity 0.8s ease-out;
 }
 
 
-
 html {
-    overflow-x: hidden; /* Sprečava horizontalni skrol na stranici */
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -29,8 +46,6 @@ h1, h2, h3, h4, h5, h6, p {
 
 
 /* hero */
-
-
 .cicrcle_gradient {
     width: 630px;
     height: 428px;
@@ -171,7 +186,7 @@ h1, h2, h3, h4, h5, h6, p {
     bottom: -969px;
     border-radius: 1754px;
     background: radial-gradient(50% 50% at 50% 50%, #3434D7 0%, rgba(52, 52, 215, 0.00) 100%);
-    z-index: -1; /* Postavlja krug iza sadržaja */
+    z-index: -1; 
 }
 
 .background_circle_rose_about_us {
@@ -271,7 +286,6 @@ h1, h2, h3, h4, h5, h6, p {
   width: 340px !important;
   max-width: 100%;
   max-height: 530px;
-  /* height: 530px; */
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -370,7 +384,7 @@ h1, h2, h3, h4, h5, h6, p {
     right: 10px;
     width: 40px;
     height: 40px;
-    background: rgba(0, 0, 0, 0.6); /* Tamna pozadina */
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -387,7 +401,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .custom-close-btn:hover {
-    background: rgba(255, 255, 255, 0.8); /* Svetlija boja na hover */
+    background: rgba(255, 255, 255, 0.8); 
 }
 
 .custom-close-btn:hover svg {
@@ -469,7 +483,7 @@ h1, h2, h3, h4, h5, h6, p {
 
 /* about us */
 #niksa_img {
-    transform: scaleX(-1); /* Horizontalno ogledalo */
+    transform: scaleX(-1); 
     display: inline-block;
 }
 
@@ -487,8 +501,8 @@ h1, h2, h3, h4, h5, h6, p {
 form {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Razmak između grupa label/input */
-    width: 100%; /* Možeš postaviti željenu širinu forme */
+    gap: 20px; 
+    width: 100%; 
 }
 
 form .contact_form {
@@ -502,7 +516,7 @@ label {
     font-family: Poppins;
     font-size: 18px;
     color: #FFF;
-    margin-bottom: 8px; /* Razmak između labela i inputa */
+    margin-bottom: 8px;
 }
 
 input, textarea {
@@ -510,21 +524,21 @@ input, textarea {
     padding: 12px;
     border: none;
     border-radius: 8px;
-    background-color: #1E1E2D; /* Boja pozadine input polja */
-    color: #AEAEBA; /* Boja teksta unutar input polja */
+    background-color: #1E1E2D; 
+    color: #AEAEBA;
     font-family: Poppins;
     font-size: 16px;
 }
 
 textarea {
-    resize: none; /* Sprečava promenu veličine text area */
-    height: 150px; /* Visina textarea */
+    resize: none;
+    height: 150px;
 }
 
 form .form_group_button {
     width: 100%;
     display: flex;
-    justify-content: flex-end; /* Postavlja dugme na desnu stranu */
+    justify-content: flex-end; 
 }
 
 form .send_message {
