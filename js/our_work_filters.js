@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function fetchMedia() {
         const { data: homeData, error: homeError } = await supabase
         .from("home_our_work_images_videos")
-        .select("media_url, type, category, cover_url")
+        .select("media_url, type, category, cover_url, project_name")
         .order("order", { ascending: true });
 
         const { data: ourWorkData, error: ourWorkError } = await supabase
@@ -324,18 +324,20 @@ document.addEventListener("DOMContentLoaded", async () => {
                 titleSpan.textContent = item.project_name || ""; 
                 titleSpan.style.cssText = `
                     position: absolute;
-                    height: 50px;
+                    height: 55px;
+                    align-content: center;
                     width: 100%;
-                    bottom: 0px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background: #00002954;
+                    bottom: 0;
+                    left: 0;
+                    background: #18183dad;
                     color: white;
-                    padding: 5px 10px;
+                    padding: 8px 15px;
                     font-size: 14px;
+                    font-weight: 500;
                     transition: opacity 0.3s ease-in-out;
                 `;
                 container.appendChild(titleSpan);
+    
                 
 
                 // **Hover efekat**

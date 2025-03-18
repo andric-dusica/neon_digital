@@ -259,7 +259,7 @@ h1, h2, h3, h4, h5, h6, p {
 .gallery {
     display: flex !important;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 18px;
   }
   
   .gallery a {
