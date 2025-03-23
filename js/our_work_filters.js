@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const { data: ourWorkData, error: ourWorkError } = await supabase
             .from("our_work_images_videos")
-            .select("media_url, type, category, cover_url, project_name")
+            .select("media_url, type, category, cover_url, project_name, direction, order")
             .order("id", { ascending: true });
 
             if (homeError || ourWorkError) {
@@ -37,6 +37,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const allMedia = await fetchMedia();
+    allMedia.sort((a, b) => a.order - b.order);
+    
     let currentFilteredMedia = [];  
     let currentIndex = 0;         
 
@@ -200,6 +202,12 @@ document.addEventListener("DOMContentLoaded", async () => {
               className = "image-item";
           }
 
+          if (item.type === "image" && item.direction === "horizontal" && window.innerWidth > 768) {
+            mediaElement.style.width = "615px";
+            mediaElement.style.height = "352px";
+        }
+        
+
           mediaElement.classList.add(className);
 
             const anchorElement = document.createElement("a");
@@ -249,12 +257,27 @@ document.addEventListener("DOMContentLoaded", async () => {
                 container.style.position = "relative";
                 container.style.overflow = "hidden";
                 container.style.height = "100%"; 
+            
+                
+            
 
             
                 const img = document.createElement("img");
                 img.src = item.media_url;
                 img.alt = "Portfolio Image";
-                img.classList.add("rounded-xl", "w-full", "object-cover");
+                img.classList.add("rounded-xl", "object-cover");
+
+                // Horizontalne slike dobijaju iste dimenzije kao video
+               // Ako je horizontalna slika, daj joj dimenzije kao video
+               if (item.direction === "horizontal" && window.innerWidth > 768) {
+                container.style.width = "615px";
+                container.style.height = "352px";
+                img.style.width = "100%";
+                img.style.height = "100%";
+                } else {
+                    img.classList.add("w-full", "h-auto");
+                }
+
                 container.appendChild(img);
             
                 // Span za naziv projekta
