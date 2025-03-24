@@ -278,6 +278,10 @@ h1, h2, h3, h4, h5, h6, p {
     .gallery {
         display: grid;
     }
+
+    .gallery a {
+        height: auto !important;
+      }
 }
 
   /* our work */
@@ -707,6 +711,10 @@ form .send_message {
     width: 343px;
     height: 435px;
     flex-shrink: 0;
+}
+
+.image-item {
+    height: auto;
 }
 
 @media (min-width: 1024px) {

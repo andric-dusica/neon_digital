@@ -18,23 +18,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Povlačenje medija iz Supabase
     async function fetchMedia() {
         const { data: homeData, error: homeError } = await supabase
-        .from("home_our_work_images_videos")
-        .select("media_url, type, category, cover_url, project_name")
-        .order("order", { ascending: true });
-
+            .from("home_our_work_images_videos")
+            .select("media_url, type, category, cover_url, project_name")
+            .order("order", { ascending: true });
+    
         const { data: ourWorkData, error: ourWorkError } = await supabase
             .from("our_work_images_videos")
             .select("media_url, type, category, cover_url, project_name, direction, order")
-            .order("id", { ascending: true });
-
-            if (homeError || ourWorkError) {
-                console.error("Greška prilikom povlačenja podataka:", homeError || ourWorkError);
-                return [];
-            }
-            
-        const combinedData = [...homeData, ...ourWorkData];
+            .order("order", { ascending: true });
+    
+        if (homeError || ourWorkError) {
+            console.error("Greška prilikom povlačenja podataka:", homeError || ourWorkError);
+            return [];
+        }
+    
+        const ourWorkUrls = new Set(ourWorkData.map(item => item.media_url));
+    
+        const filteredHomeData = homeData.filter(item => !ourWorkUrls.has(item.media_url));
+    
+        const combinedData = [...filteredHomeData, ...ourWorkData];
+    
         return combinedData;
     }
+    
 
     const allMedia = await fetchMedia();
     allMedia.sort((a, b) => a.order - b.order);
@@ -267,8 +273,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 img.alt = "Portfolio Image";
                 img.classList.add("rounded-xl", "object-cover");
 
-                // Horizontalne slike dobijaju iste dimenzije kao video
-               // Ako je horizontalna slika, daj joj dimenzije kao video
                if (item.direction === "horizontal" && window.innerWidth > 768) {
                 container.style.width = "615px";
                 container.style.height = "352px";
