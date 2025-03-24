@@ -183,12 +183,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     function getCustom360Projects() {
         return [
             {
-                img: "/dist/images/atlas360.png",
+                img: "/images/atlas360.png",
                 link: "https://atlas360.neondigital.rs",
                 name: "Atlas 360° Tour"
             },
             {
-                img: "/dist/images/ustanicka360.png",
+                img: "/images/ustanicka360.png",
                 link: "https://ustanicka360.neondigital.rs",
                 name: "Ustanička 360° Tour"
             }
