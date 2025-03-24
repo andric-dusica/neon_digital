@@ -180,150 +180,191 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.body.appendChild(modalContainer);
     }
 
+    function getCustom360Projects() {
+        return [
+            {
+                img: "/dist/images/atlas360.png",
+                link: "https://atlas360.neondigital.rs",
+                name: "Atlas 360° Tour"
+            },
+            {
+                img: "/dist/images/ustanicka360.png",
+                link: "https://ustanicka360.neondigital.rs",
+                name: "Ustanička 360° Tour"
+            }
+        ];
+    }
+
     // ===== FUNKCIJA ZA PRIKAZ MEDIJA U .GALLERY =====
     function updateGallery(category = "all") {
         gallery.innerHTML = "";
-
-        // 1) Filtracija
+    
+        const custom360 = getCustom360Projects();
+    
+        // === Prikaz samo za "360" kategoriju ===
+        if (category === "360") {
+            custom360.forEach(item => {
+                const wrapper = document.createElement("div");
+                wrapper.classList.add(
+                    "media-item",
+                    "border",
+                    "border-[#9949f5]",
+                    "overflow-hidden"
+                );
+    
+                const anchor = document.createElement("a");
+                anchor.href = item.link;
+                anchor.target = "_blank";
+                anchor.rel = "noopener noreferrer";
+                anchor.classList.add("!rounded-xl", "!max-w-[400px]", "!h-auto", "object-cover");
+    
+                const img = document.createElement("img");
+                img.src = item.img;
+                img.alt = "360° Preview";
+                img.classList.add(
+                    "rounded-xl",
+                    "w-full",
+                    "h-auto",
+                    "!object-contain",
+                    "transition-transform",
+                    "duration-300",
+                    "ease-in-out",
+                    "hover:scale-105"
+                );
+    
+                const titleSpan = document.createElement("span");
+                titleSpan.textContent = item.name;
+                titleSpan.style.cssText = `
+                    position: absolute;
+                    height: 55px;
+                    align-content: center;
+                    width: 100%;
+                    bottom: 0;
+                    left: 0;
+                    background: #18183dad;
+                    color: white;
+                    padding: 8px 15px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    transition: opacity 0.3s ease-in-out;
+                    z-index: 10;
+                `;
+    
+                if (window.innerWidth <= 768) {
+                    titleSpan.style.opacity = "1";
+                } else {
+                    titleSpan.style.opacity = "0";
+                    wrapper.addEventListener("mouseenter", () => {
+                        titleSpan.style.opacity = "1";
+                    });
+                    wrapper.addEventListener("mouseleave", () => {
+                        titleSpan.style.opacity = "0";
+                    });
+                }
+    
+                wrapper.style.position = "relative";
+                wrapper.appendChild(titleSpan);
+                anchor.appendChild(img);
+                wrapper.appendChild(anchor);
+                gallery.appendChild(wrapper);
+            });
+    
+            return; // 🛑 samo za 360 kategoriju prekidamo
+        }
+    
+        // === Prikaz ostalih kategorija ===
         currentFilteredMedia = (category === "all")
             ? allMedia
             : allMedia.filter(item => item.category === category);
-
+    
         if (!currentFilteredMedia || currentFilteredMedia.length === 0) {
-            gallery.innerHTML = `<p class="text-white text-center w-full">Nema dostupnih medija.</p>`;
+            gallery.innerHTML = `<p class="text-white text-center w-full">No items.</p>`;
             return;
         }
-
-        // 2) Generisanje <div> + <a> + (slika/video) za svaku stavku
+    
+        // === Prikaz slika i videa iz baze ===
         currentFilteredMedia.forEach((item, index) => {
             const mediaElement = document.createElement("div");
             mediaElement.classList.add("media-item", "relative");
             mediaElement.dataset.category = item.category;
-          let className = "";
-          if (item.category === "reels") {
-              className = "reels-item";
-          } else if (item.category === "video") {
-              className = "video-item";
-          } else {
-              className = "image-item";
-          }
-
-          if (item.type === "image" && item.direction === "horizontal" && window.innerWidth > 768) {
-            mediaElement.style.width = "615px";
-            mediaElement.style.height = "352px";
-        }
-        
-
-          mediaElement.classList.add(className);
-
+    
+            let className = "";
+            if (item.category === "reels") {
+                className = "reels-item";
+            } else if (item.category === "video") {
+                className = "video-item";
+            } else {
+                className = "image-item";
+            }
+    
+            if (item.type === "image" && item.direction === "horizontal" && window.innerWidth > 768) {
+                mediaElement.style.width = "615px";
+                mediaElement.style.height = "352px";
+            }
+    
+            mediaElement.classList.add(className);
+    
             const anchorElement = document.createElement("a");
             anchorElement.href = item.media_url;
-
-            // Ako je mobilni => otvaramo custom modal
+    
+            // === Mobilni prikaz ===
             if (window.innerWidth <= 768) {
                 anchorElement.addEventListener("click", (e) => {
                     e.preventDefault();
-                    openFullscreenModal(index); // Koristi custom modal
+                    openFullscreenModal(index);
                 });
             } else {
-                // Desktop => Fancybox
                 anchorElement.setAttribute("data-fancybox", "gallery");
-                anchorElement.href = item.media_url; // <a href=...>
-      
-           if (item.type === "video") {
-                    // Kao ranije, postavljaš data-html
+                anchorElement.href = item.media_url;
+    
+                if (item.type === "video") {
                     anchorElement.setAttribute("data-type", "html");
-                    anchorElement.setAttribute(
-                        "data-html",
-                        `
+                    anchorElement.setAttribute("data-html", `
                         <div style="position:relative; display:inline-block; width:100%; max-width:700px; max-height:620px;">
-                           <div style="position:relative; display:inline-block; width:100%; max-width:700px; max-height:620px;">
-                                <video
-                                    class="fancybox-video"
-                                    controls
-                                    playsinline
-                                    preload="preload"
-                                    style="border-radius:28px; width:100%; height:auto; max-width:700px; max-height:620px;"
-                                    poster="${item.cover_url}"
-                                    data-src="${item.media_url}"
-                                >
-                                    <!-- Nema <source> ovde -->
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
+                            <video
+                                class="fancybox-video"
+                                controls
+                                playsinline
+                                preload="preload"
+                                style="border-radius:28px; width:100%; height:auto; max-width:700px; max-height:620px;"
+                                poster="${item.cover_url}"
+                                data-src="${item.media_url}"
+                            >
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
-                        `
-                    );
+                    `);
                 }
             }
-
-            // 3) U <a> ubacujemo sliku ili thumbnail videa
+    
             if (item.type === "image") {
                 const container = document.createElement("div");
                 container.style.position = "relative";
                 container.style.overflow = "hidden";
-                container.style.height = "100%"; 
-            
-                
-            
-
-            
+                container.style.height = "100%";
+    
                 const img = document.createElement("img");
                 img.src = item.media_url;
                 img.alt = "Portfolio Image";
                 img.classList.add("rounded-xl", "object-cover");
-
-               if (item.direction === "horizontal" && window.innerWidth > 768) {
-                container.style.width = "615px";
-                container.style.height = "352px";
-                img.style.width = "100%";
-                img.style.height = "100%";
+    
+                if (item.direction === "horizontal" && window.innerWidth > 768) {
+                    container.style.width = "615px";
+                    container.style.height = "352px";
+                    img.style.width = "100%";
+                    img.style.height = "100%";
                 } else {
                     img.classList.add("w-full", "h-auto");
                 }
-
+    
                 container.appendChild(img);
-            
-                // Span za naziv projekta
-                // const titleSpan = document.createElement("span");
-                // titleSpan.textContent = item.project_name || ""; 
-                // titleSpan.style.cssText = `
-                //     position: absolute;
-                //     height: 50px;
-                //     width: 100%;
-                //     bottom: ${window.innerWidth <= 768 ? "44px" : "125px"};
-                //     left: 0;
-                //     background: #00002954;
-                //     color: white;
-                //     padding: 5px 10px;
-                //     font-size: 14px;
-                //     box-sizing: border-box;
-                //     text-align: center;
-                //     display: flex;
-                //     align-items: center;
-                //     justify-content: center;
-                //     transition: opacity 0.3s ease-in-out;
-                // `;
-            
-                // // Hover efekat
-                // if (window.innerWidth <= 768) {
-                //     titleSpan.style.opacity = "1";
-                // } else {
-                //     titleSpan.style.opacity = "0"; 
-                //     container.addEventListener("mouseenter", () => titleSpan.style.opacity = "1");
-                //     container.addEventListener("mouseleave", () => titleSpan.style.opacity = "0");
-                // }
-            
-                // container.appendChild(titleSpan); 
-                anchorElement.appendChild(container); 
-                anchorElement.setAttribute("data-fancybox", "gallery"); 
-            }
-             else if (item.type === "video") {
+                anchorElement.appendChild(container);
+            } else if (item.type === "video") {
                 const img = document.createElement("img");
                 img.src = item.cover_url || item.media_url;
                 img.alt = "Video Thumbnail";
                 img.classList.add("rounded-xl", "w-full", "object-cover");
-
+    
                 const playIcon = document.createElement("div");
                 playIcon.style.cssText = `
                     position: absolute;
@@ -340,15 +381,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                       <path d="M8 5v14l11-7z"></path>
                     </svg>
                 `;
-
+    
                 const container = document.createElement("div");
                 container.style.position = "relative";
                 container.appendChild(img);
                 container.appendChild(playIcon);
-
-                 // **✅ Dodajemo naziv projekta (project_name) kao hover text**
+    
                 const titleSpan = document.createElement("span");
-                titleSpan.textContent = item.project_name || ""; 
+                titleSpan.textContent = item.project_name || "";
                 titleSpan.style.cssText = `
                     position: absolute;
                     height: 55px;
@@ -365,9 +405,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 `;
                 container.appendChild(titleSpan);
     
-                
-
-                // **Hover efekat**
                 if (window.innerWidth <= 768) {
                     titleSpan.style.opacity = "1";
                 } else {
@@ -379,75 +416,85 @@ document.addEventListener("DOMContentLoaded", async () => {
                         titleSpan.style.opacity = "0";
                     });
                 }
-
+    
                 anchorElement.appendChild(container);
             }
-
+    
             mediaElement.appendChild(anchorElement);
             gallery.appendChild(mediaElement);
         });
-
-        // 4) Inicijalizacija Fancybox (ostaje nepromenjeno)
-        Fancybox.bind('[data-fancybox="gallery"]', {
-            loop: true,
-            autoFocus: false,
-            trapFocus: false,
-            thumbs: { autoStart: true },
-            buttons: ['zoom', 'close'],
-            preload: 3,
-            caption: () => "",
-
-            on: {
-                "Carousel.selectSlide": () => {
-                    // 1) Pauziramo i uklanjamo src svim fancybox-video
-                    document.querySelectorAll(".fancybox-video").forEach(video => {
-                        video.pause();
-                        video.currentTime = 0;
-                        video.removeAttribute("src");
-                        video.removeAttribute("autoplay");
-                        video.load();
+    
+        // === Na kraju, ubaci i 360° fajlove za "all" ===
+        if (category === "all") {
+            custom360.forEach(item => {
+                const wrapper = document.createElement("div");
+                wrapper.classList.add(
+                    "media-item",
+                    "border",
+                    "border-[#9949f5]",
+                    "overflow-hidden"
+                );
+    
+                const anchor = document.createElement("a");
+                anchor.href = item.link;
+                anchor.target = "_blank";
+                anchor.rel = "noopener noreferrer";
+                anchor.classList.add("!rounded-xl", "!max-w-[400px]", "!h-auto", "object-cover");
+    
+                const img = document.createElement("img");
+                img.src = item.img;
+                img.alt = "360° Preview";
+                img.classList.add(
+                    "rounded-xl",
+                    "w-full",
+                    "h-auto",
+                    "!object-contain",
+                    "transition-transform",
+                    "duration-300",
+                    "ease-in-out",
+                    "hover:scale-105"
+                );
+    
+                const titleSpan = document.createElement("span");
+                titleSpan.textContent = item.name;
+                titleSpan.style.cssText = `
+                    position: absolute;
+                    height: 55px;
+                    align-content: center;
+                    width: 100%;
+                    bottom: 0;
+                    left: 0;
+                    background: #18183dad;
+                    color: white;
+                    padding: 8px 15px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    transition: opacity 0.3s ease-in-out;
+                    z-index: 10;
+                `;
+    
+                if (window.innerWidth <= 768) {
+                    titleSpan.style.opacity = "1";
+                } else {
+                    titleSpan.style.opacity = "0";
+                    wrapper.addEventListener("mouseenter", () => {
+                        titleSpan.style.opacity = "1";
                     });
-                    setTimeout(() => {
-                        // 2) Selektujemo aktivni slajd
-                        const activeSlide = document.querySelector(".fancybox__slide.is-selected");
-                        if (!activeSlide) return;
-                        const videoEl = activeSlide.querySelector(".fancybox-video");
-                        if (!videoEl) return;
-
-                        // Dodelimo src i autoplay
-                        const realSrc = videoEl.getAttribute("data-src");
-                        videoEl.setAttribute("src", realSrc);
-                        videoEl.setAttribute("autoplay", "true");
-
-                        videoEl.load();
-                        videoEl.muted = true;
-                        videoEl.play()
-                            .then(() => {
-                                videoEl.removeAttribute("poster");
-
-                                setTimeout(() => {
-                                    videoEl.muted = false;
-                                    videoEl.volume = 1.0;
-                                }, 300);
-                            })
-                            .catch((err) => {
-                                console.warn("[ERROR] Autoplay blokiran:", err);
-                            });
-
-                    }, 0);
-                },
-                "close": () => {
-                    document.querySelectorAll(".fancybox-video").forEach(video => {
-                        video.pause();
-                        video.currentTime = 0;
-                        video.removeAttribute("src");
-                        video.removeAttribute("autoplay");
-                        video.load();
+                    wrapper.addEventListener("mouseleave", () => {
+                        titleSpan.style.opacity = "0";
                     });
                 }
-            }
-        });
+    
+                wrapper.style.position = "relative";
+                wrapper.appendChild(titleSpan);
+                anchor.appendChild(img);
+                wrapper.appendChild(anchor);
+                gallery.appendChild(wrapper);
+            });
+        }
     }
+    
+    
 
     updateGallery("all");
 
