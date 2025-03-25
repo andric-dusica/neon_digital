@@ -216,13 +216,18 @@ h1, h2, h3, h4, h5, h6, p {
 
 /* logos */
 .clients_logos {
-    display: flex;
-    gap: 60px; 
-    position: relative;
+    overflow: hidden;
     width: 100%;
 }
 
+.logos_wrapper {
+    display: flex;
+    gap: 60px;
+    will-change: transform;
+}
+  
 .client-logo {
+    max-height: 100px;
     object-fit: contain;
     flex-shrink: 0;
 }

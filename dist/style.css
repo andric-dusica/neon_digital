@@ -215,15 +215,23 @@ h1, h2, h3, h4, h5, h6, p {
 /* logos */
 .clients_logos {
     display: flex;
-    gap: 60px; 
-    position: relative;
-    width: 100%;
+    gap: 60px;
+    overflow: hidden;
+    white-space: nowrap;
+    will-change: transform;
 }
-
+  
 .client-logo {
     object-fit: contain;
     flex-shrink: 0;
 }
+
+.logos_wrapper {
+    display: flex;
+    gap: 60px;
+    will-change: transform;
+}
+
 
 @media (max-width: 1023px) {
     .client-logo {

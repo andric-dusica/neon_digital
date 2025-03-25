@@ -1,7 +1,5 @@
-// Inicijalizacija Supabase klijenta
 import { supabase } from './supabase.js';
 
-// Funkcija za povlačenje logotipa iz baze
 async function fetchLogos() {
   try {
     const { data, error } = await supabase
@@ -20,7 +18,6 @@ async function fetchLogos() {
   }
 }
 
-// Funkcija za prikazivanje logotipa u HTML-u
 async function displayLogos() {
   const container = document.querySelector(".clients_logos");
 
@@ -32,46 +29,50 @@ async function displayLogos() {
   const logos = await fetchLogos();
 
   if (logos.length === 0) {
-    console.warn("Nema logotipa za prikazivanje.");
     container.innerHTML = "<p style='color: white;'>No logos found.</p>";
     return;
   }
 
-  // Dodavanje logotipa u HTML i dupliranje x10
-  for (let i = 0; i < 10; i++) {
+  // Očisti prethodni sadržaj ako postoji
+  container.innerHTML = "";
+
+  // Napravi wrapper za sve logoe (3x da lepo loopuje)
+  const wrapper = document.createElement("div");
+  wrapper.classList.add("logos_wrapper");
+
+  for (let i = 0; i < 3; i++) {
     logos.forEach((logo) => {
       const img = document.createElement("img");
       img.src = logo.client_logo_url;
       img.alt = "Client Logo";
       img.classList.add("client-logo");
-      container.appendChild(img);
+      wrapper.appendChild(img);
     });
   }
 
-  startInfiniteScroll(container);
+  container.appendChild(wrapper);
+
+  startInfiniteScroll(wrapper);
 }
 
-// Funkcija za beskonačnu animaciju logotipa
-function startInfiniteScroll(container) {
-  const totalWidth = container.scrollWidth; // Ukupna širina logotipa
-  const step = 1; // Korak pomeranja
+// Animacija - ravnomerno pomeranje
+function startInfiniteScroll(wrapper) {
   let scrollPosition = 0;
+  const speed = 1;
 
   function animate() {
-    scrollPosition -= step;
+    scrollPosition -= speed;
 
-    // Resetuj poziciju bez prekida
-    if (Math.abs(scrollPosition) >= totalWidth / 2) {
+    // Ako je pola prošlo, resetuj
+    if (Math.abs(scrollPosition) >= wrapper.scrollWidth / 3) {
       scrollPosition = 0;
     }
 
-    container.style.transform = `translateX(${scrollPosition}px)`;
+    wrapper.style.transform = `translateX(${scrollPosition}px)`;
     requestAnimationFrame(animate);
   }
 
-  // Pokreni animaciju
   requestAnimationFrame(animate);
 }
 
-// Pozovi funkciju kada se stranica učita
 window.addEventListener("DOMContentLoaded", displayLogos);
