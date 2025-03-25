@@ -418,6 +418,18 @@ document.addEventListener("DOMContentLoaded", async () => {
                     }
                 
                     container.appendChild(titleSpan);
+
+                    if (window.innerWidth <= 768) {
+                        titleSpan.style.opacity = "1";
+                    } else {
+                        titleSpan.style.opacity = "0";
+                        container.addEventListener("mouseenter", () => {
+                            titleSpan.style.opacity = "1";
+                        });
+                        container.addEventListener("mouseleave", () => {
+                            titleSpan.style.opacity = "0";
+                        });
+                    }
                 }
     
                 anchorElement.appendChild(container);
