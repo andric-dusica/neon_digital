@@ -289,7 +289,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             mediaElement.dataset.category = item.category;
     
             let className = "";
-            if (item.category === "reels") {
+            if (item.category === "reels" || item.category === "vc_stories") {
                 className = "reels-item";
             } else if (item.category === "video") {
                 className = "video-item";
@@ -387,34 +387,37 @@ document.addEventListener("DOMContentLoaded", async () => {
                 container.appendChild(img);
                 container.appendChild(playIcon);
     
-                const titleSpan = document.createElement("span");
-                titleSpan.textContent = item.project_name || "";
-                titleSpan.style.cssText = `
-                    position: absolute;
-                    height: 55px;
-                    align-content: center;
-                    width: 100%;
-                    bottom: 0;
-                    left: 0;
-                    background: #18183dad;
-                    color: white;
-                    padding: 8px 15px;
-                    font-size: 14px;
-                    font-weight: 500;
-                    transition: opacity 0.3s ease-in-out;
-                `;
-                container.appendChild(titleSpan);
-    
-                if (window.innerWidth <= 768) {
-                    titleSpan.style.opacity = "1";
-                } else {
-                    titleSpan.style.opacity = "0";
-                    container.addEventListener("mouseenter", () => {
+                if (item.category !== "vc_stories") {
+                    const titleSpan = document.createElement("span");
+                    titleSpan.textContent = item.project_name || "";
+                    titleSpan.style.cssText = `
+                        position: absolute;
+                        height: 55px;
+                        align-content: center;
+                        width: 100%;
+                        bottom: 0;
+                        left: 0;
+                        background: #18183dad;
+                        color: white;
+                        padding: 8px 15px;
+                        font-size: 14px;
+                        font-weight: 500;
+                        transition: opacity 0.3s ease-in-out;
+                    `;
+                
+                    if (window.innerWidth <= 768) {
                         titleSpan.style.opacity = "1";
-                    });
-                    container.addEventListener("mouseleave", () => {
+                    } else {
                         titleSpan.style.opacity = "0";
-                    });
+                        container.addEventListener("mouseenter", () => {
+                            titleSpan.style.opacity = "1";
+                        });
+                        container.addEventListener("mouseleave", () => {
+                            titleSpan.style.opacity = "0";
+                        });
+                    }
+                
+                    container.appendChild(titleSpan);
                 }
     
                 anchorElement.appendChild(container);
@@ -492,7 +495,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 gallery.appendChild(wrapper);
             });
         }
-        
+
         Fancybox.bind('[data-fancybox="gallery"]', {
             loop: true,
             autoFocus: false,
