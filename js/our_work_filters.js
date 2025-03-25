@@ -492,6 +492,60 @@ document.addEventListener("DOMContentLoaded", async () => {
                 gallery.appendChild(wrapper);
             });
         }
+        
+        Fancybox.bind('[data-fancybox="gallery"]', {
+            loop: true,
+            autoFocus: false,
+            trapFocus: false,
+            thumbs: { autoStart: true },
+            buttons: ['zoom', 'close'],
+            preload: 3,
+            caption: () => "",
+            on: {
+                "Carousel.selectSlide": () => {
+                    document.querySelectorAll(".fancybox-video").forEach(video => {
+                        video.pause();
+                        video.currentTime = 0;
+                        video.removeAttribute("src");
+                        video.removeAttribute("autoplay");
+                        video.load();
+                    });
+                    setTimeout(() => {
+                        const activeSlide = document.querySelector(".fancybox__slide.is-selected");
+                        if (!activeSlide) return;
+                        const videoEl = activeSlide.querySelector(".fancybox-video");
+                        if (!videoEl) return;
+    
+                        const realSrc = videoEl.getAttribute("data-src");
+                        videoEl.setAttribute("src", realSrc);
+                        videoEl.setAttribute("autoplay", "true");
+    
+                        videoEl.load();
+                        videoEl.muted = true;
+                        videoEl.play()
+                            .then(() => {
+                                videoEl.removeAttribute("poster");
+                                setTimeout(() => {
+                                    videoEl.muted = false;
+                                    videoEl.volume = 1.0;
+                                }, 300);
+                            })
+                            .catch((err) => {
+                                console.warn("[ERROR] Autoplay blokiran:", err);
+                            });
+                    }, 0);
+                },
+                "close": () => {
+                    document.querySelectorAll(".fancybox-video").forEach(video => {
+                        video.pause();
+                        video.currentTime = 0;
+                        video.removeAttribute("src");
+                        video.removeAttribute("autoplay");
+                        video.load();
+                    });
+                }
+            }
+        });
     }
     
     
