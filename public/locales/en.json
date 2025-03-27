@@ -1,0 +1,124 @@
+{
+    "nav": {
+    "home": "Home",
+    "services": "Services",
+    "ourWork": "Our Work",
+    "about": "About Us",
+    "contact": "Contact Us"
+    },
+    "hero": {
+      "title": "Illuminating the digital world, one pixel at a time.",
+      "contact": "Contact Us",
+      "services": "View Services"
+    },
+    "services": {
+      "title": "Services",
+      "videoTitle": "Video",
+      "videoDesc": "Our video services include both standard and reel formats, delivering captivating visuals that highlight your brand across all platforms. Whether you need promotional content, behind-the-scenes footage, event videos, or short-form reels, we'll make sure every second counts.",
+      "photoTitle": "Photography",
+      "photoDesc": "We capture high-quality images that showcase your brand's unique style, from product shots to lifestyle photos that connect with your audience.",
+      "socialTitle": "Social Media Management",
+      "socialDesc": "From copywriting and posting to ad management and graphic design, we handle every aspect of your social media. Monthly reports and analysis ensure your strategy stays effective.",
+      "button": "View All Services"
+    },
+    "clients": {
+      "title": "Happy Faces",
+      "desc": "Proudly presenting the clients who trust us with their needs."
+    },
+    "ourWork": {
+      "title": "Our Work",
+      "desc": "Experience the power of our visual storytelling.",
+      "button": "View All Projects"
+    },
+    "ourWorkPage": {
+        "title": "Our Work",
+        "allProjects": "All Projects",
+        "video": "Video",
+        "reels": "Reels",
+        "photography": "Photography",
+        "vcStories": "Visually Creative Stories",
+        "threeSixty": "360° Space Tour"
+    },
+    "about": {
+      "title": "About Us",
+      "niksaTitle": "Meet the maestro of our digital canvas",
+      "niksaDesc": "Nikša Malić-Katanić, the Director of Photography who not only captures moments but also creates them.",
+      "andjaTitle": "Say hello to the creative force of our digital team",
+      "andjaDesc": "Anđela Andrić, who brings a vibrant and feminine touch to every project.",
+      "button": "Learn More"
+    },
+    "aboutUsPage": {
+        "title": "About Us",
+        "niksaDesc": "Together, they've crafted over a thousand digital stories, and they still argue about the best camera angles!",
+        "niksaDetails": "Nikša Malić-Katanić, the Director of Photography who not only captures moments but also creates them. Digital Artist - Graduated from the Department of Film. Camera, drone, edit - he masters them all.<br><br>With extensive experience as Director of Photography in both feature films and documentaries, Nikša brings a cinematic eye to every project.",
+        "andjaDetails": "Say hello to the creative force of our digital team, Anđela Andrić, who brings a vibrant and feminine touch to every project.<br><br>With years of expertise in film and digital media, Anđela's creative mind crafts unique visual narratives that captivate and engage audiences worldwide.<br><br>Anđela's exceptional communication skills allow her to truly understand client needs, bringing their visions to life with a unique, creative twist."
+    },
+    "contact": {
+      "title": "Let's Capture Your Story",
+      "desc": "Boost your business with stunning photos and videos that grab attention and drive engagement.",
+      "button": "Contact Us"
+    },
+    "contactUsPage": {
+        "title": "Contact Us",
+        "subtitle": "Our Contact Information",
+        "desc": "Write us an email with any of your questions regarding our services, previous work or anything that could spark a new collaboration project.",
+        "emailLabel": "Email",
+        "email": "neondigital.creative@gmail.com",
+        "instagramLabel": "Instagram",
+        "instagramLink": "@neon_digital",
+        "phoneLabel": "Phone Number",
+        "phone1": "+381 64 88 30 211",
+        "phone2": "+381 64 3159 558",
+        "sendMessageBtn": "Send Message",
+        "emailPlaceholder": "Enter your email",
+        "subjectLabel": "Subject",
+        "subjectPlaceholder": "Enter the subject of your message",
+        "messageLabel": "Message",
+        "messagePlaceholder": "Enter your message"
+    },
+    "servicesPage": {
+        "title": "Services",
+        "servicesDesc" : "The cost of the service depends on the creative solution, video duration, editing, number of photos, number of interviewees, equipment, and project complexity.",
+        "videoTitle": "Video",
+        "videoDesc": "Our video services include both standard and reel formats, delivering captivating visuals that highlight your brand across all platforms. Whether you need promotional content, behind-the-scenes footage, event videos, or short-form reels, we'll make sure every second counts.",
+        "reel": "Reel",
+        "reelPrice": "from €130",
+        "horizontalVideo": "Horizontal Video",
+        "horizontalVideoPrice": "from €200",
+        "eventVideo": "Event Video",
+        "eventVideoPrice": "from €300",
+        "droneFlying": "Drone Flying",
+        "droneFlyingPrice": "from €150",
+        "podcastRecording": "Podcast Recording",
+        "podcastRecordingPrice": "from €250",
+        "photoTitle": "Photography",
+        "photoDesc": "We capture high-quality images that showcase your brand's unique style, from product shots to lifestyle photos that connect with your audience.",
+        "photoShoot": "Photo Shoot",
+        "photoShootPrice": "from €200",
+        "eventPhoto": "Event Photo",
+        "eventPhotoPrice": "from €300",
+        "spaceTour": "360° Space Tour",
+        "spaceTourPrice": "from €50 per image",
+        "eCommerce": "E-Commerce (Product)",
+        "eCommercePrice": "from €7 per photo",
+        "employeeShoot": "Employee Photo Shoot",
+        "employeeShootPrice": "from €20 per employee",
+        "socialTitle": "Social Media Management",
+        "socialMediaTitle": "Social Media Management",
+        "socialMediaDesc": "We are covering Facebook, Instagram, and TikTok. <br><br>Our monthly package includes:",
+        "socialMediaListPost": "12 posts",
+        "socialMediaListReel": "1 reel",
+        "socialMediaListStories": "10 stories",
+        "socialMediaListCopywriting": "Copywriting",
+        "socialMediaListVisualDesign": "Visual Design",
+        "socialMediaListCommunity": "Community Management",
+        "socialMediaListPromotional": "Promotional Campaign (campaign budget not included)",
+        "startingPrice": "Starting price",
+        "price": "from €850 per month",
+        "button": "Contact Us"
+    },
+    "footer": {
+      "rights": "© Neon Digital 2024"
+    }
+  }
+  
