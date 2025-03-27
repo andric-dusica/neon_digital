@@ -28,25 +28,34 @@
             <div class="flex p-4 justify-between items-start w-full lg:!px-[84px] max-w-[1440px]">
                 <a href="/"><img src="/images/neon_logo.svg" alt="Logo" class="w-[74px] h-[40px] lg:!w-[117px] lg:!h-[72px]" /></a>
                 <div class="lg:!flex items-center gap-6 text-[#fff] text-lg font-normal leading-normal hidden">
-                    <a href="/services/">Services</a>
-                    <a href="/our-work/">Our Work</a>
-                    <a href="/about-us/">About Us</a>
-                    <a href="/contact-us/">Contact Us</a>
+                    <a href="/" data-i18n="nav.home">Home</a>
+                    <a href="/services/" data-i18n="nav.services">Services</a>
+                    <a href="/our-work/" data-i18n="nav.ourWork">Our Work</a>
+                    <a href="/about-us/" data-i18n="nav.about">About Us</a>
+                    <a href="/contact-us/" data-i18n="nav.contact">Contact Us</a>
+                    <div class="relative w-[52px] h-[32px] ml-4">
+                        <button id="lang-sr" class="lang-btn absolute inset-0 opacity-0 pointer-events-none px-3 py-1 rounded-full border border-white text-white text-sm hover:bg-[#A510C3] transition">SR</button>
+                        <button id="lang-en" class="lang-btn absolute inset-0 opacity-100 pointer-events-auto px-3 py-1 rounded-full border border-white text-white text-sm hover:bg-[#A510C3] transition">EN</button>
+                    </div>
                 </div>
-                <div class="flex lg:!hidden">
+                <div class="flex items-center justify-end gap-3 lg:!hidden">
+                    <div class="relative w-[52px] h-[32px]">
+                      <button id="lang-sr-mob" class="lang-btn absolute inset-0 opacity-0 pointer-events-none px-3 py-1 rounded-full border border-white text-white text-sm hover:bg-[#A510C3] transition">SR</button>
+                      <button id="lang-en-mob" class="lang-btn absolute inset-0 opacity-0 pointer-events-none px-3 py-1 rounded-full border border-white text-white text-sm hover:bg-[#A510C3] transition">EN</button>
+                    </div>
                     <button id="menu-toggle">
-                        <img id="menu-icon" src="/images/mob_menu_icon.svg" alt="Menu">
+                      <img id="menu-icon" src="/images/mob_menu_icon.svg" alt="Menu" class="w-6 h-6">
                     </button>
                 </div>
             </div>
         </nav>
         <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#0B0B22] hidden flex flex-col items-center justify-center z-50">
             <nav class="flex flex-col gap-6 text-white text-lg font-normal leading-normal">
-                <a href="/">Home</a>
-                <a href="/services/">Services</a>
-                <a href="/our-work/">Our Work</a>
-                <a href="/about-us/">About Us</a>
-                <a href="/contact-us/">Contact Us</a>
+                <a href="/" data-i18n="nav.home">Home</a>
+                <a href="/services/" data-i18n="nav.services">Services</a>
+                <a href="/our-work/" data-i18n="nav.ourWork">Our Work</a>
+                <a href="/about-us/" data-i18n="nav.about">About Us</a>
+                <a href="/contact-us/" data-i18n="nav.contact">Contact Us</a>
             </nav>
         </div>
         
@@ -55,135 +64,139 @@
         <div class="w-full flex justify-center relative services_3 overflow-hidden">
             <div class="flex w-full py-[56px] px-4 lg:!py-[96px] lg:!px-[84px] flex-col justify-center items-start gap-10 lg:!gap-[64px] text-[#fff] max-w-[1440px] overflow-y-hidden">
                 <div class="flex flex-col items-start gap-4 lg:!gap-6">
-                    <h2 class="text-[#fff] text-2xl lg:!text-5xl font-semibold leading-[28px]">
+                    <h2 class="text-[#fff] text-2xl lg:!text-5xl font-semibold leading-[28px]" data-i18n="servicesPage.title">
                         Services
                     </h2>
-                    <p class="text-[#C7C7C9] text-base lg:!text-xl leading-[24px] lg:!leading-[32px] tracking-[0.032px] lg:!max-w-[624px]">
+                    <p class="text-[#C7C7C9] text-base lg:!text-xl leading-[24px] lg:!leading-[32px] tracking-[0.032px] lg:!max-w-[624px]" data-i18n="servicesPage.servicesDesc">
                         The cost of the service depends on the creative solution, video duration, editing, number of photos, number of interviewees, equipment, and project complexity.
                     </p>
                 </div>
-            
+        
                 <!-- Video Section -->
                 <div class="grid lg:!grid-cols-2 gap-6 w-full items-center">
                     <div class="flex flex-col justify-center items-start gap-6">
-                        <h3 class="text-[#fff] text-xl lg:!text-4xl font-semibold leading-[24px]">
+                        <h3 class="text-[#fff] text-xl lg:!text-4xl font-semibold leading-[24px]" data-i18n="servicesPage.videoTitle">
                             Video
                         </h3>
                         <img src="/images/services/zlatibor.svg" alt="zlatibor img" class="rounded-lg lg:!hidden">
-                        <p class="text-[#C7C7C9] text-base lg:!text-xl leading-[24px] lg:!leading-[32px] tracking-[0.032px]">
-                            Our video services include both standard and reel formats, delivering captivating visuals that highlight your brand across all platforms. Whether you need promotional content, behind-the-scenes footage, event videos, or short-form reels, we’ll make sure every second counts.
+                        <p class="text-[#C7C7C9] text-base lg:!text-xl leading-[24px] lg:!leading-[32px] tracking-[0.032px]" data-i18n="servicesPage.videoDesc">
+                            Our video services include both standard and reel formats, delivering captivating visuals that highlight your brand across all platforms. Whether you need promotional content, behind-the-scenes footage, event videos, or short-form reels, we'll make sure every second counts.
                         </p>
                         <div class="w-full text-[#fff] text-base">
                             <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4">
-                                <span class="font-bold">Reel</span> 
+                                <span class="font-bold" data-i18n="servicesPage.reel">Reel</span> 
                                 <span class="border-t border-gray-500 w-full"></span>
-                                <span class="font-normal">from €120</span>
+                                <span class="font-normal" data-i18n="servicesPage.reelPrice">from €130</span>
                             </div>
                             <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4">
-                                <span class="font-bold">Horizontal Video</span>
+                                <span class="font-bold" data-i18n="servicesPage.horizontalVideo">Horizontal Video</span>
                                 <span class="border-t border-gray-500 w-full"></span>
-                                <span class="font-normal">from €200</span>
+                                <span class="font-normal" data-i18n="servicesPage.horizontalVideoPrice">from €200</span>
                             </div>
                             <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4">
-                                <span class="font-bold">Event Video</span>
+                                <span class="font-bold" data-i18n="servicesPage.eventVideo">Event Video</span>
                                 <span class="border-t border-gray-500 w-full"></span>
-                                <span class="font-normal">from €300</span>
+                                <span class="font-normal" data-i18n="servicesPage.eventVideoPrice">from €300</span>
                             </div>
                             <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4">
-                                <span class="font-bold">Drone Flying</span>
+                                <span class="font-bold" data-i18n="servicesPage.droneFlying">Drone Flying</span>
                                 <span class="border-t border-gray-500 w-full"></span>
-                                <span class="font-normal">from €150</span>
+                                <span class="font-normal" data-i18n="servicesPage.droneFlyingPrice">from €150</span>
                             </div>
                             <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4">
-                                <span class="font-bold">Podcast Recording</span>
+                                <span class="font-bold" data-i18n="servicesPage.podcastRecording">Podcast Recording</span>
                                 <span class="border-t border-gray-500 w-full"></span>
-                                <span class="font-normal">from €250</span>
+                                <span class="font-normal" data-i18n="servicesPage.podcastRecordingPrice">from €250</span>
                             </div>
                         </div>
                         <a href="/contact-us/">
-                            <button class="btn-color w-full lg:!w-auto">
+                            <button class="btn-color w-full lg:!w-auto" data-i18n="servicesPage.button">
                                 Contact Us
                             </button>
                         </a>
                     </div>
                     <img src="/images/services/zlatibor.svg" alt="zlatibor img" class="hidden lg:!block rounded-lg w-full h-full object-cover">
                 </div>
-            
+        
                 <!-- Photography Section -->
                 <div class="grid lg:!grid-cols-2 gap-6 w-full items-center">
                     <img src="/images/services/our_services.svg" alt="our services img" class="hidden lg:!block rounded-lg w-full h-full object-cover">
                     <div class="flex flex-col justify-center items-start gap-6">
-                        <h3 class="text-[#fff] text-xl lg:!text-4xl font-semibold leading-[24px]">
+                        <h3 class="text-[#fff] text-xl lg:!text-4xl font-semibold leading-[24px]" data-i18n="servicesPage.photoTitle">
                             Photography
                         </h3>
                         <img src="/images/services/our_services.svg" alt="our services img" class="rounded-lg lg:!hidden">
-                        <p class="text-[#C7C7C9] text-base lg:!text-xl leading-[24px] lg:!leading-[32px] tracking-[0.032px]">
+                        <p class="text-[#C7C7C9] text-base lg:!text-xl leading-[24px] lg:!leading-[32px] tracking-[0.032px]" data-i18n="servicesPage.photoDesc">
                             We capture high-quality images that showcase your brand's unique style, from product shots to lifestyle photos that connect with your audience.
                         </p>
                         <div class="w-full text-[#fff] text-base lg:!text-xl">
                             <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4">
-                                <span class="font-bold">Photo Shoot</span>
+                                <span class="font-bold" data-i18n="servicesPage.photoShoot">Photo Shoot</span>
                                 <span class="border-t border-gray-500 w-full"></span>
-                                <span class="font-normal">from €200</span>
+                                <span class="font-normal" data-i18n="servicesPage.photoShootPrice">from €200</span>
                             </div>
                             <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4">
-                                <span class="font-bold">Event Photo</span>
+                                <span class="font-bold" data-i18n="servicesPage.eventPhoto">Event Photo</span>
                                 <span class="border-t border-gray-500 w-full"></span>
-                                <span class="font-normal">from €300</span>
+                                <span class="font-normal" data-i18n="servicesPage.eventPhotoPrice">from €300</span>
                             </div>
                             <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4">
-                                <span class="font-bold">360° Space Tour</span>
+                                <span class="font-bold" data-i18n="servicesPage.spaceTour">360° Space Tour</span>
                                 <span class="border-t border-gray-500 w-full"></span>
-                                <span class="font-normal">from €50 per image</span>
+                                <span class="font-normal" data-i18n="servicesPage.spaceTourPrice">from €50 per image</span>
                             </div>
                             <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4">
-                                <span class="font-bold max-w-[120px] lg:!max-w-full">E - Commerce (Product)</span>
+                                <span class="font-bold" data-i18n="servicesPage.eCommerce">E - Commerce (Product)</span>
                                 <span class="border-t border-gray-500 w-full"></span>
-                                <span class="font-normal">from €7 per photo</span>
+                                <span class="font-normal" data-i18n="servicesPage.eCommercePrice">from €7 per photo</span>
                             </div>
                             <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4">
-                                <span class="font-bold max-w-[120px] lg:!max-w-full">Employee Photo Shoot</span>
+                                <span class="font-bold" data-i18n="servicesPage.employeeShoot">Employee Photo Shoot</span>
                                 <span class="border-t border-gray-500 w-full"></span>
-                                <span class="font-normal max-w-[106px] lg:!max-w-full">from €20 per employee</span>
+                                <span class="font-normal" data-i18n="servicesPage.employeeShootPrice">from €20 per employee</span>
                             </div>
                         </div>
                         <a href="/contact-us/">
-                            <button class="btn-color w-full lg:!w-auto">
+                            <button class="btn-color w-full lg:!w-auto" data-i18n="servicesPage.button">
                                 Contact Us
                             </button>
                         </a>
                     </div>
                 </div>
-    
-                <!-- SM section -->
+        
+                <!-- Social Media Management Section -->
                 <div class="grid lg:!grid-cols-2 gap-6 w-full items-center">
                     <div class="flex flex-col justify-center items-start gap-6">
-                        <h3 class="text-[#fff] text-xl lg:!text-4xl font-semibold leading-[24px]">
+                        <h3 class="text-[#fff] text-xl lg:!text-4xl font-semibold leading-[24px]" data-i18n="servicesPage.socialMediaTitle">
                             Social Media Management
                         </h3>
                         <img src="/images/services/services_3.svg" alt="services img" class="rounded-lg lg:!hidden">
-                        <p class="text-[#C7C7C9] text-base lg:!text-xl leading-[24px] lg:!leading-[32px] tracking-[0.032px]">
-                            We are covering Facebook, Instagram, and  TikTok. <br><br>
+                        <p class="text-[#C7C7C9] text-base lg:!text-xl leading-[24px] lg:!leading-[32px] tracking-[0.032px]" data-i18n="servicesPage.socialMediaDesc">
+                            We are covering Facebook, Instagram, and TikTok. <br><br>
                             Our monthly package includes:<br>
-                            <ul class="list-disc pl-5 text-[#fff] text-base space-y-2">
-                                <li>12 posts</li>
-                                <li>1 reel</li>
-                                <li>10 stories</li>
-                                <li>Copywriting</li>
-                                <li>Visual Design</li>
-                                <li>Community Management</li>
-                                <li>Promotional Campaign (campaign budget not included)</li>
+                            <ul class="list-disc pl-5 text-[#fff] text-base space-y-2" data-i18n="servicesPage.socialMediaList">
+                                <li data-i18n="servicesPage.socialMediaListPost">12 posts</li>
+                                <li data-i18n="servicesPage.socialMediaListReel">1 reel</li>
+                                <li data-i18n="servicesPage.socialMediaListStories">10 stories</li>
+                                <li data-i18n="servicesPage.socialMediaListCopywriting">Copywriting</li>
+                                <li data-i18n="servicesPage.socialMediaListVisualDesign">Visual Design</li>
+                                <li data-i18n="servicesPage.socialMediaListCommunity">Community Management</li>
+                                <li data-i18n="servicesPage.socialMediaListPromotional">Promotional Campaign (campaign budget not included)</li>
                             </ul>
                         </p>
                         <div class="w-full text-[#fff] text-base">
                             <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 py-4">
-                                <span class="font-bold max-w-[100px] lg:!max-w-full">Starting price</span> 
+                                <span class="font-bold max-w-[100px] lg:!max-w-full" data-i18n="servicesPage.startingPrice">
+                                    Starting price
+                                </span> 
                                 <span class="border-t border-gray-500 w-full"></span>
-                                <span class="font-normal max-w-[100px] lg:!max-w-full"> from €850 per month</span>
+                                <span class="font-normal max-w-[100px] lg:!max-w-full" data-i18n="servicesPage.price">
+                                    from €850 per month
+                                </span>
                             </div>
                         </div>
                         <a href="/contact-us/">
-                            <button class="btn-color w-full lg:!w-auto">
+                            <button class="btn-color w-full lg:!w-auto" data-i18n="servicesPage.button">
                                 Contact Us
                             </button>
                         </a>
@@ -198,10 +211,11 @@
                <a href="/"><img src="/images/neon_logo.svg" alt="Logo" class="w-[85px] h-[52px]" /></a> 
             </div>
             <div id="footer-links" class="lg:!flex items-center gap-6 text-[#fff] text-lg font-normal leading-normal hidden">
-                <a href="/services/">Services</a>
-                <a href="/our-work/">Our Work</a>
-                <a href="/about-us/">About Us</a>
-                <a href="/contact-us/">Contact Us</a>
+                <a href="/" data-i18n="nav.home">Home</a>
+                <a href="/services/" data-i18n="nav.services">Services</a>
+                <a href="/our-work/" data-i18n="nav.ourWork">Our Work</a>
+                <a href="/about-us/" data-i18n="nav.about">About Us</a>
+                <a href="/contact-us/" data-i18n="nav.contact">Contact Us</a>
             </div>
             <p class="text-[#fff] text-lg leading-normal">
                 © Neon Digital 2024
@@ -210,5 +224,7 @@
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
         <script type="module" src="/js/main.js"></script>
         <script type="module" src="/js/cursor.js"></script>
+        <script type="module" src="/js/langSwitcher.js"></script>
+        <script type="module" src="/js/translate.js"></script>
     </body>
 </html>

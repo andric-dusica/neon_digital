@@ -1,0 +1,123 @@
+{
+    "nav": {
+    "home": "Početna",
+    "services": "Usluge",
+    "ourWork": "Naš rad",
+    "about": "O nama",
+    "contact": "Kontaktirajte nas"
+    },
+    "hero": {
+      "title": "Osvetljavamo digitalni svet, piksel po piksel.",
+      "contact": "Kontaktirajte nas",
+      "services": "Pogledajte usluge"
+    },
+    "services": {
+      "title": "Usluge",
+      "videoTitle": "Video produkcija",
+      "videoDesc": "Naše video usluge obuhvataju i standardne i reel formate, pružajući vizuelno upečatljiv sadržaj koji ističe vaš brend na svim platformama. Bilo da vam je potreban promotivni video, behind-the-scenes snimak, video sa događaja ili kratki reels - pobrinućemo se da svaki sekund bude efektan.",
+      "photoTitle": "Fotografija",
+      "photoDesc": "Pravimo fotografije visokog kvaliteta koje predstavljaju vaš brend na autentičan način - od fotografija proizvoda do lifestyle kadrova koji se povezuju sa vašom publikom.",
+      "socialTitle": "Upravljanje društvenim mrežama",
+      "socialDesc": "Od pisanja tekstova i objavljivanja sadržaja, preko oglašavanja i dizajna, pokrivamo sve aspekte vašeg prisustva na mrežama. Uz mesečne izveštaje i analizu, vaša strategija uvek ostaje na pravom putu.",
+      "button": "Pogledajte sve usluge"
+    },
+    "clients": {
+      "title": "Nasmejana lica",
+      "desc": "Ponosno predstavljamo klijente koji nam ukazuju poverenje."
+    },
+    "ourWork": {
+      "title": "Naši radovi",
+      "desc": "Doživite snagu vizuelnog storytelling-a kroz naš rad.",
+      "button": "Pogledajte sve projekte"
+    },
+    "ourWorkPage": {
+        "title": "Naš rad",
+        "allProjects": "Svi projekti",
+        "video": "Video",
+        "reels": "Reels",
+        "photography": "Fotografija",
+        "vcStories": "Vizuelno kreativni storytelling",
+        "threeSixty": "360° virtuelne ture"
+    },
+    "about": {
+      "title": "O nama",
+      "meetMaestro": "Upoznajte maestra naše digitalne slike",
+      "niksaDesc": "Nikša Malić-Katanić, direktor fotografije koji ne samo da beleži trenutke - već ih i stvara.",
+      "sayHello": "Upoznajte kreativnu snagu našeg tima",
+      "andjaDesc": "Anđela Andrić, koja svakom projektu daje prepoznatljiv, ženstveni pečat i dozu dinamike.",
+      "button": "Saznajte više"
+    },
+    "aboutUsPage": {
+        "title": "O nama",
+        "niksaDesc": "Zajedno su ispričali više od hiljadu digitalnih priča - a i dalje se raspravljaju oko najboljeg ugla kamere!",
+        "niksaDetails": "Direktor fotografije koji ne samo da beleži trenutke, već ih i stvara. Digitalni umetnik, diplomirao na Katedri za film. Kamera, dron, montaža — sve ima u malom prstu. <br><br> Sa bogatim iskustvom u snimanju igranih i dokumentarnih filmova, Nikša svakom projektu pristupa sa izraženim filmskim okom.",
+        "andjaDetails": "Kreativna snaga našeg digitalnog tima, čiji rad nosi upečatljiv i ženstven pečat. <br><br> Sa višegodišnjim iskustvom u oblasti filma i digitalnih medija, Anđela osmišljava jedinstvene vizuelne priče koje osvajaju publiku širom sveta. <br><br> Zahvaljujući izuzetnim komunikacijskim veštinama, duboko razume potrebe klijenata i njihove ideje pretvara u stvarnost - na autentičan i kreativan način."          
+    },
+    "contact": {
+      "title": "Zabeležimo vašu priču",
+      "desc": "Unapredite svoj biznis uz moćne fotografije i video materijale koji privlače pažnju i podstiču engagement.",
+      "button": "Kontaktirajte nas"
+    },
+    "contactUsPage": {
+        "title": "Kontaktirajte nas",
+        "subtitle": "Naši kontakt podaci",
+        "desc": "Pošaljite nam e-mail sa svim pitanjima u vezi sa našim uslugama, dosadašnjim radovima ili predlozima za novu saradnju - tu smo da čujemo vašu ideju!",
+        "emailLabel": "Email",
+        "email": "neondigital.creative@gmail.com",
+        "instagramLabel": "Instagram",
+        "instagramLink": "@neon_digital",
+        "phoneLabel": "Telefon",
+        "phone1": "+381 64 88 30 211",
+        "phone2": "+381 64 3159 558",
+        "emailPlaceholder": "Unesite vaš e-mail",
+        "subjectLabel": "Tema",
+        "subjectPlaceholder": "Unesite temu vašeg mejla",
+        "messageLabel": "Poruka",
+        "messagePlaceholder": "Unesite vašu poruku",
+        "sendMessageBtn": "Pošaljite poruku"
+      },
+    "servicesPage": {
+        "title": "Usluge",
+        "servicesDesc" : "Cena usluge zavisi od kreativnog rešenja, dužine videa, obima montaže, broja fotografija, broja sagovornika, korišćene opreme i složenosti projekta.",
+        "videoTitle": "Video",
+        "videoDesc": "Naše video usluge obuhvataju kako standardne, tako i reel formate, donoseći upečatljiv vizuelni sadržaj koji ističe vaš brend na svim platformama. Bilo da vam je potreban promotivni video, behind-the-scenes snimci, video sa događaja ili kratki reels - pobrinućemo se da svaki sekund bude važan.",
+        "reel": "Reel video",
+        "reelPrice": "od €130",
+        "horizontalVideo": "Horizontalni video",
+        "horizontalVideoPrice": "od €200",
+        "eventVideo": "Video sa događaja",
+        "eventVideoPrice": "od €300",
+        "droneFlying": "Snimanje dronom",
+        "droneFlyingPrice": "od €150",
+        "podcastRecording": "Snimanje podkasta",
+        "podcastRecordingPrice": "od €250",
+        "photoTitle": "Fotografija",
+        "photoDesc": "Pravimo fotografije visokog kvaliteta koje prikazuju jedinstveni stil vašeg brenda - od fotografija proizvoda do lifestyle kadrova koji se povezuju sa vašom publikom.",
+        "photoShoot": "Photo Shoot",
+        "photoShootPrice": "od €200",
+        "eventPhoto": "Fotografije sa događaja",
+        "eventPhotoPrice": "od €300",
+        "spaceTour": "360° virtuelne ture",
+        "spaceTourPrice": "od 50€ po fotografiji",
+        "eCommerce": "E-commerce (proizvodi)",
+        "eCommercePrice": "od 7€ po fotografiji",
+        "employeeShoot": "Fotografisanje zaposlenih",
+        "employeeShootPrice": "od 20€ po osobi",
+        "socialMediaTitle": "Upravljanje društvenim mrežama",
+        "socialMediaDesc": "Pokrivamo Facebook, Instagram i TikTok. <br><br>Naš mesečni paket uključuje:",
+        "socialMediaListPost": "12 objava",
+        "socialMediaListReel": "1 reel",
+        "socialMediaListStories": "10 storija",
+        "socialMediaListCopywriting": "Pisanje tekstova (copywriting)",
+        "socialMediaListVisualDesign": "Vizuelni dizajn",
+        "socialMediaListCommunity": "Community Management",
+        "socialMediaListPromotional": "Promotivne kampanja (budžet za oglašavanje kampanja nije uključen)",
+        "startingPrice": "Početna cena",
+        "price": "od 850€ mesečno",
+        "button": "Kontaktirajte nas"
+    },  
+    "footer": {
+      "rights": "© Neon Digital 2024"
+    }
+  }
+  

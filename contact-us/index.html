@@ -28,25 +28,34 @@
             <div class="flex p-4 justify-between items-start w-full lg:!px-[84px] max-w-[1440px]">
                 <a href="/"><img src="/images/neon_logo.svg" alt="Logo" class="w-[74px] h-[40px] lg:!w-[117px] lg:!h-[72px]" /></a>
                 <div class="lg:!flex items-center gap-6 text-[#fff] text-lg font-normal leading-normal hidden">
-                    <a href="/services/">Services</a>
-                    <a href="/our-work/">Our Work</a>
-                    <a href="/about-us/">About Us</a>
-                    <a href="/contact-us/">Contact Us</a>
+                    <a href="/" data-i18n="nav.home">Home</a>
+                    <a href="/services/" data-i18n="nav.services">Services</a>
+                    <a href="/our-work/" data-i18n="nav.ourWork">Our Work</a>
+                    <a href="/about-us/" data-i18n="nav.about">About Us</a>
+                    <a href="/contact-us/" data-i18n="nav.contact">Contact Us</a>
+                    <div class="relative w-[52px] h-[32px] ml-4">
+                        <button id="lang-sr" class="lang-btn absolute inset-0 opacity-0 pointer-events-none px-3 py-1 rounded-full border border-white text-white text-sm hover:bg-[#A510C3] transition">SR</button>
+                        <button id="lang-en" class="lang-btn absolute inset-0 opacity-100 pointer-events-auto px-3 py-1 rounded-full border border-white text-white text-sm hover:bg-[#A510C3] transition">EN</button>
+                    </div>
                 </div>
-                <div class="flex lg:!hidden">
+                <div class="flex items-center justify-end gap-3 lg:!hidden">
+                    <div class="relative w-[52px] h-[32px]">
+                      <button id="lang-sr-mob" class="lang-btn absolute inset-0 opacity-0 pointer-events-none px-3 py-1 rounded-full border border-white text-white text-sm hover:bg-[#A510C3] transition">SR</button>
+                      <button id="lang-en-mob" class="lang-btn absolute inset-0 opacity-0 pointer-events-none px-3 py-1 rounded-full border border-white text-white text-sm hover:bg-[#A510C3] transition">EN</button>
+                    </div>
                     <button id="menu-toggle">
-                        <img id="menu-icon" src="/images/mob_menu_icon.svg" alt="Menu">
+                      <img id="menu-icon" src="/images/mob_menu_icon.svg" alt="Menu" class="w-6 h-6">
                     </button>
                 </div>
             </div>
         </nav>
         <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#0B0B22] hidden flex flex-col items-center justify-center z-50  py-[56px] px-4">
             <nav class="flex flex-col gap-[40px] text-white text-2xl font-normal leading-normal">
-                <a href="/">Home</a>
-                <a href="/services/">Services</a>
-                <a href="/our-work/">Our Work</a>
-                <a href="/about-us/">About Us</a>
-                <a href="/contact-us/">Contact Us</a>
+                <a href="/" data-i18n="nav.home">Home</a>
+                <a href="/services/" data-i18n="nav.services">Services</a>
+                <a href="/our-work/" data-i18n="nav.ourWork">Our Work</a>
+                <a href="/about-us/" data-i18n="nav.about">About Us</a>
+                <a href="/contact-us/" data-i18n="nav.contact">Contact Us</a>
             </nav>
         </div>
         
@@ -54,71 +63,71 @@
 
         <div class="w-full flex justify-center relative contact_us_gradient overflow-hidden">
             <div class="py-[56px] px-4 lg:!px-[84px] lg:!py-[96px] flex flex-col gap-6 lg:!gap-[64px] w-full max-w-[1440px] mx-auto">
-                <h2 class="text-[#fff] text-center lg:!text-left text-2xl lg:!text-5xl font-bold leading-[28px] lg:!leading-[64px]">
+                <h2 class="text-[#fff] text-center lg:!text-left text-2xl lg:!text-5xl font-bold leading-[28px] lg:!leading-[64px]" data-i18n="contactUsPage.title">
                     Contact Us
                 </h2>
                 <div class="flex flex-col lg:!flex-row justify-between items-start gap-6 lg:!gap-[64px] w-full">
                     <div class="flex flex-col items-start gap-6 w-full lg:!w-1/2">
-                        <p class="text-[#fff] text-xl lg:!text-2xl font-medium leading-6 lg:!leading-[32px]">
+                        <p class="text-[#fff] text-xl lg:!text-2xl font-medium leading-6 lg:!leading-[32px]" data-i18n="contactUsPage.subtitle">
                             Our Contact Information
                         </p>
-                        <p class="text-[#C7C7C9] text-base lg:!text-xl leading-[24px] lg:!leading-[32px]">
+                        <p class="text-[#C7C7C9] text-base lg:!text-xl leading-[24px] lg:!leading-[32px]" data-i18n="contactUsPage.desc">
                             Write us an email with any of your questions regarding our services, previous work or anything that could spark a new collaboration project.
                         </p>
                         <div class="flex flex-col items-start gap-2">
-                            <p class="text-[#FF3EE4] text-xs lg:!text-lg leading-4">Email</p>
-                            <p class="text-[#C7C7C9] text-base lg:!text-xl leading-[24px] lg:!leading-[32px]">
+                            <p class="text-[#FF3EE4] text-xs lg:!text-lg leading-4" data-i18n="contactUsPage.emailLabel">Email</p>
+                            <p class="text-[#C7C7C9] text-base lg:!text-xl leading-[24px] lg:!leading-[32px]" data-i18n="contactUsPage.email">
                                 neondigital.creative@gmail.com
                             </p>
                         </div>
                         <div class="flex flex-col items-start gap-2">
-                            <p class="text-[#FF3EE4] text-xs lg:!text-lg leading-4">Instagram</p>
-                            <p class="text-[#C7C7C9] text-base lg:!text-xl leading-[24px] lg:!leading-[32px]">
-                               <a href="https://www.instagram.com/neon_digital_?igsh=MWwxdm40ZWl4NGE2dA%3D%3D" target="_blank">@neon_digital</a> 
+                            <p class="text-[#FF3EE4] text-xs lg:!text-lg leading-4" data-i18n="contactUsPage.instagramLabel">Instagram</p>
+                            <p class="text-[#C7C7C9] text-base lg:!text-xl leading-[24px] lg:!leading-[32px]" data-i18n="contactUsPage.instagramLink">
+                                <a href="https://www.instagram.com/neon_digital_?igsh=MWwxdm40ZWl4NGE2dA%3D%3D" target="_blank">@neon_digital</a> 
                             </p>
                         </div>
                         <div class="flex flex-col items-start gap-2">
-                            <p class="text-[#FF3EE4] text-xs lg:!text-lg leading-4">Phone Number</p>
+                            <p class="text-[#FF3EE4] text-xs lg:!text-lg leading-4" data-i18n="contactUsPage.phoneLabel">Phone Number</p>
                             <p class="text-[#C7C7C9] text-base lg:!text-xl leading-[24px] lg:!leading-[32px]">
-                                <a href="tel:+381648830211" class="hover:underline">+381 64 88 30 211</a> <br>
-                                <a href="tel:+381643159558" class="hover:underline">+381 64 3159 558</a>
+                                <a href="tel:+381648830211" class="hover:underline" data-i18n="contactUsPage.phone1">+381 64 88 30 211</a> <br>
+                                <a href="tel:+381643159558" class="hover:underline" data-i18n="contactUsPage.phone2">+381 64 3159 558</a>
                             </p>
                         </div>
                     </div>
                     <form action="" class="w-full lg:!w-1/2">
                         <div class="flex flex-col gap-6 lg:!gap-10">
                             <div class="flex flex-col gap-3">
-                                <label for="email" class="text-[#fff] text-xl lg:!text-2xl font-medium m-0">Email</label>
-                                <input type="email" id="email" name="email" placeholder="Enter your email"
+                                <label for="email" class="text-[#fff] text-xl lg:!text-2xl font-medium m-0" data-i18n="contactUsPage.emailLabel">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" data-i18n="contactUsPage.emailPlaceholder"
                                     class="bg-[#1B1B3D] text-[#C7C7C9] p-3 rounded-lg border border-gray-600 w-full focus:outline-none">
                             </div>
                             <div class="flex flex-col relative gap-3">
-                                <label for="subject" class="text-[#fff] text-xl lg:!text-2xl font-medium m-0">Subject</label>
-                                <input type="text" id="subject" name="subject" placeholder="Enter the subject of your message"
+                                <label for="subject" class="text-[#fff] text-xl lg:!text-2xl font-medium m-0" data-i18n="contactUsPage.subjectLabel">Subject</label>
+                                <input type="text" id="subject" name="subject" placeholder="Enter the subject of your message" data-i18n="contactUsPage.subjectPlaceholder"
                                     maxlength="20"
                                     class="bg-[#1B1B3D] text-[#C7C7C9] p-3 rounded-lg border border-gray-600 w-full focus:outline-none">
                                 <span id="subject-count" class="text-[#C7C7C9] text-sm ml-auto">0/20</span>
                             </div>
                             <div class="flex flex-col relative gap-3">
-                                <label for="message" class="text-[#fff] text-xl lg:!text-2xl font-medium m-0">Message</label>
-                                <textarea id="message" name="message" placeholder="Enter your message" 
+                                <label for="message" class="text-[#fff] text-xl lg:!text-2xl font-medium m-0" data-i18n="contactUsPage.messageLabel">Message</label>
+                                <textarea id="message" name="message" placeholder="Enter your message" data-i18n="contactUsPage.messagePlaceholder"
                                     maxlength="200"
                                     class="bg-[#1B1B3D] text-[#C7C7C9] p-3 rounded-lg border border-gray-600 w-full h-[216px] max-h-[216px] resize-none focus:outline-none"></textarea>
                                 <span id="message-count" class="text-[#C7C7C9] text-sm ml-auto">0/300</span>
                             </div>
                             <button type="submit"
-                                class="btn-color w-full lg:!w-max lg:!ml-auto">
+                                class="btn-color w-full lg:!w-max lg:!ml-auto" data-i18n="contactUsPage.sendMessageBtn">
                                 Send Message
                             </button>
                         </div>
-                    </form>
+                    </form>                    
                     <div id="popup-message" class="hidden fixed top-0 left-1/2 transform -translate-x-1/2 mt-10 bg-green-500 text-white px-6 py-3 rounded shadow-lg z-50">
                         Message sent successfully!
                     </div>
                 </div>
             </div>
             <div class="blue_gradient"></div>
-        </div>
+        </div>        
         
         
         <footer class="flex h-[68px] py-3 px-4 lg:!px-[72px] justify-center lg:!justify-between items-center gap-6 max-w-[1440px] w-full">
@@ -126,10 +135,11 @@
                <a href="/"><img src="/images/neon_logo.svg" alt="Logo" class="w-[85px] h-[52px]" /></a> 
             </div>
             <div id="footer-links" class="lg:!flex items-center gap-6 text-[#fff] text-lg font-normal leading-normal hidden">
-                <a href="/services/">Services</a>
-                <a href="/our-work/">Our Work</a>
-                <a href="/about-us/">About Us</a>
-                <a href="/contact-us/">Contact Us</a>
+                <a href="/" data-i18n="nav.home">Home</a>
+                <a href="/services/" data-i18n="nav.services">Services</a>
+                <a href="/our-work/" data-i18n="nav.ourWork">Our Work</a>
+                <a href="/about-us/" data-i18n="nav.about">About Us</a>
+                <a href="/contact-us/" data-i18n="nav.contact">Contact Us</a>
             </div>
             <p class="text-[#fff] text-lg leading-normal">
                 © Neon Digital 2024
@@ -139,5 +149,7 @@
         <script type="module" src="/js/main.js"></script>
         <script type="module" src="/js/cursor.js"></script>
         <script type="module" src="/js/contactForm.js"></script>
+        <script type="module" src="/js/langSwitcher.js"></script>
+        <script type="module" src="/js/translate.js"></script>
     </body>
 </html>

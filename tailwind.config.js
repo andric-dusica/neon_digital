@@ -26,7 +26,7 @@ module.exports = {
         'btn-gradient': 'radial-gradient(169.51% 152.63% at -15.27% 0%, #CA07AF 0%, #9215CE 46.9%, #3434D7 100%)',
         'btn-white-bg': '#FFF',
         'btn-white-text': '#000029',
-        'btn-hover': '#A510C3', // Hover boja za oba dugmeta
+        'btn-hover': '#A510C3', 
       },
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
@@ -72,7 +72,7 @@ module.exports = {
           transition: 'background 0.7s ease',
         },
         '.btn-color:hover': {
-          background: '#A510C3', // Hover boja za btn-color
+          background: '#A510C3', 
         },
         '.btn-white': {
           display: 'flex',
@@ -91,8 +91,8 @@ module.exports = {
           transition: 'background 0.3s ease',
         },
         '.btn-white:hover': {
-          background: '#A510C3', // Hover boja za btn-white
-          color: '#FFF', // Promena boje teksta na hover
+          background: '#A510C3', 
+          color: '#FFF', 
         },
       });
     },
