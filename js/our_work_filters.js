@@ -518,52 +518,121 @@ document.addEventListener("DOMContentLoaded", async () => {
             caption: () => "",
             on: {
                 "Carousel.selectSlide": () => {
-                    document.querySelectorAll(".fancybox-video").forEach(video => {
-                        video.pause();
-                        video.currentTime = 0;
-                        video.removeAttribute("src");
-                        video.removeAttribute("autoplay");
-                        video.load();
-                    });
-                    setTimeout(() => {
-                        const activeSlide = document.querySelector(".fancybox__slide.is-selected");
-                        if (!activeSlide) return;
-                        const videoEl = activeSlide.querySelector(".fancybox-video");
-                        if (!videoEl) return;
-    
-                        const realSrc = videoEl.getAttribute("data-src");
-                        videoEl.setAttribute("src", realSrc);
-                        videoEl.setAttribute("autoplay", "true");
-    
-                        videoEl.load();
-                        videoEl.muted = true;
-                        videoEl.play()
-                            .then(() => {
-                                videoEl.removeAttribute("poster");
-                                setTimeout(() => {
-                                    videoEl.muted = false;
-                                    videoEl.volume = 1.0;
-                                }, 300);
-                            })
-                            .catch((err) => {
-                                console.warn("[ERROR] Autoplay blokiran:", err);
-                            });
-                    }, 0);
+                  document.querySelectorAll(".fancybox-video").forEach(video => {
+                    video.pause();
+                    video.currentTime = 0;
+                    video.removeAttribute("src");
+                    video.removeAttribute("autoplay");
+                    video.load();
+                  });
+              
+                  setTimeout(() => {
+                    const activeSlide = document.querySelector(".fancybox__slide.is-selected");
+                    if (!activeSlide) return;
+                    const videoEl = activeSlide.querySelector(".fancybox-video");
+                    if (!videoEl) return;
+              
+                    const realSrc = videoEl.getAttribute("data-src");
+                    videoEl.setAttribute("src", realSrc);
+                    videoEl.setAttribute("autoplay", "true");
+              
+                    videoEl.load();
+                    videoEl.muted = true;
+                    videoEl.play()
+                      .then(() => {
+                        videoEl.removeAttribute("poster");
+                        setTimeout(() => {
+                          videoEl.muted = false;
+                          videoEl.volume = 1.0;
+                        }, 300);
+                      })
+                      .catch((err) => {
+                        console.warn("[ERROR] Autoplay blokiran:", err);
+                      });
+                  }, 0);
                 },
+              
                 "close": () => {
-                    document.querySelectorAll(".fancybox-video").forEach(video => {
-                        video.pause();
-                        video.currentTime = 0;
-                        video.removeAttribute("src");
-                        video.removeAttribute("autoplay");
-                        video.load();
-                    });
+                  document.querySelectorAll(".fancybox-video").forEach(video => {
+                    video.pause();
+                    video.currentTime = 0;
+                    video.removeAttribute("src");
+                    video.removeAttribute("autoplay");
+                    video.load();
+                  });
+                },
+              
+                // ⬇⬇⬇ UBACUJES OVO ISPOD POSTOJECIH DVA
+                "Carousel.ready": () => {
+                    setTimeout(() => {
+                        const thumbsTrack = document.querySelector('.f-thumbs__track');
+                        if (!thumbsTrack) return;
+
+                        const viewport = thumbsTrack.parentElement;
+                        viewport.style.scrollBehavior = 'smooth';
+                        viewport.style.scrollSnapType = 'x mandatory'; 
+
+
+                        let wrapper = document.querySelector('.fancybox-thumbs-wrapper');
+                        if (!wrapper) {
+                        wrapper = document.createElement("div");
+                        wrapper.classList.add("fancybox-thumbs-wrapper");
+                        wrapper.style.position = "relative";
+                        thumbsTrack.parentNode.insertBefore(wrapper, thumbsTrack);
+                        wrapper.appendChild(thumbsTrack);
+                        }
+
+                        wrapper.querySelectorAll(".fancybox-thumbs-prev, .fancybox-thumbs-next").forEach(el => el.remove());
+
+                        const leftArrow = document.createElement("button");
+                        leftArrow.className = "fancybox-thumbs-prev";
+                        leftArrow.innerHTML = "&#10094;";
+                        leftArrow.style.cssText = `
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        background: rgba(0,0,0,0.5);
+                        border: none;
+                        color: white;
+                        font-size: 24px;
+                        z-index: 10000;
+                        padding: 10px;
+                        cursor: pointer;
+                        `;
+
+                        const rightArrow = document.createElement("button");
+                        rightArrow.className = "fancybox-thumbs-next";
+                        rightArrow.innerHTML = "&#10095;";
+                        rightArrow.style.cssText = `
+                        position: absolute;
+                        right: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        background: rgba(0,0,0,0.5);
+                        border: none;
+                        color: white;
+                        font-size: 24px;
+                        z-index: 10000;
+                        padding: 10px;
+                        cursor: pointer;
+                        `;
+
+                        leftArrow.addEventListener("click", () => {
+                            viewport.scrollBy({ left: -240, behavior: 'smooth' }); 
+                        });
+                        
+                        rightArrow.addEventListener("click", () => {
+                            viewport.scrollBy({ left: 240, behavior: 'smooth' });
+                        });
+
+                        wrapper.appendChild(leftArrow);
+                        wrapper.appendChild(rightArrow);
+                    }, 200);
                 }
             }
         });
     }
-    
-    
 
     updateGallery("all");
 

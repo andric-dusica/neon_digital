@@ -83,7 +83,7 @@ async function displayWorkMedia() {
 
     if (modalContainer && modalContainer.parentNode === document.body) {
       document.body.removeChild(modalContainer);
-  }
+    }
   };
 
   const updateContent = () => {
@@ -147,37 +147,37 @@ async function displayWorkMedia() {
     closeButton.addEventListener('click', closeModal);
 
     // Swipe navigacija (mobilni)
-let startX = 0, startY = 0;
-contentContainer.addEventListener('touchstart', (e) => {
-  if (e.touches.length > 0) {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY; // Čuvamo početnu poziciju po Y-osi
-  }
-});
+    let startX = 0, startY = 0;
+    contentContainer.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 0) {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY; // Čuvamo početnu poziciju po Y-osi
+      }
+    });
 
-contentContainer.addEventListener('touchmove', (e) => {
-  if (e.touches.length > 0) {
-    const endX = e.touches[0].clientX;
-    const endY = e.touches[0].clientY;
-    const deltaX = endX - startX;
-    const deltaY = endY - startY;
+    contentContainer.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        const endX = e.touches[0].clientX;
+        const endY = e.touches[0].clientY;
+        const deltaX = endX - startX;
+        const deltaY = endY - startY;
 
-    // Swipe left (sledeći)
-    if (deltaX < -50) {
-      currentIndex = (currentIndex + 1) % media.length;
-      updateContent();
-    } 
-    // Swipe right (prethodni)
-    else if (deltaX > 50) {
-      currentIndex = (currentIndex - 1 + media.length) % media.length;
-      updateContent();
-    } 
-    // Swipe down (zatvaranje)
-    else if (deltaY > 50 && Math.abs(deltaY) > Math.abs(deltaX)) {
-      closeModal();
-    }
-  }
-});
+        // Swipe left (sledeći)
+        if (deltaX < -50) {
+          currentIndex = (currentIndex + 1) % media.length;
+          updateContent();
+        } 
+        // Swipe right (prethodni)
+        else if (deltaX > 50) {
+          currentIndex = (currentIndex - 1 + media.length) % media.length;
+          updateContent();
+        } 
+        // Swipe down (zatvaranje)
+        else if (deltaY > 50 && Math.abs(deltaY) > Math.abs(deltaX)) {
+          closeModal();
+        }
+      }
+    });
 
 
     updateContent();
@@ -317,82 +317,129 @@ contentContainer.addEventListener('touchmove', (e) => {
   });
 
   // === (4) Fancybox Desktop event => pauziranje starih videa ===
-Fancybox.bind('[data-fancybox="gallery"]', {
-  Hash: false,
-  loop: false,     // ❗ Gasi loop
-  preload: 0,      // ❗ Gasi preload
-  thumbs: { autoStart: true },
-  buttons: ['zoom', 'close'],
-
-  on: {
-    // Kada se slajd izabere
-    "Carousel.selectSlide": (fancybox, carousel, slide) => {
-      console.log("[DEBUG] -> selectSlide, dodeljujem src SAMO aktivnom videu...");
-
-      // 1) Ukini src svim video elementima i pauziraj ih
-      document.querySelectorAll(".fancybox-video").forEach(video => {
-        video.pause();
-        video.currentTime = 0;
-        video.removeAttribute("src");   // ❗ Ovde uklanjamo src potpuno
-        video.removeAttribute("autoplay");
-        video.load(); // Bez src, video ne može da se pusti
-      });
-
-      // 2) Nađi aktivni slajd
-      const activeSlide = document.querySelector(".fancybox__slide.is-selected");
-      if (!activeSlide) {
-        console.warn("[WARNING] Nema aktivnog slajda!");
-        return;
-      }
-
-      // 3) Uzmi video u aktivnom slajdu
-      const activeVideo = activeSlide.querySelector(".fancybox-video");
-      if (!activeVideo) {
-        console.warn("[WARNING] Nema videa u aktivnom slajdu!");
-        return;
-      }
-
-      // 4) Uzmi pravi src iz data-src i dodeli ga
-      const realSrc = activeVideo.getAttribute("data-src");
-      activeVideo.setAttribute("src", realSrc);
-      // Ako hoćeš autoplay
-      activeVideo.setAttribute("autoplay", "true");
-
-      console.log("[INFO] Dodeljujem src =", realSrc);
-
-      // 5) load() + play()
-      activeVideo.load();
-      activeVideo.muted = true; // ako hoćeš da krene bez zvuka pa da ga vratiš kasnije
-
-      activeVideo.play()
-        .then(() => {
-          // ✅ Kad video zaista krene, uklonimo poster
-          activeVideo.removeAttribute("poster");
-          
-          // Ako hoćeš da vratiš zvuk posle par stotinki:
-          setTimeout(() => {
-            activeVideo.muted = false;
-            activeVideo.volume = 1.0;
-          }, 300);
-        })
-        .catch(err => {
-          console.warn("[ERROR] Autoplay blokiran:", err);
+  Fancybox.bind('[data-fancybox="gallery"]', {
+    Hash: false,
+    loop: false,
+    preload: 0,
+    thumbs: { autoStart: true },
+    buttons: ['zoom', 'close'],
+  
+    on: {
+      "Carousel.selectSlide": (fancybox, carousel, slide) => {
+        document.querySelectorAll(".fancybox-video").forEach(video => {
+          video.pause();
+          video.currentTime = 0;
+          video.removeAttribute("src");
+          video.removeAttribute("autoplay");
+          video.load();
         });
-    },
+  
+        const activeSlide = document.querySelector(".fancybox__slide.is-selected");
+        if (!activeSlide) return;
+  
+        const activeVideo = activeSlide.querySelector(".fancybox-video");
+        if (!activeVideo) return;
+  
+        const realSrc = activeVideo.getAttribute("data-src");
+        activeVideo.setAttribute("src", realSrc);
+        activeVideo.setAttribute("autoplay", "true");
+        activeVideo.load();
+        activeVideo.muted = true;
+        activeVideo.play()
+          .then(() => {
+            activeVideo.removeAttribute("poster");
+            setTimeout(() => {
+              activeVideo.muted = false;
+              activeVideo.volume = 1.0;
+            }, 300);
+          })
+          .catch(err => {
+            console.warn("[ERROR] Autoplay blokiran:", err);
+          });
+      },
+  
+      "close": () => {
+        document.querySelectorAll(".fancybox-video").forEach(video => {
+          video.pause();
+          video.currentTime = 0;
+          video.removeAttribute("src");
+          video.removeAttribute("autoplay");
+          video.load();
+        });
+      },
+  
+      "Carousel.ready": (fancybox) => {
+        setTimeout(() => {
+          const thumbsTrack = document.querySelector('.f-thumbs__track');
+          if (!thumbsTrack) {
+            console.warn("[WARN] .f-thumbs__track nije pronađen.");
+            return;
+          }
 
-    // Kad zatvoriš Fancybox
-    "close": () => {
-      console.log("[INFO] Fancybox zatvoren, pauziram i uklanjam src za sve videe.");
-      document.querySelectorAll(".fancybox-video").forEach(video => {
-        video.pause();
-        video.currentTime = 0;
-        video.removeAttribute("src");
-        video.removeAttribute("autoplay");
-        video.load();
-      });
+          const viewport = thumbsTrack.parentElement;
+          viewport.style.scrollBehavior = 'smooth';
+          viewport.style.scrollSnapType = 'x mandatory'; 
+
+          let wrapper = document.querySelector(".fancybox-thumbs-wrapper");
+          if (!wrapper) {
+            wrapper = document.createElement("div");
+            wrapper.classList.add("fancybox-thumbs-wrapper");
+            wrapper.style.position = "relative";
+            thumbsTrack.parentNode.insertBefore(wrapper, thumbsTrack);
+            wrapper.appendChild(thumbsTrack);
+          }
+
+          // Ukloni stare strelice ako postoje
+          wrapper.querySelectorAll(".fancybox-thumbs-prev, .fancybox-thumbs-next").forEach(el => el.remove());
+
+          const leftArrow = document.createElement("button");
+          leftArrow.className = "fancybox-thumbs-prev";
+          leftArrow.innerHTML = "&#10094;";
+          leftArrow.style.cssText = `
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            border: none;
+            color: white;
+            font-size: 24px;
+            z-index: 10000;
+            padding: 10px;
+            cursor: pointer;
+          `;
+
+          const rightArrow = document.createElement("button");
+          rightArrow.className = "fancybox-thumbs-next";
+          rightArrow.innerHTML = "&#10095;";
+          rightArrow.style.cssText = `
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            border: none;
+            color: white;
+            font-size: 24px;
+            z-index: 10000;
+            padding: 10px;
+            cursor: pointer;
+          `;
+
+          leftArrow.addEventListener("click", () => {
+            viewport.scrollBy({ left: -240, behavior: 'smooth' });
+          });
+
+          rightArrow.addEventListener("click", () => {
+            viewport.scrollBy({ left: 240, behavior: 'smooth' });
+          });
+
+          wrapper.appendChild(leftArrow);
+          wrapper.appendChild(rightArrow);
+        }, 200); 
+      }
     }
-  }
-});
+  });
 
 
 }

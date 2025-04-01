@@ -608,3 +608,14 @@ form .send_message {
     }
   }
   
+
+
+.fancybox-thumbs-wrapper .fancybox-thumbs-prev,
+.fancybox-thumbs-wrapper .fancybox-thumbs-next {
+  transition: opacity 0.2s ease;
+}
+
+.fancybox-thumbs-wrapper:hover .fancybox-thumbs-prev,
+.fancybox-thumbs-wrapper:hover .fancybox-thumbs-next {
+  opacity: 1;
+}
