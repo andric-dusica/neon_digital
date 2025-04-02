@@ -19,13 +19,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function fetchMedia() {
         const { data: homeData, error: homeError } = await supabase
             .from("home_our_work_images_videos")
-            .select("media_url, type, category, cover_url, project_name")
+            .select("media_url, type, category, cover_url, project_name, project_name_sr")
             .order("order", { ascending: true });
-    
-        const { data: ourWorkData, error: ourWorkError } = await supabase
+
+            const { data: ourWorkData, error: ourWorkError } = await supabase
             .from("our_work_images_videos")
-            .select("media_url, type, category, cover_url, project_name, direction, order")
+            .select("media_url, type, category, cover_url, project_name, project_name_sr, direction, order")
             .order("order", { ascending: true });
+
     
         if (homeError || ourWorkError) {
             console.error("Greška prilikom povlačenja podataka:", homeError || ourWorkError);
@@ -181,16 +182,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     function getCustom360Projects() {
+        const lang = localStorage.getItem("lang") || "en";
+    
         return [
             {
                 img: "/images/atlas360.png",
                 link: "https://atlas360.neondigital.rs",
-                name: "Atlas 360° Tour"
+                name: lang === "sr" ? "Atlas 360° virtuelna tura" : "Atlas 360° Tour"
             },
             {
                 img: "/images/ustanicka360.png",
                 link: "https://ustanicka360.neondigital.rs",
-                name: "Ustanička 360° Tour"
+                name: lang === "sr" ? "Ustanička 360° virtuelna tura" : "Ustanička 360° Tour"
             }
         ];
     }
@@ -389,7 +392,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     
                 if (item.category !== "vc_stories") {
                     const titleSpan = document.createElement("span");
-                    titleSpan.textContent = item.project_name || "";
+                    const lang = localStorage.getItem("lang") || "en";
+                    const projectTitle = lang === "sr" ? item.project_name_sr || item.project_name : item.project_name;
+                    titleSpan.textContent = projectTitle || "";
                     titleSpan.style.cssText = `
                         position: absolute;
                         height: 55px;
