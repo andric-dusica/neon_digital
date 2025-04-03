@@ -31,14 +31,38 @@ Focused on performance, clean design, and smooth UX.
 <img src="./assets/screenshots/images_desktop.png" alt="Images Desktop" width="500"/>
 
 
+## 🌐 Live Website  
+[neondigital.rs](https://neondigital.rs)
 
+## ☁️ Hosted on [Vercel](https://vercel.com)
 
+## 📦 Installation
 
+1. Clone the repository:
+git clone https://github.com/andric-dusica/neon_digital.git
+cd neon_digital
 
+2. Install dependencies:
+npm install
 
+3. Run the development server:
+npm run dev
 
+4. Open in browser:
+http://localhost:5173
 
-## 🔗 Live Demo
+⚙️ Build
+To generate a production-ready build:
+npm run build
+The build output will be located in the dist/ folder.
 
-[neon-digital.vercel.app](https://neon-digital.vercel.app)
+🚀 Deployment
+This project is deployed using Vercel.
+Each push to the main branch triggers an automatic deployment to:
+
+👉 https://neon-digital.vercel.app
+
+## 📁 Project Structure
+
+neon_digital/ ├── public/ # Static files (images, videos, etc.) ├── assets/ │ └── screenshots/ # Screenshots used in README ├── js/ # JavaScript controllers and modules ├── services/ # API services (e.g. Supabase) ├── locales/ # Translation files for i18n ├── about-us/ # About page ├── contact-us/ # Contact page ├── our-work/ # Work gallery ├── .env # Environment variables ├── index.html # Main HTML entry point ├── README.md # Project documentation ├── tailwind.config.js # Tailwind CSS configuration ├── vite.config.js # Vite build configuration └── dist/ # Production build output
 
