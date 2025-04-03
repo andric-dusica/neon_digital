@@ -52,8 +52,11 @@ npm run dev
 http://localhost:5173
 
 ⚙️ Build
+
 To generate a production-ready build:
+
 npm run build
+
 The build output will be located in the dist/ folder.
 
 🚀 Deployment
