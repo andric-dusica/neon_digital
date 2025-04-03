@@ -64,5 +64,24 @@ Each push to the main branch triggers an automatic deployment to:
 
 ## 📁 Project Structure
 
-neon_digital/ ├── public/ # Static files (images, videos, etc.) ├── assets/ │ └── screenshots/ # Screenshots used in README ├── js/ # JavaScript controllers and modules ├── services/ # API services (e.g. Supabase) ├── locales/ # Translation files for i18n ├── about-us/ # About page ├── contact-us/ # Contact page ├── our-work/ # Work gallery ├── .env # Environment variables ├── index.html # Main HTML entry point ├── README.md # Project documentation ├── tailwind.config.js # Tailwind CSS configuration ├── vite.config.js # Vite build configuration └── dist/ # Production build output
+## 📁 Project Structure
+
+```
+neon_digital/
+├── public/                # Static files (images, videos, etc.)
+├── assets/
+│   └── screenshots/       # Screenshots used in README
+├── js/                    # JavaScript controllers and modules
+├── services/              # API services (e.g. Supabase)
+├── locales/               # Translation files for i18n
+├── about-us/              # About page
+├── contact-us/            # Contact page
+├── our-work/              # Work gallery
+├── .env                   # Environment variables
+├── index.html             # Main HTML entry point
+├── README.md              # Project documentation
+├── tailwind.config.js     # Tailwind CSS configuration
+├── vite.config.js         # Vite build configuration
+└── dist/                  # Production build output
+```
 
