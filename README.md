@@ -64,8 +64,6 @@ Each push to the main branch triggers an automatic deployment to:
 
 ## 📁 Project Structure
 
-## 📁 Project Structure
-
 ```
 neon_digital/
 ├── public/                # Static files (images, videos, etc.)
