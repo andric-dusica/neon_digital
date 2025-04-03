@@ -39,24 +39,32 @@ Focused on performance, clean design, and smooth UX.
 ## 📦 Installation
 
 1. Clone the repository:
+```
 git clone https://github.com/andric-dusica/neon_digital.git
 cd neon_digital
+```
 
-2. Install dependencies:
+3. Install dependencies:
+```
 npm install
+```
 
-3. Run the development server:
+5. Run the development server:
+```
 npm run dev
+```
 
-4. Open in browser:
+7. Open in browser:
+```
 http://localhost:5173
+```
 
 ⚙️ Build
 
 To generate a production-ready build:
-
+```
 npm run build
-
+```
 The build output will be located in the dist/ folder.
 
 🚀 Deployment
@@ -85,4 +93,10 @@ neon_digital/
 ├── vite.config.js         # Vite build configuration
 └── dist/                  # Production build output
 ```
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).  
+Feel free to use, modify, and distribute it for personal or commercial projects.
+
 
