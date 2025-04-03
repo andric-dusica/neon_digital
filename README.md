@@ -13,7 +13,7 @@ Focused on performance, clean design, and smooth UX.
 - Supabase (data)
 - Fancybox (gallery)
 
-##🧠 Overview
+## 🧠 Overview
 
 Modern, responsive marketing website focused on:
 
@@ -27,7 +27,7 @@ Modern, responsive marketing website focused on:
 
 🎥 Media-rich gallery (images & videos from Supabase)
 
-##🔧 Features
+## 🔧 Features
 🎯 Optimized Tailwind layout
 
 🖼️ Dynamic gallery with Fancybox
