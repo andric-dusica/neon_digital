@@ -13,6 +13,33 @@ Focused on performance, clean design, and smooth UX.
 - Supabase (data)
 - Fancybox (gallery)
 
+##🧠 Overview
+
+Modern, responsive marketing website focused on:
+
+✨ Clean and smooth UX
+
+⚡ Performance-first approach
+
+📱 Fully mobile responsive
+
+🌐 Multilingual support
+
+🎥 Media-rich gallery (images & videos from Supabase)
+
+##🔧 Features
+🎯 Optimized Tailwind layout
+
+🖼️ Dynamic gallery with Fancybox
+
+🌍 Multilingual content with language switcher
+
+📦 Vite for fast build and dev server
+
+🔄 Modular JS using Stimulus controllers
+
+☁️ Supabase (image DB) + Cloudinary (video hosting)
+
 ## 📸 Screenshots
 
 ### Homepage – Desktop
