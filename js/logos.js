@@ -33,10 +33,8 @@ async function displayLogos() {
     return;
   }
 
-  // Očisti prethodni sadržaj ako postoji
   container.innerHTML = "";
 
-  // Napravi wrapper za sve logoe (3x da lepo loopuje)
   const wrapper = document.createElement("div");
   wrapper.classList.add("logos_wrapper");
 
@@ -55,7 +53,6 @@ async function displayLogos() {
   startInfiniteScroll(wrapper);
 }
 
-// Animacija - ravnomerno pomeranje
 function startInfiniteScroll(wrapper) {
   let scrollPosition = 0;
   const speed = 1;
@@ -63,7 +60,6 @@ function startInfiniteScroll(wrapper) {
   function animate() {
     scrollPosition -= speed;
 
-    // Ako je pola prošlo, resetuj
     if (Math.abs(scrollPosition) >= wrapper.scrollWidth / 3) {
       scrollPosition = 0;
     }

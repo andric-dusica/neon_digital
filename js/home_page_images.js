@@ -5,15 +5,15 @@ async function fetchImageById(id) {
     const { data, error } = await supabase
         .from('home_page')
         .select('*')
-        .eq('id', id) // Filtriramo po ID-u
-        .single(); // Vraća samo jedan rezultat
+        .eq('id', id) 
+        .single(); 
 
     if (error) {
         console.error(`Error fetching image with ID ${id}:`, error);
         return null;
     }
 
-    return data; // Vraća podatke o slici
+    return data; 
 }
 
 // Funkcija za postavljanje slike na osnovu ID-a iz baze i HTML ID-a elementa
@@ -24,12 +24,11 @@ async function updateImage(imageId, elementId) {
         const imgElement = document.getElementById(elementId);
 
         if (imgElement) {
-            imgElement.src = imageData.image_url; // Postavlja URL slike
-            imgElement.alt = imageData.description || 'Image'; // Postavlja ALT tekst
+            imgElement.src = imageData.image_url; 
+            imgElement.alt = imageData.description || 'Image'; 
 
-            // Stilovi za desktop i mobilnu verziju
             if (elementId === 'niksa_about_img' || elementId === 'niksa_about_img_desktop') {
-                imgElement.style.objectFit = 'cover'; // Osiguravamo ispravan fit
+                imgElement.style.objectFit = 'cover';
             }
         } else {
             console.error(`Element with ID ${elementId} not found.`);
@@ -37,8 +36,7 @@ async function updateImage(imageId, elementId) {
     }
 }
 
-// Postavljanje obe slike
-updateImage(1, 'niksa_about_img');          // Slika za mobilnu verziju
-updateImage(1, 'niksa_about_img_desktop');  // Slika za desktop verziju
-updateImage(2, 'niksa_img');                // Druga slika sa ID 2
-updateImage(3, 'andja_img');                // Treća slika sa ID 3
+updateImage(1, 'niksa_about_img');          
+updateImage(1, 'niksa_about_img_desktop');  
+updateImage(2, 'niksa_img');                
+updateImage(3, 'andja_img');               

@@ -18,7 +18,6 @@ module.exports = {
     'lg:grid-cols-3',
     'xl:grid-cols-4',
     'mx-auto',
-    // sve što dodaš iz JS-a
   ],
   theme: {
     extend: {

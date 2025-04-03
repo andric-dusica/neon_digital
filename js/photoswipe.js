@@ -1,15 +1,12 @@
 console.log("JavaScript datoteka je učitana!");
 
-// Uvoz Fancybox CSS i JS
 import '@fancyapps/ui/dist/fancybox/fancybox.css';
 import { Fancybox } from '@fancyapps/ui';
 
-// Supabase inicijalizacija
 import { supabase } from './supabase.js';
 
 let prevScrollY = 0;
 
-// Funkcija za povlačenje medija iz baze
 async function getWorkMedia() {
   const { data, error } = await supabase
     .from('home_our_work_images_videos')
@@ -35,10 +32,9 @@ async function displayWorkMedia() {
     return;
   }
 
-  let currentIndex = 0;  // Indeks za mobilni swipe
+  let currentIndex = 0;  
   const isMobile = window.innerWidth <= 768;
 
-  // === (1) Funkcija za mobilni modal (ostaje nepromenjeno) ===
   const openFullscreenModal = (index) => {
     currentIndex = index;
 
@@ -48,7 +44,6 @@ async function displayWorkMedia() {
     document.body.style.top = `-${prevScrollY}px`;
     document.body.style.left = '0';
     document.body.style.right = '0';
-    // Širina se često postavi da ne bi došlo do horizontalnog pomeranja
     document.body.style.width = '100%';
 
     const modalContainer = document.createElement('div');
@@ -87,7 +82,6 @@ async function displayWorkMedia() {
   };
 
   const updateContent = () => {
-    // 1) Pauziraj i "isprazni" sve videe
     const allVideos = contentContainer.querySelectorAll('video');
     allVideos.forEach((vid) => {
       vid.pause();
@@ -97,10 +91,8 @@ async function displayWorkMedia() {
       vid.load();
     });
   
-    // 2) Očisti contentContainer
     contentContainer.innerHTML = '';
   
-    // 3) Kreiraj element u zavisnosti od tipa
     const currentItem = media[currentIndex];
     if (currentItem.type === 'image') {
       const img = document.createElement('img');
@@ -109,21 +101,18 @@ async function displayWorkMedia() {
       img.style.cssText = 'max-width: 90%; max-height: 90%; border-radius: 28px';
       contentContainer.appendChild(img);
     } else if (currentItem.type === 'video') {
-      // Kreiramo video bez <source>, samo data-src
       const video = document.createElement('video');
       video.setAttribute('controls', 'true');
-      video.setAttribute('playsinline', 'true'); // mobilni autoplay
+      video.setAttribute('playsinline', 'true'); 
       video.preload = 'metadata';
-      video.muted = false; // iOS zahteva muted za autoplay
+      video.muted = false; 
       video.style.cssText = 'max-width: 90%; max-height: 90%; border-radius:28px;';
       video.dataset.src = currentItem.media_url;
       video.innerHTML = `Your browser does not support the video tag.`;
   
-      // Dodajemo ga u contentContainer
       contentContainer.appendChild(video);
   
-      // 4) Sada dodelimo real src i pokrenemo
-      video.setAttribute('src', currentItem.media_url); // ili video.dataset.src
+      video.setAttribute('src', currentItem.media_url); 
       video.setAttribute('autoplay', 'true');
       video.load();
       video.play().catch(err => {
@@ -136,7 +125,6 @@ async function displayWorkMedia() {
     }
   };
 
-    // X dugme
     const closeButton = document.createElement('button');
     closeButton.style.cssText = `
       position: absolute; top: -5px; right: 20px;
@@ -146,12 +134,11 @@ async function displayWorkMedia() {
     closeButton.innerHTML = '&times;';
     closeButton.addEventListener('click', closeModal);
 
-    // Swipe navigacija (mobilni)
     let startX = 0, startY = 0;
     contentContainer.addEventListener('touchstart', (e) => {
       if (e.touches.length > 0) {
         startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY; // Čuvamo početnu poziciju po Y-osi
+        startY = e.touches[0].clientY; 
       }
     });
 
@@ -193,23 +180,19 @@ async function displayWorkMedia() {
     document.body.appendChild(modalContainer);
   };
 
-  // === (2) Generisanje sličica/item-a za Owl + linkove za Fancybox ===
   media.forEach((item, index) => {
     const anchorElement = document.createElement('a');
     anchorElement.href = item.media_url;
 
     if (isMobile) {
-      // Mobilni -> custom modal
       anchorElement.addEventListener('click', (e) => {
         e.preventDefault();
         openFullscreenModal(index);
       });
     } else {
-      // Desktop -> Fancybox
       anchorElement.setAttribute('data-fancybox', 'gallery');
 
       if (item.type === 'video') {
-        // *** UMESTO čistog <video>, stavljamo DIV s posterom i play overlay
         anchorElement.setAttribute('data-type', 'html');
         anchorElement.setAttribute(
           "data-html",
@@ -233,7 +216,6 @@ async function displayWorkMedia() {
       }
     }
 
-    // Thumbnail (ako je slika)
     if (item.type === 'image') {
       const img = document.createElement('img');
       img.src = item.media_url;
@@ -242,14 +224,12 @@ async function displayWorkMedia() {
       img.style.maxWidth = '100%';
       anchorElement.appendChild(img);
     } 
-    // Thumbnail (ako je video)
     else if (item.type === 'video') {
       const img = document.createElement('img');
       img.src = item.cover_url;
       img.alt = 'Video Thumbnail';
       img.style.maxWidth = '100%';
 
-      // Ista "play" ikonica na malom thumbnailu
       const playIcon = document.createElement('div');
       playIcon.style.cssText = `
         position: absolute;
@@ -284,14 +264,12 @@ async function displayWorkMedia() {
       anchorElement.appendChild(container);
     }
 
-    // Umotamo u div.item (Owl)
     const divElement = document.createElement('div');
     divElement.classList.add('item');
     divElement.appendChild(anchorElement);
     carousel.appendChild(divElement);
   });
 
-  // === (3) Owl Carousel inicijalizacija ===
   $(".images_videos").owlCarousel({
     loop: false,
     margin: 10,
@@ -316,7 +294,6 @@ async function displayWorkMedia() {
     }
   });
 
-  // === (4) Fancybox Desktop event => pauziranje starih videa ===
   Fancybox.bind('[data-fancybox="gallery"]', {
     Hash: false,
     loop: false,
@@ -389,7 +366,6 @@ async function displayWorkMedia() {
             wrapper.appendChild(thumbsTrack);
           }
 
-          // Ukloni stare strelice ako postoje
           wrapper.querySelectorAll(".fancybox-thumbs-prev, .fancybox-thumbs-next").forEach(el => el.remove());
 
           const leftArrow = document.createElement("button");
@@ -444,5 +420,4 @@ async function displayWorkMedia() {
 
 }
 
-// Na kraju
 document.addEventListener('DOMContentLoaded', displayWorkMedia);

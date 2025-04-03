@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     function openFullscreenModal(index) {
         currentIndex = index;
 
-        // Kreiramo "overlay" kontejner
         const modalContainer = document.createElement("div");
         modalContainer.style.cssText = `
             position: fixed;
@@ -69,7 +68,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             overflow: hidden;
         `;
 
-        // Unutrašnji div za prikaz slike/videa
         const contentContainer = document.createElement("div");
         contentContainer.style.cssText = `
             display: flex; 
@@ -80,14 +78,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             position: relative;
         `;
 
-        // Funkcija za zatvaranje modala
         function closeModal() {
             if (modalContainer && modalContainer.parentNode === document.body) {
                 document.body.removeChild(modalContainer);
               }
         }
 
-        // Funkcija za prikaz tekućeg elementa
         function updateContent() {
             contentContainer.innerHTML = "";
             const item = currentFilteredMedia[currentIndex];
@@ -118,7 +114,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         }
 
-        // X dugme za zatvaranje
         const closeButton = document.createElement("button");
         closeButton.innerHTML = "&times;";
         closeButton.style.cssText = `
@@ -134,7 +129,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         `;
         closeButton.addEventListener("click", closeModal);
 
-        // Swipe left/right/down logika
         let startX = 0, startY = 0;
         contentContainer.addEventListener("touchstart", (e) => {
             if (e.touches.length > 0) {
@@ -166,14 +160,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         });
 
-        // Klik na pozadinu zatvara modal
         modalContainer.addEventListener("click", (e) => {
             if (e.target === modalContainer) {
                 closeModal();
             }
         });
 
-        // Inicijalni prikaz
         updateContent();
 
         modalContainer.appendChild(contentContainer);
@@ -204,7 +196,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     
         const custom360 = getCustom360Projects();
     
-        // === Prikaz samo za "360" kategoriju ===
         if (category === "360") {
             custom360.forEach(item => {
                 const wrapper = document.createElement("div");
@@ -272,10 +263,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 gallery.appendChild(wrapper);
             });
     
-            return; // 🛑 samo za 360 kategoriju prekidamo
+            return; 
         }
     
-        // === Prikaz ostalih kategorija ===
         currentFilteredMedia = (category === "all")
             ? allMedia
             : allMedia.filter(item => item.category === category);
@@ -444,7 +434,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             gallery.appendChild(mediaElement);
         });
     
-        // === Na kraju, ubaci i 360° fajlove za "all" ===
+        // === Na kraju 360° fajlovi ===
         if (category === "all") {
             custom360.forEach(item => {
                 const wrapper = document.createElement("div");
@@ -567,7 +557,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                   });
                 },
               
-                // ⬇⬇⬇ UBACUJES OVO ISPOD POSTOJECIH DVA
                 "Carousel.ready": () => {
                     setTimeout(() => {
                         const thumbsTrack = document.querySelector('.f-thumbs__track');
