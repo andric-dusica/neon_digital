@@ -15,6 +15,22 @@ Focused on performance, clean design, and smooth UX.
 
 ## 📸 Screenshots
 
+### Homepage – Desktop
+![Homepage Desktop](./assets/screenshots/homepage_desktop.png)
+
+### Homepage – Mobile
+![Homepage Mobile](./assets/screenshots/homepage_mobile.png)
+
+### Gallery View – Desktop
+![Gallery View](./assets/screenshots/gallery_view_desktop.png)
+
+### Gallery – Mobile
+![Images Mobile](./assets/screenshots/images_mobile.png)
+
+### Gallery – Desktop
+![Images Desktop](./assets/screenshots/images_desktop.png)
+
+
 
 ## 🔗 Live Demo
 
