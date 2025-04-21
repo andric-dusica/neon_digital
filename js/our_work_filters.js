@@ -19,12 +19,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function fetchMedia() {
         const { data: homeData, error: homeError } = await supabase
             .from("home_our_work_images_videos")
-            .select("media_url, type, category, cover_url, project_name, project_name_sr")
+            .select("media_url, type, category, cover_url, project_name, project_name_sr, order_reels")
             .order("order", { ascending: true });
 
             const { data: ourWorkData, error: ourWorkError } = await supabase
             .from("our_work_images_videos")
-            .select("media_url, type, category, cover_url, project_name, project_name_sr, direction, order")
+            .select("media_url, type, category, cover_url, project_name, project_name_sr, direction, order, order_vc, order_reels")
             .order("order", { ascending: true });
 
     
@@ -269,6 +269,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         currentFilteredMedia = (category === "all")
             ? allMedia
             : allMedia.filter(item => item.category === category);
+
+        if (category === "reels") {
+            currentFilteredMedia = currentFilteredMedia
+                .filter(item => typeof item.order_reels === "number")
+                .sort((a, b) => a.order_reels - b.order_reels);
+            }
+              
+
+        if (category === "vc_stories") {
+            currentFilteredMedia = allMedia
+                .filter(item => item.category === "vc_stories" && typeof item.order_vc === "number")
+                .sort((a, b) => parseInt(a.order_vc) - parseInt(b.order_vc));
+            }
+              
     
         if (!currentFilteredMedia || currentFilteredMedia.length === 0) {
             gallery.innerHTML = `<p class="text-white text-center w-full">No items.</p>`;
