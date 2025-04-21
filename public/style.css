@@ -269,10 +269,16 @@ h1, h2, h3, h4, h5, h6, p {
   
   .gallery a {
     display: block;
-    max-width: 100%;
+    max-width: 637px;
+    height: 479px;
+  }
+
+  .contact_us_gradient .gallery a {
+    width: 100%;
     height: 100%;
   }
-  
+
+
   .gallery img {
     width: 100%;
     height: 100%;
