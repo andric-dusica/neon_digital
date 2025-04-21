@@ -55,7 +55,7 @@ async function displayLogos() {
 
 function startInfiniteScroll(wrapper) {
   let scrollPosition = 0;
-  const speed = 1;
+  const speed = 2.5;
 
   function animate() {
     scrollPosition -= speed;
