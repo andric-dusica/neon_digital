@@ -72,3 +72,20 @@ function startInfiniteScroll(wrapper) {
 }
 
 window.addEventListener("DOMContentLoaded", displayLogos);
+
+document.addEventListener("DOMContentLoaded", () => {
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+  if (isMobile) {
+    const observer = new MutationObserver(() => {
+      document.querySelectorAll(".owl-stage-outer").forEach(el => {
+        el.style.overflow = "visible";
+      });
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+  }
+});

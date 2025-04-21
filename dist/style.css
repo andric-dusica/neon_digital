@@ -287,16 +287,32 @@ h1, h2, h3, h4, h5, h6, p {
   }
 
 
-@media (max-width: 768px) {
+  @media (max-width: 768px) {
     .gallery {
-        display: grid;
+      overflow: hidden;
+      width: 100%;
     }
-
-    .gallery a {
-        height: auto !important;
-      }
-}
-
+  
+    .owl-carousel {
+      width: 100% !important;
+    }
+  
+    .owl-stage {
+      display: flex;
+      width: max-content;
+      transition: transform 0.3s ease;
+    }
+  
+    .owl-item {
+      width: 100% !important;
+      padding-right: 10px; /* ako želiš razmak */
+    }
+  
+    .owl-stage-outer {
+      overflow: hidden;
+    }
+  }
+  
   /* our work */
 .our_work .owl-carousel .item img, 
 .our_work .owl-carousel .item video {
