@@ -270,6 +270,20 @@ document.addEventListener("DOMContentLoaded", async () => {
             ? allMedia
             : allMedia.filter(item => item.category === category);
 
+            if (category === "all") {
+                currentFilteredMedia.sort((a, b) => {
+                    if (a.category === "reels" && b.category === "reels") {
+                        return (a.order_reels ?? 9999) - (b.order_reels ?? 9999);
+                    }
+            
+                    if (a.category === "reels") return -1;
+                    if (b.category === "reels") return 1;
+            
+                    return (a.order ?? 9999) - (b.order ?? 9999);
+                });
+            }
+            
+
         if (category === "reels") {
             currentFilteredMedia = currentFilteredMedia
                 .filter(item => typeof item.order_reels === "number")

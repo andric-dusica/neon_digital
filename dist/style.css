@@ -270,8 +270,8 @@ h1, h2, h3, h4, h5, h6, p {
   
   .gallery a {
     display: block;
-    max-width: 637px;
-    height: 479px;
+    max-width: 100%;
+    height: 100%;
   }
   
   .gallery img {
