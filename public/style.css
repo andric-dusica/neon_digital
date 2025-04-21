@@ -388,9 +388,9 @@ h1, h2, h3, h4, h5, h6, p {
         margin: 0 auto;
     }
 
-    .owl-item {
+    /* .owl-item {
         width: 350px !important;
-    }
+    } */
 
     .our_work .owl-carousel .owl-nav button.owl-prev {
         display: none;
