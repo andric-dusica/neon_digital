@@ -7,7 +7,7 @@
     "cloudinary": "^2.5.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "esbuild": "^0.25.4",
+    "esbuild": "^0.25.0",
     "express": "^4.21.2",
     "glightbox": "^3.3.0",
     "http-proxy-middleware": "^2.0.9",
@@ -16,7 +16,7 @@
     "photoswipe": "^5.4.4",
     "resend": "^4.1.2",
     "stimulus": "^3.2.2",
-    "vite": "^4.5.13"
+    "vite": "^4.5.14"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
