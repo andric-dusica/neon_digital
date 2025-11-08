@@ -4,12 +4,8 @@
     "@supabase/supabase-js": "^2.80.0",
     "@vercel/analytics": "^1.5.0",
     "cloudinary": "^2.8.0",
-    "cors": "^2.8.5",
-    "glightbox": "^3.3.0",
-    "http-proxy-middleware": "^2.0.9",
     "photoswipe": "^5.4.4",
-    "resend": "^4.8.0",
-    "stimulus": "^3.2.2"
+    "resend": "^4.8.0"
   },
   "devDependencies": {
     "anymatch": "~3.1.3",
