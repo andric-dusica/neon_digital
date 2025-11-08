@@ -1,7 +1,7 @@
 // vite.config.js
 import { defineConfig } from "vite";
-import tailwindcss from "tailwindcss";
-import autoprefixer from "autoprefixer";
+import tailwindcss from '@tailwindcss/postcss';
+import autoprefixer from 'autoprefixer';
 
 export default defineConfig({
   server: {

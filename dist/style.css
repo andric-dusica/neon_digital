@@ -602,6 +602,13 @@ form .send_message {
     position: absolute;
     bottom: 0;
   }
+
+  .error-message-email {
+    color: #ff3e4d;
+    font-size: 14px;
+    position: relative;
+    bottom: 0;
+  }
   
   .popup-message {
     position: fixed;

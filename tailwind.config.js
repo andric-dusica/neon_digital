@@ -20,6 +20,14 @@ module.exports = {
     'mx-auto',
   ],
   theme: {
+     screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
+    important: true,
     extend: {
       colors: {
         'btn-gradient': 'radial-gradient(169.51% 152.63% at -15.27% 0%, #CA07AF 0%, #9215CE 46.9%, #3434D7 100%)',
