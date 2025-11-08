@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import { defineConfig } from 'tailwindcss'
+
+export default defineConfig({
   content: [ 
     "./index.html",
     "./src/**/*.html", 
@@ -20,15 +21,14 @@ module.exports = {
     'mx-auto',
   ],
   theme: {
-     screens: {
-      sm: '640px',
-      md: '768px',
-      lg: '1024px',
-      xl: '1280px',
-      '2xl': '1536px',
-    },
-    important: true,
     extend: {
+      screens: {
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1536px',
+      },
       colors: {
         'btn-gradient': 'radial-gradient(169.51% 152.63% at -15.27% 0%, #CA07AF 0%, #9215CE 46.9%, #3434D7 100%)',
         'btn-white-bg': '#FFF',
@@ -60,7 +60,7 @@ module.exports = {
     },
   },
   plugins: [
-    function ({ addUtilities }) {
+    function({ addUtilities }) {
       addUtilities({
         '.btn-color': {
           display: 'flex',
@@ -73,13 +73,12 @@ module.exports = {
           color: '#FFF',
           fontFamily: 'Poppins, sans-serif',
           fontSize: '18px',
-          fontStyle: 'normal',
           fontWeight: '500',
           lineHeight: 'normal',
           transition: 'background 0.7s ease',
         },
         '.btn-color:hover': {
-          background: '#A510C3', 
+          background: '#A510C3',
         },
         '.btn-white': {
           display: 'flex',
@@ -92,16 +91,16 @@ module.exports = {
           color: '#000029',
           fontFamily: 'Poppins, sans-serif',
           fontSize: '18px',
-          fontStyle: 'normal',
           fontWeight: '500',
           lineHeight: 'normal',
           transition: 'background 0.3s ease',
         },
         '.btn-white:hover': {
-          background: '#A510C3', 
-          color: '#FFF', 
+          background: '#A510C3',
+          color: '#FFF',
         },
-      });
-    },
+      })
+    }
   ],
-};
+  important: true, // zadržano da bi ! klase radile
+})
