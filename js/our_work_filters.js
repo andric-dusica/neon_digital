@@ -699,7 +699,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         !filterDropdown.contains(e.target)
       ) {
         filterDropdown.classList.add("hidden");
-        filterToggle.querySelector("svg").classList.remove("rotate-180");
       }
     });
 });
