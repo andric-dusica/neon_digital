@@ -836,3 +836,53 @@ video {
 .fancybox-thumbs-wrapper:hover .fancybox-thumbs-next {
   opacity: 1;
 }
+
+
+.site-logo {
+  width: 74px;
+  height: 40px;
+}
+
+/* desktop */
+@media (min-width: 1024px) {
+  .site-logo {
+    width: 140px;
+    height: 85px;
+  }
+}
+
+/* NIKŠA slika */
+.niksa_hero {
+  position: absolute;
+  left: -78px;
+  bottom: -17.28px;
+  z-index: -1;
+  width: 378px;
+  height: 545px;
+  object-fit: contain;
+}
+
+@media (min-width: 1024px) {
+  .niksa_hero {
+    width: 484px;
+    height: 783px;
+  }
+}
+
+/* ANĐA slika */
+.andja_hero {
+  position: absolute;
+  right: -21px;
+  bottom: -39px;
+  z-index: -1;
+  width: 247px;
+  height: 558px;
+  object-fit: contain;
+}
+
+@media (min-width: 1024px) {
+  .andja_hero {
+    width: 314px;
+    height: 783px;
+  }
+}
